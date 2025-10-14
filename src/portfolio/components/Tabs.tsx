@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import './CSS/App.css';
 
 type Props = {
   buttonWidth: number;

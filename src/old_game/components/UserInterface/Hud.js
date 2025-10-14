@@ -9,7 +9,7 @@ import SkillsHud from "./SkillsHud"
   import Quests from "./gameMenu/Quests.js"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { serverUrl } from "../../App"
+import { serverUrl } from "../../../App"
   
 // master container for all the on screen buttons (HUD = Heads Up Display)
 function Hud({character, items, setItems}){

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Title from '../../components/Pages/Title.tsx'
 import "./admin.css"
 import React, { useEffect, useState } from "react";
-import { serverUrl } from "../../App";
+import { serverUrl } from "../../../App";
 
 function Admin({handleLogout}){
   const [users, setUsers] = useState([])

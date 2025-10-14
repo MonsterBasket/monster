@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Main from './components/main.js';
 
-import './portfolio/components/CSS/App.css';
+// import './portfolio/components/CSS/App.css';
 import Splash from './portfolio/components/Splash.tsx'
 import About from './portfolio/components/About.tsx';
 import Animation from './portfolio/components/Animation.tsx'
@@ -14,7 +14,7 @@ import Projects from './portfolio/components/Projects.tsx';
 import Tabs from './portfolio/components/Tabs.tsx';
 
 import axios from 'axios';
-import './old_game/App.css';
+// import './old_game/App.css';
 import Admin from "./old_game/Pages/Admin/Admin.js";
 import MapMaker from "./old_game/Pages/DevTools/MapMaker.js"
 import Login from "./old_game/Pages/Login/Login.js"
@@ -57,8 +57,10 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (isLoggedIn) navigate("/select-character")
-    else navigate("/login")
+    if (window.location.pathname.includes('/play-old/')){
+      if (isLoggedIn) navigate("/play-old/select-character")
+      else navigate("/play-old/login")
+    }
   }, [user])
 
   return (
@@ -78,7 +80,7 @@ export default function App() {
             <Menu buttonWidth={buttonWidth} setButtonWidth={setButtonWidth} buttonOpacity={buttonOpacity} setButtonOpacity={setButtonOpacity} setTurnToCheat={setTurnToCheat}/>
           </Splash>
         } />
-          {isLoggedIn ? <>
+        {isLoggedIn ? <>
           <Route path="/play-old/select-character" element={<SelectCharacter user={user} setPlayCharacter={setPlayCharacter} handleLogout={handleLogout} />} />
           <Route path="/play-old/" element={<GameController character={character} />} />
           <Route path="/play-old/admin/mapmaker" element={<MapMaker />} />

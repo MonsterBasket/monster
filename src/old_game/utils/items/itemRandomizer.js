@@ -1,5 +1,5 @@
 import axios from "axios";
-import { serverUrl } from "../../App";
+import { serverUrl } from "../../../App";
 
 const options = [
   {name: "Generic Item",          img_pos_x: 0,  img_pos_y: 10, item_type: "generic"},

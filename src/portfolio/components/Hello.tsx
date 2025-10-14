@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react"
 import sunbeam from "../images/sunbeam.jpg"
 import penguin from "../images/penguin.jpg"
 import trees   from "../images/trees.jpg"
+import './CSS/App.css';
 
 
 function Hello(){

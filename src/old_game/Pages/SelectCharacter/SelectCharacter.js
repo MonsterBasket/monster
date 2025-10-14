@@ -6,7 +6,7 @@ import knight from "../../images/knight.png"
 import rogue from "../../images/rogue.png"
 import mage from "../../images/mage.png"
 import axios from 'axios';
-import { serverUrl } from '../../App';
+import { serverUrl } from '../../../App';
 
 function SelectCharacter({ user, setPlayCharacter, handleLogout }) {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ function SelectCharacter({ user, setPlayCharacter, handleLogout }) {
 
   function play(character) {
     setPlayCharacter(character)
-    navigate("/")
+    navigate("/play-old/")
   }
 
   function deleteCharacter() {

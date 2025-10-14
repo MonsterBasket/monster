@@ -1,5 +1,5 @@
 import axios from "axios";
-import { serverUrl } from "../../App";
+import { serverUrl } from "../../../App";
 
 function savePosition(character, map, x, y){
   character = {

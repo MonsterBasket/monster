@@ -1,7 +1,6 @@
 import './CSS/animation.css'
 import disclaimerImg from '../images/disclaimer.png';
-import { DOMElement, ReactElement, useEffect, useRef, useState } from 'react';
-import { forEachChild } from 'typescript';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
 type Props = {turnToCheat: number;}
 

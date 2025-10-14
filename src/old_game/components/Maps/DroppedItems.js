@@ -1,7 +1,7 @@
 import "../UserInterface/windows.css"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { serverUrl } from "../../App"
+import { serverUrl } from "../../../App"
 
 function DroppedItems({ page, playerPos, items, setItems, character, refItems }) {
   const [floorItems, setFloorItems] = useState([])

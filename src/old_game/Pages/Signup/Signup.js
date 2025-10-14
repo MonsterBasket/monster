@@ -3,7 +3,7 @@ import axios from 'axios';
 import login from "../../utils/login/login.js"
 import Title from '../../components/Pages/Title.tsx'
 import '../Login/home.css';
-import { serverUrl } from "../../App";
+import { serverUrl } from "../../../App";
 import { Link } from "react-router-dom";
 
 function Signup({ handleLogin }) {
