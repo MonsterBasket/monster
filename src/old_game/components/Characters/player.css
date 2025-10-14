@@ -1,0 +1,77 @@
+.player {       background-image: url("../../images/main-character.png"); }
+.Knight {       background-image: url("../../images/knight-sprite.png"); }
+.Rogue {        background-image: url("../../images/rogue-sprite.png"); }
+.Mage {         background-image: url("../../images/mage-sprite.png"); }
+.skeleton {     background-image: url("../../images/skeleton.png"); }
+.redSkeleton {  background-image: url("../../images/redSkeleton.png"); }
+.blueSkeleton { background-image: url("../../images/blueSkeleton.png"); }
+
+.character{
+  position: absolute;
+  box-sizing: border-box;
+  top: 0px;
+  left: 0px;
+  width: 16px;
+  height: 32px;
+  z-index: 1;
+  animation-delay: 0s;
+  animation-duration: 0.7s;
+  animation-timing-function: steps(5, end);
+  animation-iteration-count: infinite;
+  image-rendering: pixelated;
+}
+/*---- walk ---*/
+@keyframes walkLeft {
+  from {background-position: calc(11 * -16px) calc(7 * -16px + 8px);}
+  to   {background-position: calc(16 * -16px) calc(7 * -16px + 8px);}
+}
+@keyframes walkRight {
+  from {background-position: calc(11 * -16px) calc(3 * -16px + 8px);}
+  to   {background-position: calc(16 * -16px) calc(3 * -16px + 8px);}
+}
+@keyframes walkDown {
+  from {background-position: calc(11 * -16px) calc(5 * -16px + 8px);}
+  to   {background-position: calc(16 * -16px) calc(5 * -16px + 8px);}
+}
+@keyframes walkUp {
+  from {background-position: calc(11 * -16px) calc(1 * -16px + 8px);}
+  to   {background-position: calc(16 * -16px) calc(1 * -16px + 8px);}
+}
+/* ------- Attack -----------*/
+@keyframes attackLeft {
+  from {background-position: calc(1 * -16px + 8px) calc(7 * -16px + 8px); left: -10px;  width: 32px;}
+  to   {background-position: calc(7 * -16px + 8px) calc(7 * -16px + 8px); left: -10px;  width: 32px;}
+}
+@keyframes attackRight {
+  from {background-position: calc(1 * -16px + 8px) calc(3 * -16px + 8px); left: -8px;  width: 32px;}
+  to   {background-position: calc(7 * -16px + 8px) calc(3 * -16px + 8px); left: -8px;  width: 32px;}
+}
+@keyframes attackDown {
+  from {background-position: calc(1 * -16px + 8px) calc(5 * -16px + 8px); left: -9px;  width: 32px;}
+  to   {background-position: calc(7 * -16px + 8px) calc(5 * -16px + 8px); left: -9px;  width: 32px;}
+}
+@keyframes attackUp {
+  from {background-position: calc(1 * -16px + 8px) calc(1 * -16px + 8px); left: -10px;  width: 32px;}
+  to   {background-position: calc(7 * -16px + 8px) calc(1 * -16px + 8px); left: -10px;  width: 32px;}
+}
+/*---- idle ---*/
+@keyframes idleLeft {
+  from {background-position: calc(21 * -16px) calc(7 * -16px + 8px);}
+  to   {background-position: calc(26 * -16px) calc(7 * -16px + 8px);}
+}
+@keyframes idleRight {
+  from {background-position: calc(21 * -16px) calc(3 * -16px + 8px);}
+  to   {background-position: calc(26 * -16px) calc(3 * -16px + 8px);}
+}
+@keyframes idleDown {
+  from {background-position: calc(21 * -16px) calc(5 * -16px + 8px);}
+  to   {background-position: calc(26 * -16px) calc(5 * -16px + 8px);}
+}
+@keyframes idleUp {
+  from {background-position: calc(21 * -16px) calc(1 * -16px + 8px);}
+  to   {background-position: calc(26 * -16px) calc(1 * -16px + 8px);}
+}
+.mobHealth{
+  height: 1.5px;
+  background: Red;
+}

@@ -1,0 +1,124 @@
+.cubeBody{
+  width: 100%;
+  height: 100%;
+  background: black;
+  --color1: #5f6f3a;
+  --color2: #8e7d69;
+  --color3: #d8af7f;
+  --color4: #f5e1b9;
+}
+.cubeParent div{
+  box-sizing: border-box;
+  width: 60px;
+  height: 60px;
+}
+div.cubeParent, div.cubeGrid{
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  box-sizing: content-box;
+}
+.cubeParent{
+  top: calc(50% - 90px);
+  left: calc(50% - 90px);
+  perspective: 600px;
+}
+.cubeGrid{
+  display: flex;
+  flex-wrap: wrap;
+}
+.cube{
+  position: relative;
+  border: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(30px);
+  animation-name: roll;
+  animation-timing-function: ease-in;
+}
+.cube, .cubeGrid div{
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+.cubeGrid div{
+  animation-timing-function: ease-out;
+}
+.cube div{
+  position: absolute;
+  border: 3px solid black;
+}
+/* cube colours */
+.cube1{ background: var(--color1); }
+.cube2{ background: var(--color2); }
+.cube3{ background: var(--color3); }
+.cube4{ background: rgb(34, 69, 34); }
+.cube5{ background: rgb(236, 185, 90); }
+.cube6{ background: var(--color4); }
+/* initial positions */
+.cube1{ transform: rotateY(0deg) translateZ(30px); }
+.cube2{ transform: rotateY(90deg) translateZ(30px); }
+.cube3{ transform: rotateY(180deg) translateZ(30px); }
+.cube4{ transform: rotateY(-90deg) translateZ(30px); }
+.cube5{ transform: rotateX(90deg) translateZ(30px); }
+.cube6{ transform: rotateX(-90deg) translateZ(30px); }
+/* flooor animations */
+.cubeGrid div:nth-child(1){ animation-name: roll1; }
+.cubeGrid div:nth-child(2){ animation-name: roll2; }
+.cubeGrid div:nth-child(3){ animation-name: roll3; }
+.cubeGrid div:nth-child(4){ animation-name: roll4; }
+.cubeGrid div:nth-child(6){ animation-name: roll6; }
+.cubeGrid div:nth-child(7){ animation-name: roll7; }
+.cubeGrid div:nth-child(8){ animation-name: roll8; }
+.cubeGrid div:nth-child(9){ animation-name: roll9; }
+@keyframes roll{
+  0%, 2.5%   {transform: translateZ(30px) translateX(  0px) translateY(  0px) rotateY(  0deg) rotateX(  0deg);}
+  12.5%, 15% {transform: translateZ(30px) translateX( 60px) translateY(  0px) rotateY( 90deg) rotateX(  0deg);}
+  25%, 27.5% {transform: translateZ(30px) translateX(120px) translateY(  0px) rotateY(180deg) rotateX(  0deg);}
+  37.5%, 40% {transform: translateZ(30px) translateX(120px) translateY( 60px) rotateY(180deg) rotateX( 90deg);}
+  50%, 52.5% {transform: translateZ(30px) translateX(120px) translateY(120px) rotateY(180deg) rotateX(180deg);}
+  62.5%, 65% {transform: translateZ(30px) translateX( 60px) translateY(120px) rotateY( 90deg) rotateX(180deg);}
+  75%, 77.5% {transform: translateZ(30px) translateX(  0px) translateY(120px) rotateY(  0deg) rotateX(180deg);}
+  87.5%, 90% {transform: translateZ(30px) translateX(  0px) translateY( 60px) rotateY(  0deg) rotateX(270deg);}
+  100%       {transform: translateZ(30px) translateX(  0px) translateY(  0px) rotateY(  0deg) rotateX(360deg);}
+}
+@keyframes roll1{
+  0% { box-shadow: 0px 0px 15px 10px var(--color3); background: var(--color3); }
+  5%, 100% { box-shadow: 0 0 0 0 var(--color3); }
+  37.5%, 100% { background: none; }
+}
+@keyframes roll2{
+  12.5% { box-shadow: 0px 0px 15px 10px var(--color2); background: var(--color2); }
+  17.5%, 12.4% { box-shadow: 0 0 0 0 var(--color2);}
+  50%, 12.4% { background: none; }
+}
+@keyframes roll3{
+  25% { box-shadow: 0px 0px 15px 10px var(--color1); background: var(--color1); }
+  30%, 24.9% { box-shadow: 0 0 0 0 var(--color1);}
+  62.5%, 24.9% { background: none; }
+}
+@keyframes roll6{ /* In the roll order, not numeric */
+  37.5% { box-shadow: 0px 0px 15px 10px var(--color4); background: var(--color4); }
+  42.5%, 37.4% { box-shadow: 0 0 0 0 var(--color4);}
+  75%, 37.4% { background: none; }
+}
+@keyframes roll9{
+  50% { box-shadow: 0px 0px 15px 10px var(--color3); background: var(--color3); }
+  55%, 49.9% { box-shadow: 0 0 0 0 var(--color3);}
+  87.5%, 49.9% { background: none; }
+}
+@keyframes roll8{
+  62.5% { box-shadow: 0px 0px 15px 10px var(--color2); background: var(--color2); }
+  67.5%, 62.4% { box-shadow: 0 0 0 0 var(--color2);}
+  100%, 62.4% { background: none; }
+}
+@keyframes roll7{
+  75% { box-shadow: 0px 0px 15px 10px var(--color1); background: var(--color1); }
+  80%, 74.9% { box-shadow: 0 0 0 0 var(--color1);}
+  100%, 0% { background: #60703b1a}
+  12.5%, 74.9% { background: none; }
+}
+@keyframes roll4{
+  87.5% { box-shadow: 0px 0px 15px 10px var(--color4); background: var(--color4); }
+  92.5%, 87.4% { box-shadow: 0 0 0 0 var(--color4);}
+  100%, 0% { background: #f5e1b9a8}
+  25%, 87.4% { background: none; }
+}

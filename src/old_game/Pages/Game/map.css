@@ -1,0 +1,53 @@
+:root{
+  --imgUrl: url("../../images/environment-sprites.png");
+  /* --colliderUrl: url("../../images/colliders.png"); */
+}
+.world, .world2{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+.gameContainer{
+  position: relative;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+}
+.mapGrid{
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  /* overflow: hidden; */
+  /* transition: all 0.3s */
+}
+.monsterLayer{
+  position: absolute;
+}
+.childStyle{
+  margin: 0%;
+  width: 16px;
+  height: 16px;
+  z-index: 0;
+  font-size: xx-small;
+  transform: translateZ(0) scale(3);
+  background-image: var(--imgUrl);
+  image-rendering: pixelated;
+}
+.secondChildStyle{
+  position: absolute;
+  margin: 0%;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-image: var(--imgUrl);
+}
+.collider{
+  opacity: 0%;
+  /* background-image: var(--colliderUrl); */
+}
+.mapGrid.highZ{
+  z-index: 2;
+}

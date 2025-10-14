@@ -1,0 +1,179 @@
+.projTop, .projBottom, .projLeft, .projRight, .project, .projDesc, .projTopCover, .projLeftCover{ /* defaults for all, many will be overwritten */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+.projLeft, .projRight, .projTop, .projBottom{
+  overflow: hidden;
+}
+.projLeftCover{
+  background: linear-gradient(0deg, #8e7d69 0%, #8e7d6900 20%),
+              linear-gradient(180deg, #8e7d69 0%, #8e7d6900 20%);
+  pointer-events: none;
+}
+.projTopCover{
+  background: linear-gradient(90deg, #8e7d69 0%, #8e7d6900 20%),
+              linear-gradient(270deg, #8e7d69 0%, #8e7d6900 20%);
+  pointer-events: none;
+}
+.noScroll{
+  touch-action: none;
+}
+.projTop{
+  height: 50%;
+  /* background-color: red; */
+}
+.projBottom{
+  height: 50%;
+  top: 50%;
+  /* background-color: blue; */
+}
+.projLeft{
+  width: 50%;
+  /* background-color: red; */
+}
+.projRight{
+  width: 50%;
+  left: 50%;
+  /* background-color: blue; */
+}
+.projTop, .projBottom, .projTopTouch{
+  --size: min(calc(45vh - 25px), 90vw);
+}
+.projLeft, .projRight, .projLeftTouch{
+  --size: min(45vw, 70vh);
+}
+.project, .projDesc{
+  width: var(--size);
+  height: var(--size);
+  left: calc(50% - (var(--size) / 2));
+  top: calc(50% - (var(--size) / 2));
+}
+.projDesc{
+  display:flex;
+  align-items: center;
+}
+.project1, .project3, .desc1, .desc3{
+  opacity: 0;
+}
+.projTop .project1{
+  left: -100vw;
+}
+.projTop .project3{
+  left: 100vw;
+}
+.projLeft .project1{
+  top: -100vh;
+}
+.projLeft .project3{
+  top: 100vh;
+}
+.projBottom .desc1{
+  left: 100vw;
+}
+.projBottom .desc3{
+  left: -100vw;
+}
+.projRight .desc1{
+  top: 100vh;
+}
+.projRight .desc3{
+  top: -100vh;
+}
+.projTopRule, .projLeftRule, .projButtonBack, .projUpButton, .projDownButton{
+  position: absolute;
+}
+.projTopRule{
+  top: 50%;
+  left: 15%;
+  width: 70%;
+  height: 0;
+  box-shadow: 0 0 2px 0.5px black;
+}
+.projLeftRule{
+  top: 15%;
+  left: 50%;
+  height: 70%;
+  width: 0;
+  box-shadow: 0 0 2px 0.5px black;
+}
+.projButtonBack{
+  background: #8e7d69;
+  width: 150px;
+  height: 20px;
+  top: -10px;
+  left: calc(50% - 75px);
+  box-shadow: 0 0 2px 0.5px #8e7d69;
+  display: flex;
+  justify-content: space-evenly;
+}
+.projLeftRule .projButtonBack{
+  transform: rotateZ(90deg);
+  top: calc(50% - 10px);
+  left: -75px;
+}
+.projButton{
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: white;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.projButton:hover, .projButton.active1{
+  box-shadow: 0 0 5px 0.5px white;
+}
+.projButton.active1{
+  opacity: 1;
+}
+.projUpButton, .projDownButton{
+  width: 30px;
+  height: 30px;
+  box-shadow: 2px -2px 1px 0.5px rgba(255, 255, 255, 0.6);
+  animation: 1s alternate-reverse infinite ease-in-out;
+}
+.projUpButton:hover, .projDownButton:hover{
+  box-shadow: 2px -2px 1px 1.5px rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+.projLeftRule .projUpButton{
+  top: -10%;
+  left: -15px;
+  transform: rotateZ(-45deg);
+  animation-name: buttonBounce1;
+}
+@keyframes buttonBounce1{
+  0%, 50%, 100%  {top: -10%;} 25% {top: -12%;}
+}
+.projLeftRule .projDownButton{
+  bottom: -10%;
+  left: -15px;
+  transform: rotateZ(135deg);
+  animation-name: buttonBounce2;
+}
+@keyframes buttonBounce2{
+  0%, 50%, 100%  {bottom: -10%;} 25% {bottom: -12%;}
+}
+.projUpButton{
+  top: -15px;
+  left: -10%;
+  transform: rotateZ(-135deg);
+  animation-name: buttonBounce3;
+}
+@keyframes buttonBounce3{
+  0%, 50%, 100%  {left: -10%;} 25% {left: -12%;}
+}
+.projDownButton{
+  bottom: -15px;
+  right: -10%;
+  transform: rotateZ(45deg);
+  animation-name: buttonBounce4;
+}
+@keyframes buttonBounce4{
+  0%, 50%, 100%  {right: -10%;} 25% {right: -12%;}
+}

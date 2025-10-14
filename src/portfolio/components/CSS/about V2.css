@@ -1,0 +1,174 @@
+#cont{
+  /* display: grid; */
+  position: absolute;
+  height: 50%;
+  width: 150vw;
+  left: -25vw;
+  /* align-items: center; */
+/*   padding: 5px 0px; */
+  /* grid-template-rows: auto; */
+  /* grid-template-columns: repeat(7, 1fr); */
+  /* grid-template-areas: "a1 a2 a3 a4 a5 a6 a7"; */
+}
+@media only screen and (max-width: 800px){
+  #cont{
+  width: 200vw;
+  left: -50vw;
+  }
+}
+@media only screen and (max-width: 500px){
+  #cont{
+    width: 250vw;
+    left: -75vw;
+  }
+}
+.item{
+  position: absolute;
+  height: 100%;
+  width: calc(100% / 7);
+  /* flex-grow: 1; */
+  box-sizing: content-box;
+  /* transition: transform 0.33s; */
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+[type=radio]{
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.card{
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 10px 15px 15px 0 rgb(0,0,0,0.5);
+  left: 5%;
+  top: 10%;
+  width: 90%;
+  height: 80%;
+  transition: 1s;
+  cursor: pointer;
+  box-sizing: border-box;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+.card:hover{
+  top: 5%;
+  left: 0%;
+  width: 100%;
+  height: 90%;
+  z-index: 2;
+  box-shadow: 15px 20px 20px 0 rgb(0,0,0,0.5);
+}
+[type=radio]:checked + .card{
+  top: 1%;
+  left: -25%;
+  width: 150%;
+  height: 120%;
+  border-radius: 20px;
+  z-index: 3;
+  box-shadow: 15px 20px 20px 0 rgb(0,0,0,0.5);
+}
+.cardDesc{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  color: white;
+  overflow: hidden;
+  pointer-events: none;
+  transition: 1s;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.h3{
+  position: relative;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  transition: 1s;
+  background: no-repeat linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  background-position-y: 100px;
+}
+.card:hover .h3, [type=radio]:checked + .card .h3{
+    background-position-y: 0px;
+}
+.h3 h3, .h3 p{
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  max-height: 0%;
+  overflow: hidden;
+  padding: 0px 5px;
+  margin: 0px 0px;
+  transition: max-height 1s, left 1s, width 1s;
+}
+.h3 h3{
+  left: -8.05%;
+  width: 111.11%;
+}
+.h3 p{
+  width: 185%;
+  left: -33.33%;
+}
+.card:hover h3{
+  left: 0%;
+  width: 100%;
+  max-height: 100%;
+  overflow: visible;
+}
+.card:hover p{
+  width: 150%;
+  left: -25%;
+}
+[type=radio]:checked + .card h3{
+  max-height: 100%;
+  overflow: visible;
+  left: 13.5%;
+  width: 73%;
+}
+[type=radio]:checked + .card p{
+  width: 100%;
+  left: 0%;
+  max-height: 100%;
+  overflow: visible;
+}
+/* .a1{grid-area: a1;}
+.a2{grid-area: a2;}
+.a3{grid-area: a3;}
+.a4{grid-area: a4;}
+.a5{grid-area: a5;}
+.a6{grid-area: a6;}
+.a7{grid-area: a7;} */
+.cardImage{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  pointer-events: none;
+}
+/* .a1 .cardImage{background-image: url("https://picsum.photos/id/15/500")}
+.a2 .cardImage{background-image: url("https://picsum.photos/id/18/500")}
+.a3 .cardImage{background-image: url("https://picsum.photos/id/25/500")}
+.a4 .cardImage{background-image: url("https://picsum.photos/id/70/500")}
+.a5 .cardImage{background-image: url("https://picsum.photos/id/110/500")}
+.a6 .cardImage{background-image: url("https://picsum.photos/id/93/500")}
+.a7 .cardImage{background-image: url("https://picsum.photos/id/95/500")} */
+.a1 .cardImage{background-image: url("../../images/carousel1.jpg")}
+.a2 .cardImage{background-image: url("../../images/carousel2.jpg")}
+.a3 .cardImage{background-image: url("../../images/carousel3.jpg")}
+.a4 .cardImage{background-image: url("../../images/carousel4.jpg")}
+.a5 .cardImage{background-image: url("../../images/carousel5.jpg")}
+.a6 .cardImage{background-image: url("../../images/carousel6.jpg")}
+.a7 .cardImage{background-image: url("../../images/carousel7.jpg")}

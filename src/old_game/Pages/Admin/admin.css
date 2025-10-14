@@ -1,0 +1,14 @@
+#userList{
+  color: white;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
+}
+#userList div, #userList a{
+  display: inline-block;
+  background-color: darkblue;
+  border: solid white 1px;
+}
+a {
+  text-decoration: none;
+  color:red;
+}
