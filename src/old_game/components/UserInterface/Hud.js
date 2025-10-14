@@ -22,7 +22,7 @@ function Hud({character, items, setItems}){
   function getItems(){
     axios.get(`${serverUrl}items`, {params: {character_id: character.id}})//, {withCredentials: true})
     .then(res => {
-      if(res.status == 200) {
+      if(res.status === 200) {
         if(res.data.items.length > 0) {
           setItems(res.data.items)
         }
@@ -40,10 +40,10 @@ function Hud({character, items, setItems}){
 
   function show(option){
   setTransition("")
-  if(option == "items")  setPagePos(["center", "right", "hidden", "left"])
-  if(option == "armour") setPagePos(["left", "center", "right", "hidden"])
-  if(option == "skills") setPagePos(["hidden", "left", "center", "right"])
-  if(option == "quests") setPagePos(["right", "hidden", "left", "center"])
+  if(option === "items")  setPagePos(["center", "right", "hidden", "left"])
+  if(option === "armour") setPagePos(["left", "center", "right", "hidden"])
+  if(option === "skills") setPagePos(["hidden", "left", "center", "right"])
+  if(option === "quests") setPagePos(["right", "hidden", "left", "center"])
   setHideButtons(true)
 }
 function moveLeft(){
