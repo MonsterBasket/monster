@@ -1,0 +1,58 @@
+#monsterMenu{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background: white;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 30px;
+  font-size: 40px;
+}
+summary{
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+summary::marker {
+  content: "";
+}
+ul.open{
+  position: fixed;
+  margin-block-start: 20px;
+  padding-inline-start: 0px;
+  width: 150px;
+  height: auto;
+  visibility: visible;
+  transition: all 0.2s;
+}
+ul.closed{
+  position: fixed;
+  margin-block-start: -30px;
+  padding-inline-start: 0px;
+  width: 40px;
+  height: 40px;
+  overflow: clip;
+  visibility: hidden;
+  transition: all 0.2s;
+}
+li{
+  list-style-type: none;
+  list-style-position: outside;
+  height: 35px;
+  text-align: left;
+  background: white;
+  border: solid 1px black;
+  line-height: 35px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+a:first-child li{
+  border-radius: 10px 10px 0 0;
+}
+a:last-child li{
+  border-radius: 0 0  10px 10px;
+}

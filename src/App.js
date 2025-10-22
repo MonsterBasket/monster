@@ -1,10 +1,10 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import './App.css';
-import Main from './components/main.js';
+import Monster from './components/Monster.js';
 
 // import './portfolio/components/CSS/App.css';
-import Splash from './portfolio/components/Splash.tsx'
+import PortSplash from './portfolio/components/Splash.tsx'
 import About from './portfolio/components/About.tsx';
 import Animation from './portfolio/components/Animation.tsx'
 import Contact from './portfolio/components/Contact.tsx';
@@ -33,7 +33,11 @@ export default function App() {
   const navigate = useNavigate();
   const [character, setPlayCharacter] = useState({})
 
-  useEffect(() => loginStatus(), [])
+  useEffect(() => {
+    if (window.location.pathname.includes('/playOld')){
+      loginStatus()
+    }
+  }, [window.location.pathname])
 
   function loginStatus() {
     axios.get(`${serverUrl}logged_in`, { withCredentials: true })
@@ -57,18 +61,18 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (window.location.pathname.includes('/play-old/')){
-      if (isLoggedIn) navigate("/play-old/select-character")
-      else navigate("/play-old/login")
+    if (window.location.pathname.includes('/playOld')){
+      if (isLoggedIn) navigate("/playOld/select-character")
+      else navigate("/playOld/login")
     }
   }, [user])
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Monster />} />
         <Route path="/portfolio" element={
-          <Splash>
+          <PortSplash>
             <Hello />
             <Tabs buttonWidth={buttonWidth} buttonOpacity={buttonOpacity} turnToCheat={turnToCheat} setTurnToCheat={setTurnToCheat} names={["About", "Projects", "Work", "Contact"]}>
               <Contact turnToCheat={turnToCheat} />
@@ -78,18 +82,18 @@ export default function App() {
             </Tabs>
 
             <Menu buttonWidth={buttonWidth} setButtonWidth={setButtonWidth} buttonOpacity={buttonOpacity} setButtonOpacity={setButtonOpacity} setTurnToCheat={setTurnToCheat}/>
-          </Splash>
+          </PortSplash>
         } />
         {isLoggedIn ? <>
-          <Route path="/play-old/select-character" element={<SelectCharacter user={user} setPlayCharacter={setPlayCharacter} handleLogout={handleLogout} />} />
-          <Route path="/play-old/" element={<GameController character={character} />} />
-          <Route path="/play-old/admin/mapmaker" element={<MapMaker />} />
+          <Route path="/playOld/select-character" element={<SelectCharacter user={user} setPlayCharacter={setPlayCharacter} handleLogout={handleLogout} />} />
+          <Route path="/playOld" element={<GameController character={character} />} />
+          <Route path="/playOld/admin/mapmaker" element={<MapMaker />} />
           {user.is_admin} ? <>
-            <Route path="/play-old/admin" element={<Admin user={user} handleLogout={handleLogout} />} />
+            <Route path="/playOld/admin" element={<Admin user={user} handleLogout={handleLogout} />} />
           </> : {""}
         </> : <>
-          <Route path="/play-old/login" element={<Login handleLogin={handleLogin} />} />
-          <Route path="/play-old/signup" element={<Signup handleLogin={handleLogin} />} />
+          <Route path="/playOld/login" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/playOld/signup" element={<Signup handleLogin={handleLogin} />} />
         </>}
 
       </Routes>
