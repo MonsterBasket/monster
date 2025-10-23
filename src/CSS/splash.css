@@ -1,7 +1,6 @@
 body{
   margin: 0;
   overflow: hidden;
-  cursor: none;
 }
 #bg{
   position: absolute;
@@ -13,7 +12,10 @@ body{
   width: 100%;
   height: 100%;
   background: url("../images/dark monster.png");
-  background-size: 100vw 100vh;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
+  background-position-x: calc((100vw - 100vh / 9 * 16) / 2);
+  aspect-ratio: 16/9;
   pointer-events: none;
 }
 #drawing{
@@ -21,12 +23,12 @@ body{
   left: 0px;
   top: 0px;
 }
-.cursor{
+/* .cursor{
   position: absolute;
   pointer-events: none;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari *
+  -ms-user-select: none; /* IE 10 and IE 11 *
+  user-select: none; /* Standard syntax *
 }
 .cursor{
   background: #9FFF71;
@@ -36,4 +38,4 @@ body{
   left: calc(var(--x) - 2vw);
   top: calc(var(--y) - 2vw);
   pointer-events: none;
-}
+} */

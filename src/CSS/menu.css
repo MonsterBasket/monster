@@ -1,5 +1,6 @@
 #monsterMenu{
   position: fixed;
+  z-index: 10;
   top: 10px;
   right: 10px;
   width: 40px;
@@ -11,19 +12,10 @@
   line-height: 30px;
   font-size: 40px;
 }
-summary{
-  background: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-}
-summary::marker {
-  content: "";
-}
 ul.open{
   position: fixed;
   margin-block-start: 20px;
-  padding-inline-start: 0px;
+  right: 10px;
   width: 150px;
   height: auto;
   visibility: visible;
@@ -31,17 +23,18 @@ ul.open{
 }
 ul.closed{
   position: fixed;
-  margin-block-start: -30px;
-  padding-inline-start: 0px;
+  margin-block-start: -35px;
+  right: 0px;
   width: 40px;
   height: 40px;
   overflow: clip;
   visibility: hidden;
   transition: all 0.2s;
+  scale: 0.5;
 }
 li{
+  position: relative;
   list-style-type: none;
-  list-style-position: outside;
   height: 35px;
   text-align: left;
   background: white;
@@ -55,4 +48,7 @@ a:first-child li{
 }
 a:last-child li{
   border-radius: 0 0  10px 10px;
+}
+a{
+  text-decoration: none;
 }

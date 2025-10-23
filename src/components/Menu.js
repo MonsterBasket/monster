@@ -34,7 +34,7 @@ export default function MonsterMenu(){
     if (e.target.className === "monsterMenuButton") {
       setTimeout(() => setMC("closed"), 500);
     }
-    else setMC("closed")
+    else if (e.target.id !== "monsterMenu") setMC("closed")
   }
 
   function toggle(e){
@@ -45,10 +45,10 @@ export default function MonsterMenu(){
   return <>
     <button ref={detRef} id="monsterMenu" onClick={e => toggle(e)}>&equiv;
       <ul className={menuClose}>
-        <li className="monsterMenuButton">Home</li>
-        <li className="monsterMenuButton">Something</li>
+        <Link to ="/#bg"      ><li className="monsterMenuButton">Home</li></Link>
+        <Link to ="/portfolio"><li className="monsterMenuButton">Something</li></Link>
         <Link to ="/portfolio"><li className="monsterMenuButton">James's Portfolio</li></Link>
-        <Link to ="/playOld"><li className="monsterMenuButton">Old Game</li></Link>
+        <Link to ="/playOld"  ><li className="monsterMenuButton">Old Game</li></Link>
       </ul>
     </button>
   </>

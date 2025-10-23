@@ -2,6 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import './App.css';
 import Monster from './components/Monster.js';
+import MonsterMenu from './components/Menu.js'
 
 // import './portfolio/components/CSS/App.css';
 import PortSplash from './portfolio/components/Splash.tsx'
@@ -73,6 +74,7 @@ export default function App() {
         <Route path="/" element={<Monster />} />
         <Route path="/portfolio" element={
           <PortSplash>
+            <MonsterMenu />
             <Hello />
             <Tabs buttonWidth={buttonWidth} buttonOpacity={buttonOpacity} turnToCheat={turnToCheat} setTurnToCheat={setTurnToCheat} names={["About", "Projects", "Work", "Contact"]}>
               <Contact turnToCheat={turnToCheat} />

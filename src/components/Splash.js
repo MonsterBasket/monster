@@ -6,6 +6,11 @@ export default function Main(){
   // get reference to canvas and save canvas offsets
   const canvasRef = useRef();
   const canvas = useRef();
+  const imgSize = {
+    c: (window.innerWidth - (window.innerHeight / 9 * 16)) / 2,
+    x: window.innerHeight / 9 * 16,
+    y: window.innerHeight
+  }
 
   useEffect(() => {
     canvas.current = canvasRef.current;
@@ -28,7 +33,7 @@ export default function Main(){
 
         img.addEventListener("load", () => {
           // Image is loaded, now draw it
-          this.ctx.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
+          this.ctx.drawImage(img, imgSize.c, 0, imgSize.x, imgSize.y);
         });
         this.ctx.canvas.width  = window.innerWidth;
         this.ctx.canvas.height = window.innerHeight;
@@ -79,7 +84,7 @@ export default function Main(){
 
         this.ctx.strokeStyle = "red"
         this.ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
-        this.ctx.drawImage(img, 0, 0, canvas.current.width, canvas.current.height);
+        this.ctx.drawImage(img, imgSize.c, 0, imgSize.x, imgSize.y);
         this.ctx.globalCompositeOperation = "destination-out";
 
         for (let j = 0; j < this.strokes.length; j++) {
@@ -108,16 +113,36 @@ export default function Main(){
         requestAnimationFrame(this._draw.bind(this))
       };
 
+      function updateScreen(){
+        imgSize.c = (window.innerWidth - (window.innerHeight / 9 * 16)) / 2
+        imgSize.x = window.innerHeight / 9 * 16
+        imgSize.y = window.innerHeight
+        brush.ctx.canvas.width  = window.innerWidth;
+        brush.ctx.canvas.height = window.innerHeight;
+        brush.ctx.lineCap = brush.ctx.lineJoin = 'round';
+      }
+
+      function handleMouseMove(e){
+        document.documentElement.style.setProperty('--x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--y', e.clientY + 'px');
+      }
+      
       // Set up brush to listen to events
       const brush = new PrimitiveBrush(canvas.current.getContext('2d', {alpha: true}));
 
       canvas.current.addEventListener('mousedown', brush.start.bind(brush));
       canvas.current.addEventListener('mousemove', brush.move.bind(brush));
       canvas.current.addEventListener('mouseup', brush.end.bind(brush));
-      document.addEventListener('mousemove', e => {
-        document.documentElement.style.setProperty('--x', e.clientX + 'px');
-        document.documentElement.style.setProperty('--y', e.clientY + 'px');
-      })
+      document.addEventListener('mousemove', handleMouseMove)
+      window.addEventListener('resize', updateScreen);
+
+      return () => {
+        window.removeEventListener('resize', updateScreen);
+        document.removeEventListener('mousemove', handleMouseMove)
+        canvas.current.removeEventListener('mousedown', brush.start.bind(brush));
+        canvas.current.removeEventListener('mousemove', brush.move.bind(brush));
+        canvas.current.removeEventListener('mouseup', brush.end.bind(brush));
+      };
     }
   }, []);
 
@@ -125,7 +150,6 @@ export default function Main(){
   <div id="bg">
     <canvas ref={canvasRef} id="drawing"></canvas>
     <div className="dark"></div>
-    <div className="cursor"></div>
   </div>
   );
 }

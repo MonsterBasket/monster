@@ -8,7 +8,7 @@
   background-color: darkblue;
   border: solid white 1px;
 }
-a {
+#adminPortal a {
   text-decoration: none;
   color:red;
 }
