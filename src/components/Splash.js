@@ -1,11 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../CSS/splash.css"
-import dark from "../images/light monster.png"
+import light from "../images/light monster.png"
 
 export default function Main(){
   // get reference to canvas and save canvas offsets
   const canvasRef = useRef();
   const canvas = useRef();
+  const [bgImg, setbg] = useState("light");
   const imgSize = {
     c: (window.innerWidth - (window.innerHeight / 9 * 16)) / 2,
     x: window.innerHeight / 9 * 16,
@@ -15,9 +16,10 @@ export default function Main(){
   useEffect(() => {
     canvas.current = canvasRef.current;
     if (canvas.current) {
+      setTimeout(() => {setbg("dark")}, 1000)
       const requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
       const img = new Image();
-      img.src = dark;
+      img.src = light;
 
       function PrimitiveBrush(context) {
         if (!(context instanceof CanvasRenderingContext2D)) {
@@ -42,7 +44,7 @@ export default function Main(){
 
       PrimitiveBrush.prototype.start = function (event) {
         const x = event.clientX;
-        const y = event.clientY;
+        const y = event.clientY + window.scrollY;
         this.workingStrokes = [{
             x: x,
             y: y,
@@ -61,7 +63,7 @@ export default function Main(){
           return;
         }
         const x = event.clientX;
-        const y = event.clientY;
+        const y = event.clientY + window.scrollY;
         this.workingStrokes.push({
           x: x,
           y: y,
@@ -120,6 +122,7 @@ export default function Main(){
         brush.ctx.canvas.width  = window.innerWidth;
         brush.ctx.canvas.height = window.innerHeight;
         brush.ctx.lineCap = brush.ctx.lineJoin = 'round';
+        document.documentElement.style.setProperty('--width-minus-scrollbar', document.documentElement.clientWidth + "px");
       }
 
       function handleMouseMove(e){
@@ -135,6 +138,7 @@ export default function Main(){
       canvas.current.addEventListener('mouseup', brush.end.bind(brush));
       document.addEventListener('mousemove', handleMouseMove)
       window.addEventListener('resize', updateScreen);
+      document.documentElement.style.setProperty('--width-minus-scrollbar', document.documentElement.clientWidth + "px");
 
       return () => {
         window.removeEventListener('resize', updateScreen);
@@ -149,7 +153,7 @@ export default function Main(){
   return (
   <div id="bg">
     <canvas ref={canvasRef} id="drawing"></canvas>
-    <div className="dark"></div>
+    <div className={bgImg}></div>
   </div>
   );
 }

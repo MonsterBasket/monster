@@ -3,39 +3,26 @@ body{
   overflow: hidden;
 }
 #bg{
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   background: black;
 }
-.dark{
+.dark, .light{
   width: 100%;
   height: 100%;
-  background: url("../images/dark monster.png");
+  background: url("../images/light monster.png");
   background-size: auto 100vh;
   background-repeat: no-repeat;
   background-position-x: calc((100vw - 100vh / 9 * 16) / 2);
   aspect-ratio: 16/9;
   pointer-events: none;
 }
+.dark{
+  background-image: url("../images/dark monster.png");
+}
 #drawing{
   position: absolute;
   left: 0px;
   top: 0px;
 }
-/* .cursor{
-  position: absolute;
-  pointer-events: none;
-  -webkit-user-select: none; /* Safari *
-  -ms-user-select: none; /* IE 10 and IE 11 *
-  user-select: none; /* Standard syntax *
-}
-.cursor{
-  background: #9FFF71;
-  width: 4vw;
-  height: 4vw;
-  border-radius: 50%;
-  left: calc(var(--x) - 2vw);
-  top: calc(var(--y) - 2vw);
-  pointer-events: none;
-} */
