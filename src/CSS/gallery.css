@@ -7,7 +7,7 @@
   position: absolute;
   width: var(--width-minus-scrollbar);
   height: 100vh;
-  background: green;
+  background: #5a6641;
   animation: gallery 1s linear paused;
   z-index: 1;  
   animation-delay: calc(var(--scroll) * 1s);
@@ -20,7 +20,8 @@
   95% {clip-path: var(--pathNone);}
 }
 #gallery{
-  left: 0vw;
+  width: 100vw;
+  left: 0;
   height: 200vh;
   position: relative;
 }
@@ -45,14 +46,67 @@
   from {top: 65vh; } to { top: -6vh; }
   to { transform: rotate3d(0, 1, 0, -360deg)}
  }
-.galPic{
+.galPic, .galText{
   position: absolute;
   left: -150px;
   perspective: 1260px;
   border-radius: 10px;
   rotate: -10deg 0 0;
   transform: translateZ(-44vw) rotateY(180deg);
-  background: url("https://placecats.com/300/200");
   height: 200px;
   width: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #b9b974;
+}
+.galSpin:nth-child(4) .galPic{
+  background-size: cover;
+  background-image: url("../images/Trim1.gif");
+}
+.galSpin:nth-child(5) .galPic{
+  background-size: cover;
+  background-image: url("../images/Trim2.gif");
+}
+.galSpin:nth-child(6) .galPic{
+  background-image: url("../images/Bull.png");
+}
+.galText{
+  background-color: #7b6246;
+  box-sizing: border-box;
+  padding-top: 13px;
+  z-index: -1;
+  transform: translate3D(0, 0, -44vw);
+  animation: popUp linear 1s paused;
+  animation-delay: calc(var(--scroll) * 1.5s + var(--index) / 10);
+}
+@keyframes popUp {
+  0%, 38%, 62%, 100% {transform: translate3D(0, 0, -44vw) rotateY(180deg);} 
+  45%, 55% {transform: translate3D(0, -50px, -44vw) rotateY(180deg);}
+}
+.galTop, .galBot{
+  position: absolute;
+  z-index: 1;
+}
+.galTop{
+  left: 1vw;
+  top: 29vh;
+  transform-origin: left;
+  animation: topSquish linear 1s paused;
+  animation-delay: calc(var(--scroll) * 1s);
+}
+.galBot{
+  white-space: pre-line;
+  right: 2vw;
+  top: 63vh;
+  transform-origin: right;
+  animation: botSquish linear 1s paused;
+  animation-delay: calc(var(--scroll) * 1s);
+}
+@keyframes botSquish { 
+  15%, 60% { right: 2vw; transform: scaleX(1);}
+  25%, 52% { right: 10.2vw; transform: scaleX(0.8);}
+}@keyframes topSquish { 
+  47%, 95% { left: 1vw; transform: scaleX(1);}
+  50%, 80% { left: 8.7vw; transform: scaleX(0.8);}
 }

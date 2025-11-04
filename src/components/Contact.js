@@ -19,11 +19,11 @@ export default function Contact() {
     let mouseY = window.innerHeight / 2;
 
     const Bodies = Matter.Bodies;
-    const mouseConstraint = Matter.MouseConstraint.create(engine, {
-      element: document.body,
-    });
-    Composite.add(world, mouseConstraint);
-    Matter.Composite.add(world, mouseConstraint);
+    // const mouseConstraint = Matter.MouseConstraint.create(engine, {
+    //   element: document.body,
+    // });
+    // Composite.add(world, mouseConstraint);
+    // Matter.Composite.add(world, mouseConstraint);
 
     function getCoords(e) {
       mouseX = e.clientX;
