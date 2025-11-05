@@ -171,28 +171,34 @@ export default function Contact({turnToCheat}: Props){
     <div className="text" style={textWidth}>
       <div className="t1" onMouseOver={e => move(1)}>
         <div style={t1Style}>
-          Please note that this folio site is a work in progress, the site itself is my folio, as well as a handful of projects in the Projects section.
+          This website was made for two reasons:
           <br/><br/>
-          That includes the below.  I'll rewrite this soon, but this is what I was thinking a year ago:
+          1: As a portfolio to show off what I can do, and<br/>
+          2: To teach myself TypeScript.
           <br/><br/>
-          Over a decade ago I finished a degree in 3D animation. I learnt two very important things during my course:
-          <br/><br/>
-          1: I LOVE the technical side of animation, and<br/>
-          2: Animation is not for me.
+          So if you poke around, you'll find some features that you've hopefully never seen before, as well as some links to examples of other work I've done.  If you continue reading, you'll also learn a little about me, and how I became a game developer and web developer.  (Proceed at your own risk!)
         </div>
       </div>
       <div className="t2" onMouseOver={e => move(2)}>
         <div style={t2Style}>
-          I'm an extremely technically minded person, and can never have enough problems to solve. While I definitely have a creative side, I discovered that I don't have that artistic PASSION that's required in such a competitive industry, not like I do for coding, scripting and automation.
+          Compared to most people entering either the game dev or web dev industries, I'm a little longer in tooth, and there are numerous reasons why it's taken me this long to take this seriously.
           <br/><br/>
-          I've played around with code my whole life, and even made my own Google Maps API integrated webtools to make my job easier in my last three roles. But it wasn't until my last position was made redundant that I went "hang on, this pay-out will keep me afloat for a little while, maybe I *don't* have to just jump into the next available position".
+          Growing up in Tassie, I did a 3D animation subject in year 12 and had my name down for a scholarship with the ABC.  When they cancelled the scholarship program, I enrolled instead in a Bachelor of Computer Science at University of Tasmania, but dropped out after a semester of not knowing why I was there.
+          <br/><br/>
+          Then in 2003 I took a flight to the big city of Melbourne to attend the International Game Developers Conference.  I was young, very shy, and knew nothing.  I made no contacts at the conference, learnt essentially nothing, and only cemented my preconception that the industry was uninviting and an impossible pipe dream.
+          <br/><br/>
+          Several years of doing nothing with my life later, I moved to Melbourne and completed a Bachelor of Creative Arts (Animation) at JMC Academy.  Loved it, excelled in my class, did a few freelance gigs, but then ultimately let imposter syndrome beat me down.
         </div>
       </div>
       <div className="t3" onMouseOver={e => move(3)}>
         <div style={t3Style}>
-          So I did some serious research and introspection. I even took two or three personality tests! I'm still not entirely sure I believe in them entirely, but they all gave me the same answers, and those answers felt like quite an accurate representation of how my mind works. One of the top suggested careers for people with my personality type was software engineer, so I looked into what a software engineer actually does, and I honestly felt like I didn't even have an option any more. I HAD to pursue this.
+          After being made redundant from what I'd resigned myself to be my life-long career—because it paid well, not because I particularly enjoyed it—I did a software engineering bootcamp, and successfully transitioned into a software engineering role at Gentrack.  More than 20 years after dropping out of comp sci...
           <br/><br/>
-          So I found a bootcamp that would help me solidify the skills I already had and add a few more to my repertoire, and jumped! Having now completed that course, I can confidently say that I'm ready for action!
+          I was so sure of my decision, I'd done a lot of research and personality tests and software engineering really felt like the right choice, but after about a year I realised I wasn't enjoying my work at all.  This sent me into depression, and I started therapy for the first time in my life. Boy do I wish I'd started it back when I was a teenager.  It's now very clear to me that my multiple failures to persevere with things were due to the depression that has plagued me since High School.
+          <br/><br/>
+          Now, with my mental health tools in hand, I know that I was right about software development, I just have no love for billing or the energy industry.  Gentrack is a great place to work, just not for me.
+          <br/><br/>
+          Now that I'm in the best state of mind I've been in for my entire life, I'm here looking for frontend dev work, doing freelance web design, and making my own game!
         </div>
       </div>
       <div className="textTop"></div>

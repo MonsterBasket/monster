@@ -5,6 +5,7 @@ import Title from '../../components/Pages/Title.tsx'
 import '../Login/home.css';
 import { serverUrl } from "../../../App";
 import { Link } from "react-router-dom";
+import Menu from '../../../components/Menu.js'
 
 function Signup({ handleLogin }) {
 
@@ -68,6 +69,7 @@ function Signup({ handleLogin }) {
 
   return <div id="signup">
     <Title size={1} />
+    <Menu />
     <div>
       <h3>Create Account</h3>
       <div>
@@ -81,7 +83,7 @@ function Signup({ handleLogin }) {
         <span>{form.password2Error}</span><br />
         <button className="bigButton" onClick={signup}>Sign-Up</button><br /><br /><br />
       </div>
-      <Link to="/login"><button className="littleButton">Back to login</button></Link>
+      <Link to="/playOld/login"><button className="littleButton">Back to login</button></Link>
     </div>
   </div>
 }

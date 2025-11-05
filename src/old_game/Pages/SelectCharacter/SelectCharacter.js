@@ -7,6 +7,8 @@ import rogue from "../../images/rogue.png"
 import mage from "../../images/mage.png"
 import axios from 'axios';
 import { serverUrl } from '../../../App';
+import Menu from '../../../components/Menu.js'
+
 
 function SelectCharacter({ user, setPlayCharacter, handleLogout }) {
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ function SelectCharacter({ user, setPlayCharacter, handleLogout }) {
 
   function play(character) {
     setPlayCharacter(character)
-    navigate("/play-old/")
+    navigate("/playOld/")
   }
 
   function deleteCharacter() {
@@ -126,8 +128,9 @@ function SelectCharacter({ user, setPlayCharacter, handleLogout }) {
 
   return <div id="selectCharacter">
     <button className="logoutButton" onClick={handleLogout}>Logout</button>
-    {user.is_admin ? <Link to="/admin"><button className="littleButton">Admin Portal</button></Link> : ""}
+    {user.is_admin ? <Link to="/playOld/admin"><button className="littleButton">Admin Portal</button></Link> : ""}
     <Title size={1} />
+    <Menu />
     <h2>Select Character</h2>
     <div id="characterSelector">
       <div id="characterListLeft">
@@ -147,7 +150,7 @@ function SelectCharacter({ user, setPlayCharacter, handleLogout }) {
       {<div id="errorDisplay" className={hideErrors()}>{errorDisplay.map(item => <span key={item}>{item}<br /></span>)}</div>}
     </div>
     {characterCreator && savedCharacters.length > 0 ? <button className="littleButton back" onClick={() => setCreator(false)}>Back</button> : ""}
-    <Link to="/admin/mapmaker"><button>Map Editor</button></Link>
+    <Link to="/playOld/mapmaker"><button>Map Editor</button></Link>
   </div>
 }
 

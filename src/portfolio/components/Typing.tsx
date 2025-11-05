@@ -128,8 +128,8 @@ export default function Typing({active}: Props2){
 
   useEffect(() => {
     window.addEventListener("keydown", typing, false)
-    //return window.removeEventListener("keydown", typing, false) // matching the true/false actually breaks the event listener
-    // The above should be a nevesary cleanup, but it's causing a memory leak, and works MUCH better removed.
+    // return window.removeEventListener("keydown", typing, false) // matching the true/false actually breaks the event listener
+    // The above should be a neccesary cleanup, but it's causing a memory leak, and works MUCH better removed.
   },[])
 
   useEffect(() => {

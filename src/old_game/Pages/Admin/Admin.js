@@ -39,9 +39,9 @@ function Admin({handleLogout}){
   }
 
   return <div id="adminPortal">
-    <Link to="/select-character"><button>Back</button></Link>
+    <Link to="/playOld/select-character"><button>Back</button></Link>
     <button onClick={handleLogout}>Logout</button>
-    <Link to="/admin/mapmaker"><button>Map Editor</button></Link>
+    <Link to="/playOld/mapmaker"><button>Map Editor</button></Link>
     <Title size={0.7}/><br/><br/>
     <div id="userList">
       <div>Username</div><div>Email</div><div>Admin?</div><div>Delete</div>

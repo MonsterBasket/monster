@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import Matter from "matter-js";
-import "../CSS/contact.css"
 import linkedIn from "../images/linkedin.png"
 import blueSky from "../images/bluesky.webp"
 import insta from "../images/instagram.png"
+import gmail from "../images/gmail.png"
 
 export default function Contact() {
   const canvasRef = useRef();
@@ -17,6 +17,10 @@ export default function Contact() {
     y: Math.random() * (window.innerHeight - 70)
   }
   const img3Pos = {
+    x: Math.random() * (window.innerWidth - 100),
+    y: Math.random() * (window.innerHeight - 70)
+  }
+  const img4Pos = {
     x: Math.random() * (window.innerWidth - 100),
     y: Math.random() * (window.innerHeight - 70)
   }
@@ -36,12 +40,17 @@ export default function Contact() {
     const img1 = new Image();
     const img2 = new Image();
     const img3 = new Image();
+    const img4 = new Image();
     img1.src = linkedIn;
     img2.src = blueSky;
     img3.src = insta;
+    img4.src = gmail;
     checkPos(img2Pos, img1Pos)
     checkPos(img3Pos, img1Pos)
     checkPos(img3Pos, img2Pos)
+    checkPos(img4Pos, img1Pos)
+    checkPos(img4Pos, img2Pos)
+    checkPos(img4Pos, img3Pos)
 
     function checkPos(pos1, pos2){
       if (Math.abs(pos2.x - pos1.x) < 70 && Math.abs(pos2.y - pos1.y) < 70){
@@ -163,6 +172,8 @@ export default function Contact() {
       drawImage(img2, img2Pos)
       ctx.filter = `brightness(${brightness(img3Pos)})`;
       drawImage(img3, img3Pos)
+      ctx.filter = `brightness(${brightness(img4Pos)})`;
+      drawImage(img4, img4Pos)
       ctx.filter = "none";
       balls.forEach((b) => {
         if (b.label[0] === "white") {
@@ -299,5 +310,6 @@ export default function Contact() {
     <a className="canLink" href="https://www.linkedin.com/company/monsterbasket/"    alt="Follow us on LinkedIn"  style={{left: `${img1Pos.x}px`, top: `${img1Pos.y}px`}}><div/></a>
     <a className="canLink" href="https://bsky.app/profile/monsterbasket.bsky.social" alt="Follow us on BlueSky"   style={{left: `${img2Pos.x}px`, top: `${img2Pos.y}px`}}><div/></a>
     <a className="canLink" href="https://www.instagram.com/monsterbasketaus/"        alt="Follow us on Instagram" style={{left: `${img3Pos.x}px`, top: `${img3Pos.y}px`}}><div/></a>
+    <a className="canLink" href="mailto:MonsterBasketAus@gmail.com"                  alt="Send us an email"       style={{left: `${img4Pos.x}px`, top: `${img4Pos.y}px`}}><div/></a>
   </div>
 }

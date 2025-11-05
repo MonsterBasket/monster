@@ -3,6 +3,7 @@ import login from "../../utils/login/login"
 import './home.css';
 import { Link } from "react-router-dom";
 import Title from '../../components/Pages/Title.tsx'
+import Menu from '../../../components/Menu.js'
 
 function Login({ handleLogin, handleLogout }) {
   const [form, setForm] = useState({
@@ -17,8 +18,9 @@ function Login({ handleLogin, handleLogout }) {
   }
 
 
-  return <div id="home">
+  return <div id="gameHome">
     <Title size={2} />
+    <Menu />
     <div id="homeContainer">
       <h3>Login</h3>
       <div>
@@ -27,7 +29,7 @@ function Login({ handleLogin, handleLogout }) {
         <button className="bigButton" onClick={() => login(form, setForm, handleLogin)}>Login</button><br />
         <span>{form.loginError}</span><br /><br />
       </div>
-      <Link to="/signup"><button className="littleButton">No Account?</button></Link>
+      <Link to="/playOld/signup"><button className="littleButton">No Account?</button></Link>
     </div>
   </div>
 }

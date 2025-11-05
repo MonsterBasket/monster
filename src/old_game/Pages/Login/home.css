@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap');
-#home, #signup, #selectCharacter, #createCharacter{
+#gameHome, #signup, #selectCharacter, #createCharacter{
   color: white;
   text-align: center;
 }
-#home h1{
+#gameHome h1{
   font-size: 5em;
 }
 #signup h1, #selectCharacter h1, #createCharacter h1{

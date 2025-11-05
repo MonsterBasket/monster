@@ -2,7 +2,8 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import './App.css';
 import Monster from './components/Monster.js';
-import MonsterMenu from './components/Menu.js'
+import MonsterMenu from './components/Menu.js';
+import WebDesign from './components/WebDesign.js';
 
 // import './portfolio/components/CSS/App.css';
 import PortSplash from './portfolio/components/Splash.tsx'
@@ -66,7 +67,7 @@ export default function App() {
       if (isLoggedIn) navigate("/playOld/select-character")
       else navigate("/playOld/login")
     }
-  }, [user])
+  }, [user, isLoggedIn])
 
   return (
     <div className="App">
@@ -86,10 +87,11 @@ export default function App() {
             <Menu buttonWidth={buttonWidth} setButtonWidth={setButtonWidth} buttonOpacity={buttonOpacity} setButtonOpacity={setButtonOpacity} setTurnToCheat={setTurnToCheat}/>
           </PortSplash>
         } />
+        <Route path="/webDesign" element={<WebDesign />} />
         {isLoggedIn ? <>
           <Route path="/playOld/select-character" element={<SelectCharacter user={user} setPlayCharacter={setPlayCharacter} handleLogout={handleLogout} />} />
-          <Route path="/playOld" element={<GameController character={character} />} />
-          <Route path="/playOld/admin/mapmaker" element={<MapMaker />} />
+          <Route path="/playOld/login" element={<GameController character={character} />} />
+          <Route path="/playOld/mapmaker" element={<MapMaker />} />
           {user.is_admin} ? <>
             <Route path="/playOld/admin" element={<Admin user={user} handleLogout={handleLogout} />} />
           </> : {""}
