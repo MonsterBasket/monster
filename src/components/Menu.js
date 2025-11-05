@@ -1,11 +1,10 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../CSS/menu.css";
 import { useEffect, useRef, useState } from "react";
 
 export default function MonsterMenu(){
   const detRef = useRef();
   const [menuClose, setMC] = useState("closed");
-  const path = useLocation();
   const nav = useNavigate();
 
   useEffect(() => {
@@ -20,9 +19,7 @@ export default function MonsterMenu(){
   }
 
   function toggle(e){
-    console.log(e.target.tagName)
     e.stopPropagation();
-    console.log("bye")
     if (e.target.tagName !== 'LI') setMC(menuClose === "open" ? "closed" : "open");
   }
 

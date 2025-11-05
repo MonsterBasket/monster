@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import "../CSS/gallery.css"
 import { useBodyScrollPosition } from "@n8tb1t/use-scroll-position"
 
