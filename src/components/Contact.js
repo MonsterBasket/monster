@@ -67,8 +67,11 @@ export default function Contact() {
     // Matter.Composite.add(world, mouseConstraint);
 
     function getCoords(e) {
+      const top = canvasRef.current.getBoundingClientRect().top
+      if (top > window.innerHeight) return
+      if (e.clientY < top) return
       mouseX = e.clientX;
-      mouseY = e.clientY;
+      mouseY = e.clientY - top;
     }
 
     const balls = [];

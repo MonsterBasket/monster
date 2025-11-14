@@ -30,6 +30,7 @@ function Login({ handleLogin, handleLogout }) {
         <span>{form.loginError}</span><br /><br />
       </div>
       <Link to="/playOld/signup"><button className="littleButton">No Account?</button></Link>
+      <div className="loginCover"><div>OFF-LINE<br/>Please check back later!</div></div>
     </div>
   </div>
 }

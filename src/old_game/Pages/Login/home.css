@@ -10,7 +10,7 @@
   font-size: 3em;
 }
 h2, h3{
-  font-family: 'Rubik Dirt';
+  font-family: 'Rubik Dirt';/**/
   font-weight: normal;
 }
 #characterSelector{
@@ -191,4 +191,23 @@ h2, h3{
   box-shadow: inset 0 0 5px, 0 0 15px pink;
   border: none;
   border-radius: 7px;
+}
+.loginCover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+  font-size: 5rem;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff6;
+  backdrop-filter: blur(3px);
+}
+.loginCover div{
+  transform-origin: center;
+  transform: rotate(-30deg);
 }
