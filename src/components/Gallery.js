@@ -16,7 +16,14 @@ export default function Gallery(){
   return <>
     <div id="gallery">
       <div className="picCon">
-        <div className="gallery"></div>
+        <div className="gallery">
+          <div className="galbendcont1"><div className="galbend1"/></div>
+          <div className="galbendcont2"><div className="galbend2"/></div>
+          <div className="galbendcont3"><div className="galbend3"/></div>
+          <div className="galbendcont4"><div className="galbend4"/></div>
+          <div className="galbendcont5"><div className="galbend5"/></div>
+          <div className="galbendcont6"><div className="galbend6"/></div>
+        </div>
         <div className="galTop">{topText}</div>
         <div className="galBot">{bottomText}</div>
         <div className="galSpin" style={{"--index": "1s"}}>
