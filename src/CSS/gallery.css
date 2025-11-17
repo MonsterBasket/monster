@@ -121,6 +121,14 @@
 .gallery, .gallery div div{
   background-image: url("https://placecats.com/1920/1080");
 }
+.gallery{
+  --timing1: cubic-bezier(0.68, 0.26, 0.83, 0.67);
+  --timing2: cubic-bezier(0.48, 0.36, 0.68, 0.49);
+  --timing3: cubic-bezier(0.61, 0.19, 0.92, 0.66);
+  --timing4: cubic-bezier(0.54, 0.33, 0.77, 0.47);
+  --timing5: cubic-bezier(0.01, 0.01, 0.47, 0.71);
+  --timing6: cubic-bezier(0.49, 0.18, 0.84, 0.66);
+}
 .galbendcont1{
   top: 10vh;
   perspective-origin: top right;
@@ -128,7 +136,7 @@
 .galbend1{
   background-position: 0  -10vh;
   transform-origin: top right;
-  animation: galbend1 linear 1s paused, galscale1 cubic-bezier( 0.68, 0.26, 0.83, 0.67 ) 1s paused;
+  animation: galbend1 linear 1s paused, galscale1 var(--timing1) 1s paused; 
 }
 .galbend2 {
   top: 25vh;
@@ -143,7 +151,7 @@
 .galbend3{
   background-position: 0 -40vh;
   transform-origin: bottom right;
-  animation: galbend3 cubic-bezier( 0.48, 0.36, 0.68, 0.5 ) 1s paused, galscale3 cubic-bezier( 0.61, 0.2, 0.92, 0.66 ) 1s paused;
+  animation: galbend3 var(--timing2) 1s paused, galscale3 var(--timing3) 1s paused;
 }
 .galbendcont4, .galbendcont5, .galbendcont6{ right: 0;}
 .galbendcont4{
@@ -153,13 +161,13 @@
 .galbend4{
   background-position: calc(var(--width-minus-scrollbar) / -2) -45vh;
   transform-origin: top left;
-  animation: galbend4 linear 1s paused, galscale4 cubic-bezier( 0.23, 0.53, 0.46, 0.67 ) 1s paused;
+  animation: galbend4 linear 1s paused, galscale4 var(--timing4) 1s paused;
 }
 .galbend5 {
   top: 60vh;
   background-position: calc(var(--width-minus-scrollbar) / -2) -60vh;
   transform-origin: left;
-  animation: galbend5 cubic-bezier( 0.53, 0.29, 1, 1 ) 1s paused;
+  animation: galbend5 var(--timing5) 1s paused;
 }
 .galbendcont6{
   top: 75vh;
@@ -168,10 +176,10 @@
 .galbend6{
   background-position: calc(var(--width-minus-scrollbar) / -2) -75vh;
   transform-origin: bottom left;
-  animation: galbend6 linear 1s paused, galscale6 cubic-bezier( 0.16, 0.34, 0.51, 0.82 ) 1s paused;
+  animation: galbend6 linear 1s paused, galscale6 var(--timing6) 1s paused;
 }
 @keyframes galbend1 { 43%, 100% {transform: none;}
-                      55%, 90%  {transform: rotateX(-45deg)}}
+                      55%, 90%  {transform: rotateX(-45deg);}}
 @keyframes galscale1{ 43%, 100% {scale: 100% 100%;}
                       55%, 90%  {scale: 100% 166%;}}
 @keyframes galbend2 { 43%, 100% {transform: none;}
