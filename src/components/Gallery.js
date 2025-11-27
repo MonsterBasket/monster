@@ -26,11 +26,11 @@ export default function Gallery(){
 
   function reverseTiming(num){
     const timing = window.getComputedStyle(gallery.current).getPropertyValue(`--timing${num}`)
-    const x1 = (1 - Number(timing.substr(25,4))).toFixed(2)
-    const x2 = (1 - Number(timing.substr(31,4))).toFixed(2)
-    const y1 = (1 - Number(timing.substr(13,4))).toFixed(2)
-    const y2 = (1 - Number(timing.substr(19,4))).toFixed(2)
-    const newTiming = `cubic-bezier(${x1}, ${x2}, ${y1}, ${y2})`
+    const x1 = (1 - parseFloat(timing.substring(23,27))).toFixed(2)
+    const x2 = (1 - parseFloat(timing.substring(28,32))).toFixed(2)
+    const y1 = (1 - parseFloat(timing.substring(13,17))).toFixed(2)
+    const y2 = (1 - parseFloat(timing.substring(18,22))).toFixed(2)
+    const newTiming = `cubic-bezier(${x1},${x2},${y1},${y2})`
     gallery.current.style.setProperty(`--timing${num}`, newTiming)
   }
 

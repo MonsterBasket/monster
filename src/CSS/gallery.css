@@ -119,14 +119,16 @@
 }
 .gallery, .gallery div div{
   background-image: url("../images/river.png");
+  aspect-ratio: auto;
+  background-size: auto 100vh;
 }
 .gallery{
-  --timing1: cubic-bezier(0.68, 0.26, 0.83, 0.67);
-  --timing2: cubic-bezier(0.48, 0.36, 0.68, 0.49);
-  --timing3: cubic-bezier(0.71, 0.09, 0.83, 0.44);
-  --timing4: cubic-bezier(0.54, 0.33, 0.77, 0.47);
-  --timing5: cubic-bezier(0.01, 0.01, 0.47, 0.71);
-  --timing6: cubic-bezier(0.49, 0.18, 0.84, 0.66);
+  --timing1: cubic-bezier(0.68,0.26,0.83,0.67);
+  --timing2: cubic-bezier(0.48,0.36,0.68,0.49);
+  --timing3: cubic-bezier(0.71,0.09,0.83,0.44);
+  --timing4: cubic-bezier(0.54,0.33,0.77,0.47);
+  --timing5: cubic-bezier(0.01,0.01,0.47,0.71);
+  --timing6: cubic-bezier(0.49,0.18,0.84,0.66);
 }
 .galbendcont1{
   top: 10vh;
