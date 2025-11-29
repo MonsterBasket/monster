@@ -1,6 +1,6 @@
 #home{ 
   background: black;
-  height: 500vh;
+  height: 550vh;
 }
 .canLink{
   display: block;
@@ -10,7 +10,7 @@
 }
 #contact{ 
   position: absolute;
-  top: 400vh;
+  top: 550vh;
   left: 0;
   margin: 0;
   /* overflow: hidden; */

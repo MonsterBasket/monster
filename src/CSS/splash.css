@@ -25,4 +25,22 @@ body{
   position: absolute;
   left: 0px;
   top: 0px;
+  cursor: url("../images/paint\ brush.png"), pointer;
+  /* cursor:crosshair; */
+}
+.drawOnMe{
+  rotate: -45deg;
+  color: white;
+  text-shadow: 0 0 35px white, 0 0 20px white;
+  position: absolute;
+  top: 20vh;
+  left: 20vh;
+  font-size: 5vmin;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.opacity{
+  opacity: 1;
+  transition: opacity 1s;
 }

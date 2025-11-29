@@ -6,7 +6,9 @@ export default function Main(){
   // get reference to canvas and save canvas offsets
   const canvasRef = useRef();
   const canvas = useRef();
+  const clicked = useRef(false);
   const [bgImg, setbg] = useState("light");
+  const [opacity, setOpacity] = useState("");
   const imgSize = {
     c: (window.innerWidth - (window.innerHeight / 9 * 16)) / 2,
     x: window.innerHeight / 9 * 16,
@@ -43,6 +45,10 @@ export default function Main(){
       }
 
       PrimitiveBrush.prototype.start = function (event) {
+        if(!clicked.current) {
+          clicked.current = true;
+          setOpacity("")
+        }
         const x = event.clientX;
         const y = event.clientY + window.scrollY;
         this.workingStrokes = [{
@@ -129,6 +135,13 @@ export default function Main(){
         document.documentElement.style.setProperty('--x', e.clientX + 'px');
         document.documentElement.style.setProperty('--y', e.clientY + 'px');
       }
+
+      function showHint(){
+        if (!clicked.current){
+          setOpacity("opacity")
+        }
+      }
+      setTimeout(showHint, 5000)
       
       // Set up brush to listen to events
       const brush = new PrimitiveBrush(canvas.current.getContext('2d', {alpha: true}));
@@ -153,6 +166,7 @@ export default function Main(){
   return (
   <div id="bg">
     <canvas ref={canvasRef} id="drawing"></canvas>
+    <div className={`drawOnMe ${opacity}`}>draw on me...</div>
     <div className={bgImg}></div>
   </div>
   );

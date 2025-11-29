@@ -10,13 +10,13 @@ export default function Gallery(){
   useBodyScrollPosition(({ prevPos, currPos }) => {
     const scrollPos = (1 + currPos.y / window.innerHeight) / 2
     document.documentElement.style.setProperty('--scroll', scrollPos)
-    if ((timing1.current && scrollPos < -0.7) || (!timing1.current && scrollPos > -0.7)){
+    if ((timing1.current && scrollPos < -1.3) || (!timing1.current && scrollPos > -1.3)){
       reverseTiming(1);
       reverseTiming(2);
       reverseTiming(3);
       timing1.current = !timing1.current;
     }
-    if ((timing2.current && scrollPos < -0.2) || (!timing2.current && scrollPos > -0.2)){
+    if ((timing2.current && scrollPos < -0.7) || (!timing2.current && scrollPos > -0.7)){
       reverseTiming(4);
       reverseTiming(5);
       reverseTiming(6);
@@ -34,7 +34,7 @@ export default function Gallery(){
     gallery.current.style.setProperty(`--timing${num}`, newTiming)
   }
 
-  const topText = "This website is still under construction!"
+  const topText = "Monster Basket is a new game design studio\nbased in Melbourne, Australia.  We approach\ngame design with a fun and curious attitude!"
   const bottomText = "Our first game 'In Good Spirits' is\ncurrently in very early Alpha development\u00A0\u00A0"
   const text1 = "Fight against the evil spirits";
   const text2 = "Traverse challenging terrain";

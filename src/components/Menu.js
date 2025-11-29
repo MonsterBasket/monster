@@ -10,6 +10,10 @@ export default function MonsterMenu(){
   useEffect(() => {
     window.addEventListener('pointerdown', e => handleClick(e))
     window.addEventListener('scroll', e => {if(menuClose == "open") setMC("closed")})
+    return () => {
+      window.removeEventListener('pointerdown', e => handleClick(e))
+      window.removeEventListener('scroll', e => {if(menuClose == "open") setMC("closed")})
+    }
 
   }, [])
 
@@ -37,8 +41,7 @@ export default function MonsterMenu(){
         <Link to ="/#bg"          ><li className="monsterMenuButton" onClick={e=> scrollTo("bg")}>Home</li></Link>
         {/* <Link to ="/#gallery"     ><li className="monsterMenuButton" onClick={e=> scrollTo("gallery")}>Gallery</li></Link> */}
         <Link to ="/portfolio"    ><li className="monsterMenuButton">James's Portfolio</li></Link>
-        <Link to ="/webDesign"    ><li className="monsterMenuButton">Web Design Service</li></Link>
-        {/* <Link to ="/playOld/login"><li className="monsterMenuButton">Old Game</li></Link> */}
+        {/* <Link to ="/webDesign"    ><li className="monsterMenuButton">Web Design</li></Link> */}
       </ul>
     </button>
   </>
