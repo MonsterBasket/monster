@@ -1,29 +1,30 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
 import linkedIn from "../images/linkedin.png"
-import blueSky from "../images/bluesky.webp"
+import blueSky from "../images/bluesky.png"
 import insta from "../images/instagram.png"
 import gmail from "../images/gmail.png"
 
 export default function Contact() {
+  const [_,refresh] = useState([])
   const canvasRef = useRef();
   const canvas = useRef();
-  const img1Pos = {
+  const img1Pos = useRef({
     x: Math.random() * (window.innerWidth - 100),
     y: Math.random() * (window.innerHeight - 70)
-  }
-  const img2Pos = {
+  })
+  const img2Pos = useRef({
     x: Math.random() * (window.innerWidth - 100),
     y: Math.random() * (window.innerHeight - 70)
-  }
-  const img3Pos = {
+  })
+  const img3Pos = useRef({
     x: Math.random() * (window.innerWidth - 100),
     y: Math.random() * (window.innerHeight - 70)
-  }
-  const img4Pos = {
+  })
+  const img4Pos = useRef({
     x: Math.random() * (window.innerWidth - 100),
     y: Math.random() * (window.innerHeight - 70)
-  }
+  })
 
   useEffect(() => {
     canvas.current = canvasRef.current;
@@ -45,18 +46,28 @@ export default function Contact() {
     img2.src = blueSky;
     img3.src = insta;
     img4.src = gmail;
-    checkPos(img2Pos, img1Pos)
-    checkPos(img3Pos, img1Pos)
-    checkPos(img3Pos, img2Pos)
-    checkPos(img4Pos, img1Pos)
-    checkPos(img4Pos, img2Pos)
-    checkPos(img4Pos, img3Pos)
+    console.log(ctx.canvas.width * 0.3, ctx.canvas.width * 0.7, ctx.canvas.height * 0.3, ctx.canvas.height * 0.6)
+    img1Pos.current.y = checkPos(img1Pos.current)
+    img2Pos.current.y = checkPos(img2Pos.current, img1Pos.current)
+    img3Pos.current.y = checkPos(img3Pos.current, img1Pos.current)
+    img3Pos.current.y = checkPos(img3Pos.current, img2Pos.current)
+    img4Pos.current.y = checkPos(img4Pos.current, img1Pos.current)
+    img4Pos.current.y = checkPos(img4Pos.current, img2Pos.current)
+    img4Pos.current.y = checkPos(img4Pos.current, img3Pos.current)
+    const iconSize = Math.max(window.innerWidth, window.innerHeight) / 30;
 
-    function checkPos(pos1, pos2){
+    function checkPos(pos1, pos2 = [-100, -100]){
+      let p1 = pos1.y;
+      console.log(pos1)
+      if (pos1.x > ctx.canvas.width * 0.3 && pos1.x < ctx.canvas.width * 0.7 && pos1.y > ctx.canvas.height * 0.3 && pos1.y < ctx.canvas.height * 0.6)
+        {console.log("howdy")
+        pos1.y = ctx.canvas.height * 0.6;}
       if (Math.abs(pos2.x - pos1.x) < 70 && Math.abs(pos2.y - pos1.y) < 70){
         if (pos1.y < (window.innerHeight - 200)) pos1.y += 150
         else pos1.y -= 150
       }
+      if (p1 !== pos1.y) refresh([]);
+      return pos1.y
     }
 
     const Bodies = Matter.Bodies;
@@ -157,8 +168,9 @@ export default function Contact() {
     })();
 
     function brightness(num){
-      let x = (200 - Math.abs(num.x + 25 - mouseX)) / 200
-      let y = (200 - Math.abs(num.y + 25 - mouseY)) / 200
+      const range = iconSize * 5;
+      let x = (range - Math.abs(num.x + 25 - mouseX)) / range
+      let y = (range - Math.abs(num.y + 25 - mouseY)) / range
       x = Math.min(Math.max(x, 0), 1);
       y = Math.min(Math.max(y, 0), 1);
       return x * y
@@ -169,15 +181,26 @@ export default function Contact() {
       const delta = now - lastUpdate;
       lastUpdate = now;
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      ctx.filter = `brightness(${brightness(img1Pos)})`;
-      drawImage(img1, img1Pos) 
-      ctx.filter = `brightness(${brightness(img2Pos)})`;
-      drawImage(img2, img2Pos)
-      ctx.filter = `brightness(${brightness(img3Pos)})`;
-      drawImage(img3, img3Pos)
-      ctx.filter = `brightness(${brightness(img4Pos)})`;
-      drawImage(img4, img4Pos)
+      ctx.filter = `brightness(${brightness(img1Pos.current)})`;
+      drawImage(img1, img1Pos.current) 
+      ctx.filter = `brightness(${brightness(img2Pos.current)})`;
+      drawImage(img2, img2Pos.current)
+      ctx.filter = `brightness(${brightness(img3Pos.current)})`;
+      drawImage(img3, img3Pos.current)
+      ctx.filter = `brightness(${brightness(img4Pos.current)})`;
+      drawImage(img4, img4Pos.current)
       ctx.filter = "none";
+
+      ctx.font = "900 6vw Arial";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#111";
+      ctx.fillText("Where to", ctx.canvas.width / 2, ctx.canvas.height / 2 - ctx.canvas.width * .06);
+      ctx.fillStyle = "white";
+      ctx.fillText("FIND", ctx.canvas.width / 2, ctx.canvas.height / 2);
+      ctx.fillStyle = "#111";
+      ctx.fillText("us", ctx.canvas.width / 2, ctx.canvas.height / 2 + ctx.canvas.width * .05);
+
+
       balls.forEach((b) => {
         if (b.label[0] === "white") {
           Matter.Body.setPosition(b, { x: mouseX, y: mouseY }, false);
@@ -292,27 +315,18 @@ export default function Contact() {
     }
 
     function drawImage(img, pos){
-      ctx.drawImage(img, pos.x, pos.y, 50, 50);
+      ctx.drawImage(img, pos.x, pos.y, iconSize, iconSize);
     }
 
     window.addEventListener("mousemove", getCoords, false);
-    img1.addEventListener("load", () => drawImage(img1, img1Pos), false);
-    img2.addEventListener("load", () => drawImage(img2, img2Pos), false);
-    img3.addEventListener("load", () => drawImage(img3, img3Pos), false);
-
-    return () => {
-      window.removeEventListener("mousemove", getCoords, false);
-      img1.removeEventListener("load", () => drawImage(img1, img1Pos), false);
-      img2.removeEventListener("load", () => drawImage(img2, img2Pos), false);
-      img3.removeEventListener("load", () => drawImage(img3, img3Pos), false);      
-    }
+    return () => window.removeEventListener("mousemove", getCoords, false);
   }, []);
 
   return <div id="contact">
   <canvas ref={canvasRef} />
-    <a className="canLink" href="https://www.linkedin.com/company/monsterbasket/"    alt="Follow us on LinkedIn"  style={{left: `${img1Pos.x}px`, top: `${img1Pos.y}px`}}><div/></a>
-    <a className="canLink" href="https://bsky.app/profile/monsterbasket.bsky.social" alt="Follow us on BlueSky"   style={{left: `${img2Pos.x}px`, top: `${img2Pos.y}px`}}><div/></a>
-    <a className="canLink" href="https://www.instagram.com/monsterbasketaus/"        alt="Follow us on Instagram" style={{left: `${img3Pos.x}px`, top: `${img3Pos.y}px`}}><div/></a>
-    <a className="canLink" href="mailto:MonsterBasketAus@gmail.com"                  alt="Send us an email"       style={{left: `${img4Pos.x}px`, top: `${img4Pos.y}px`}}><div/></a>
+    <a className="canLink" href="https://www.linkedin.com/company/monsterbasket/"    alt="Follow us on LinkedIn"  style={{left: `${img1Pos.current.x}px`, top: `${img1Pos.current.y}px`}}><div/></a>
+    <a className="canLink" href="https://bsky.app/profile/monsterbasket.bsky.social" alt="Follow us on BlueSky"   style={{left: `${img2Pos.current.x}px`, top: `${img2Pos.current.y}px`}}><div/></a>
+    <a className="canLink" href="https://www.instagram.com/monsterbasketaus/"        alt="Follow us on Instagram" style={{left: `${img3Pos.current.x}px`, top: `${img3Pos.current.y}px`}}><div/></a>
+    <a className="canLink" href="mailto:MonsterBasketAus@gmail.com"                  alt="Send us an email"       style={{left: `${img4Pos.current.x}px`, top: `${img4Pos.current.y}px`}}><div/></a>
   </div>
 }

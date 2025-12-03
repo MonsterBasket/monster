@@ -99,14 +99,14 @@
 .galTop{
   left: 2vw;
   top: 23vh;
-  transform-origin: 50vw;
+  transform-origin: 105%;
   animation: topSquish linear 1s paused;
   animation-delay: calc(var(--scroll) * 0.5s);
 }
 .galBot{
   right: 3vw;
   top: 61vh;
-  transform-origin: -5vw;
+  transform-origin: -5%;
   animation: botSquish linear 1s paused;
   animation-delay: calc(var(--scroll) * 0.5s);
 }
