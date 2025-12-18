@@ -47,7 +47,7 @@ export default function Menu({buttonWidth, setButtonWidth, buttonOpacity, setBut
 
   useBodyScrollPosition(({ prevPos, currPos }) => {
     // window limit sets the first section scroll limit to the lesser of window height or 500px
-    let windowLimit: number = Math.min(window.innerHeight, 500);
+    let windowLimit: number = Math.max(window.innerHeight * 2, 1000);
     setScrollPos(currPos.y);
     if (currPos.y === 0) { // top of screen / not scrolled
       setMenuTop(0);
@@ -83,9 +83,9 @@ export default function Menu({buttonWidth, setButtonWidth, buttonOpacity, setBut
     if (currPos.y < -window.innerHeight){
       let farLeft: number = buttonWidth * 2 + 30;
       let middle: number = window.innerWidth / 2;
-      let leftAdjust: number = (currPos.y + window.innerHeight * 1.5) / -window.innerHeight;
-      leftAdjust = -2 * leftAdjust * (middle - farLeft) + farLeft;
-      if (currPos.y > 1.5 * -window.innerHeight){
+      let leftAdjust: number = (currPos.y + window.innerHeight * 3.5) / -window.innerHeight;
+      leftAdjust = -0.5 * leftAdjust * (middle - farLeft) + farLeft;
+      if (currPos.y > 2 * -window.innerHeight){
         //slide to the left
         setHelloLeft((leftAdjust - (buttonWidth * 2 + 17.5)) + 5)
         setAboutLeft((leftAdjust - (buttonWidth + 12.5)) + 5)

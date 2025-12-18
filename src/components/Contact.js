@@ -36,7 +36,7 @@ export default function Contact() {
     const world = engine.world;
     world.gravity.scale = 0;
     let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
+    let mouseY = window.innerHeight * 0.1;
 
     const img1 = new Image();
     const img2 = new Image();

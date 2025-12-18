@@ -1,0 +1,121 @@
+.helloSpinLeft .panel1{
+  transform: rotateX(calc(var(--scroll) * -180deg + 0.0001deg)) translateZ(6vw);
+  filter: brightness(calc(-2 * var(--scroll) + 1))
+}
+.helloSpinLeft .panel2{
+  transform: rotateX(calc(var(--scroll) * -180deg + 90.0001deg)) translateZ(6vw);
+  filter: brightness(calc(-2 * var(--scroll) + 2))
+}
+.helloSpinLeft .panel3{
+  transform: rotateX(calc(var(--scroll) * -180deg - 179.9999deg)) translateZ(6vw);
+  filter: brightness(calc(-2 * var(--scroll) + 3))
+}
+.helloSpin .panel1{
+  transform: rotateX(calc(var(--scroll) * 180deg)) translateZ(6vw);
+  filter: brightness(calc(2 * var(--scroll) + 1))
+}
+.helloSpin .panel2{
+  transform: rotateX(calc(var(--scroll) * 180deg - 90deg)) translateZ(6vw);
+  filter: brightness(calc(2 * var(--scroll)))
+}
+.helloSpin .panel3{
+  transform: rotateX(calc(var(--scroll) * 180deg - 180deg)) translateZ(6vw);
+  filter: brightness(calc(2 * var(--scroll) - 1))
+}
+.helloSpinPanel{
+  
+}
+.helloSpinPanelRight{
+  transform: rotateY(90deg) rotateZ(calc(var(--scroll) * -180deg))
+}
+.spinContainer{
+  position: sticky;
+  height: 12vw;
+  perspective: calc(600px - 6vw);
+  z-index: 1;
+  top: calc(50% - 6vw);
+}
+.helloSpin, .helloSpinLeft{
+  position: relative;
+  height: 12vw;
+  perspective: 600px;
+  vertical-align: baseline;
+  font-size: 6vw;
+  transform: translateZ(-6vw)
+}
+.helloSpin{
+  top: -12vw;
+  width: 60%;
+  left: 30%;
+  perspective-origin: 34%;
+  text-align: left;
+}
+.helloSpinLeft{
+  top: 0px;
+  width: 20%;
+  left: 10%;
+  perspective-origin: 200%;
+  text-align: right;
+}
+.helloSpinPanel{
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  background-color: green;
+  line-height: 11vw;
+}
+.helloSpinPanelRight{
+  position: absolute;
+  width: 12vw;
+  height: 12vw;
+  right: -6vw;
+  background: rgb(96,72,45);
+  background: radial-gradient(circle, rgba(96,72,45,1) 0%, rgba(120,100,78,1) 53%, rgba(96,72,45,1) 63%, rgba(120,100,78,1) 73%, rgba(96,72,45,1) 79%, rgba(120,100,78,1) 85%, rgba(96,72,45,1) 91%, rgba(120,100,78,1) 96%, rgba(96,72,45,1) 100%);}
+#Hello{
+  background-color: green;
+  padding: 0 0 30vh 0;
+  width: 100%;
+  height: max(400vh, 2000px);
+  top: 0;
+  box-sizing: border-box;
+  background-image: url("../../images/sunbeam.jpg");
+  background: fixed;
+}
+.hellobg1{ animation: bg1 linear 1s paused; }
+.hellobg2{ animation: bg2 linear 1s paused; }
+.hellobg1, .hellobg2{
+  position:absolute;
+  background: fixed;
+  height: max(400vh, 2000px);
+  width:100%;
+  padding: 0;
+  animation-delay: calc(var(--scroll) * -0.99s);
+}
+@keyframes bg1 { 35% {opacity: 1;} 40%, 100% {opacity: 0;}}
+@keyframes bg2 { 55% {opacity: 1;} 70%, 100% {opacity: 0;}}
+@keyframes bg3 { 0%, 99% {background-image: url("../../images/trees.jpg")} 100% {background-image: none;}}
+.panel1{
+  background: url("../../images/sunbeam.jpg") 0 0 /1920px;
+}
+.panel3{
+  background: url("../../images/trees.jpg") 0 0 /1920px;
+  /* animation: bg3 linear 1s paused; */
+  animation-delay: calc(var(--scroll) * -0.999s);
+}
+.panel2{
+  background: url("../../images/penguin.jpg") 0 0 /1920px;
+  color:#000;
+  text-shadow: 1px 1px 0px #888,
+               -1px -1px 0px #888,
+               -1px 1px 0px #888,
+               1px -1px 0px #888;
+}
+.panel1, .panel3{
+  color:#99865f;
+  text-shadow: 1px 1px 0 #232916,
+               -1px -1px 0 #232916,
+               -1px 1px 0 #232916,
+               1px -1px 0 #232916;
+}

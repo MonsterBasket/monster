@@ -13,7 +13,7 @@ type Props = {
 export default function Tabs({buttonWidth, buttonOpacity, turnToCheat, setTurnToCheat, names, children}: Props) {
 
   buttonWidth *= 1.35;
-  let tabMorph:number = -Math.min(Math.max(1.5 - buttonOpacity -1, 0), 1);
+  let tabMorph:number = -Math.min(Math.max(3 - buttonOpacity -1, 0), 1);
   const [tab, setTab] = useState<string[]>(["Front", "2", "1", "0"])
   const kids = React.Children.toArray(children);
 

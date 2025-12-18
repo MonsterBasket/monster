@@ -108,7 +108,8 @@ export default function Projects({turnToCheat}: Props){
   }
 
   const project1:ReactElement = <img className={`project tp project${position.current[0]} ${noScroll.current}`} src={monster}></img>
-  const project2:ReactElement = <div className={`project tp project${position.current[1]} ${noScroll.current}`}><Typing active={position.current[1] == 2 ? true : false}/></div>
+  // const project2:ReactElement = <div className={`project tp project${position.current[1]} ${noScroll.current}`}><Typing active={position.current[1] == 2 ? true : false}/></div>
+  const project2:ReactElement = <img className={`project tp project${position.current[1]} ${noScroll.current}`} src={monster}></img>
   const project3:ReactElement = <img className={`project tp project${position.current[2]} ${noScroll.current}`} src={battleship}></img>
 
   const project1Link:ReactElement = <h2 className="tp">Monster Basket</h2>
