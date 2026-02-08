@@ -324,9 +324,9 @@ export default function Contact() {
 
   return <div id="contact">
   <canvas ref={canvasRef} />
-    <a className="canLink" href="https://www.linkedin.com/company/monsterbasket/"    alt="Follow us on LinkedIn"  style={{left: `${img1Pos.current.x}px`, top: `${img1Pos.current.y}px`}}><div/></a>
-    <a className="canLink" href="https://bsky.app/profile/monsterbasket.bsky.social" alt="Follow us on BlueSky"   style={{left: `${img2Pos.current.x}px`, top: `${img2Pos.current.y}px`}}><div/></a>
-    <a className="canLink" href="https://www.instagram.com/monsterbasketaus/"        alt="Follow us on Instagram" style={{left: `${img3Pos.current.x}px`, top: `${img3Pos.current.y}px`}}><div/></a>
-    <a className="canLink" href="mailto:MonsterBasketAus@gmail.com"                  alt="Send us an email"       style={{left: `${img4Pos.current.x}px`, top: `${img4Pos.current.y}px`}}><div/></a>
+    <a className="canLink" href="https://www.linkedin.com/company/monsterbasket/"    title="Follow us on LinkedIn"  alt="LinkedIn"  style={{left: `${img1Pos.current.x}px`, top: `${img1Pos.current.y}px`}}><div/></a>
+    <a className="canLink" href="https://bsky.app/profile/monsterbasket.bsky.social" title="Follow us on BlueSky"   alt="BlueSky"   style={{left: `${img2Pos.current.x}px`, top: `${img2Pos.current.y}px`}}><div/></a>
+    <a className="canLink" href="https://www.instagram.com/monsterbasketaus/"        title="Follow us on Instagram" alt="Instagram" style={{left: `${img3Pos.current.x}px`, top: `${img3Pos.current.y}px`}}><div/></a>
+    <a className="canLink" href="mailto:MonsterBasketAus@gmail.com"                  title="Send us an email"       alt="email"     style={{left: `${img4Pos.current.x}px`, top: `${img4Pos.current.y}px`}}><div/></a>
   </div>
 }

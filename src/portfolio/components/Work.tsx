@@ -1,10 +1,10 @@
-import './CSS/animation.css'
+import './CSS/work.css'
 import disclaimerImg from '../images/disclaimer.png';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 
 type Props = {turnToCheat: number;}
 
-export default function Animation({turnToCheat}: Props){
+export default function Work({turnToCheat}: Props){
   const xTouch = useRef<number>(0);
   const yTouch = useRef<number>(0);
 
@@ -95,24 +95,24 @@ export default function Animation({turnToCheat}: Props){
   // This is all good, but 
   // but what!? Why did you start writing this note?? WHAT WERE YOU TRYING TO TELL ME!!?
 
-  return <section id="Animation">
+  return <section id="Work">
     <article>
-      <article className={`animation ${pagePos.current[0]}`}>{mattePainting}</article>
-      <article className={`animation ${pagePos.current[1]}`}>{gears}</article>
-      <article className={`animation ${pagePos.current[2]}`}>{cookies}</article>
-      <article className={`animation ${pagePos.current[3]}`}>{alley}</article>
-      <article className={`animation ${pagePos.current[4]}`}>{showreel}</article>
-      <article className={`animation ${pagePos.current[5]}`}>{hair}</article>
+      <article className={`work ${pagePos.current[0]}`}>{mattePainting}</article>
+      <article className={`work ${pagePos.current[1]}`}>{gears}</article>
+      <article className={`work ${pagePos.current[2]}`}>{cookies}</article>
+      <article className={`work ${pagePos.current[3]}`}>{alley}</article>
+      <article className={`work ${pagePos.current[4]}`}>{showreel}</article>
+      <article className={`work ${pagePos.current[5]}`}>{hair}</article>
       <div onClick={()=> move(1)} className="frontLeft ontop"></div>
       <div onClick={()=> move(-1)} className="frontRight ontop"></div>
       <div onClick={()=> move(2)} className="backLeft ontop"></div>
       <div onClick={()=> move(-2)} className="backRight ontop"></div>
       <div onClick={()=> move(-3)} className="back ontop"></div>
-      <div className="animLeftButtonContainer" onClick={() => move(1)}>
-        <div className="animLeftButton"></div>
+      <div className="workLeftButtonContainer" onClick={() => move(1)}>
+        <div className="workLeftButton"></div>
       </div>
-      <div className="animRightButtonContainer" onClick={() => move(-1)}>
-        <div className="animRightButton"></div>
+      <div className="workRightButtonContainer" onClick={() => move(-1)}>
+        <div className="workRightButton"></div>
       </div>
     </article>
     <div className="descContainer">

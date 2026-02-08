@@ -73,7 +73,7 @@ article{
 #Projects, .tabTop1{
   background-color: #8e7d69;
 }
-#Animation, .tabTop2{
+#Work, .tabTop2{
   background-color: #d8af7f;
 }
 #Contact, .tabTop0{
@@ -86,13 +86,13 @@ article{
 .contactButton .menuButtonPanel{
   background-color: #5f6f3a;
 }
-.aboutButton .menuButtonPanel{
+.projectsButton .menuButtonPanel{
   background-color: #8e7d69;
 }
-.projectsButton .menuButtonPanel{
+.workButton .menuButtonPanel{
   background-color: #d8af7f;
 }
-.helloButton .menuButtonPanel{
+.aboutButton .menuButtonPanel{
   background-color: #f5e1b9;
 }
 a{

@@ -1,7 +1,7 @@
-#Animation article, .descContainer{
+#Work article, .descContainer{
   --size: min(60vh, 80vw);
 }
-#Animation article{
+#Work article{
   width: 100%;
   padding-top: 0px;
   overflow: hidden;
@@ -9,17 +9,17 @@
 iframe{
   border: 0;
 }
-.animation, .ontop{
+.work, .ontop{
   position: absolute;
   border-radius: 30px;
   background-clip: padding-box;
 }
-.animation{
+.work{
   background-color: #b38046;
   transition: 0.5s;
   overflow: hidden;
 }
-#Animation .animation.front{
+#Work .work.front{
   box-shadow: inset 0 0 15px #462d12;
   top: 10%;
   width: var(--size);
@@ -27,46 +27,46 @@ iframe{
   left: calc(50% - var(--size) / 2);
   z-index: 4
 }
-#Animation .frontLeft, #Animation .frontRight{
+#Work .frontLeft, #Work .frontRight{
   top: 7%; /*calc(42vh + 50px - var(--size) / 2);*/
   width: calc(var(--size) * 0.8);
   height: calc(var(--size) * 0.8);
   z-index: 3;
 }
-#Animation .frontLeft{
+#Work .frontLeft{
   left: calc(50% - var(--size) * 1.05);
 }
-#Animation .frontRight{
+#Work .frontRight{
   left: calc(50% + var(--size) * 0.25);
 }
-#Animation .animation.frontLeft, #Animation .animation.frontRight{
+#Work .work.frontLeft, #Work .work.frontRight{
   box-shadow: inset 0 0 30px #271808;
   opacity: 0.75;
 }
-#Animation .backLeft, #Animation .backRight{
+#Work .backLeft, #Work .backRight{
   top: 5%; /*calc(37vh + 50px - var(--size) / 2);*/
   width: calc(var(--size) * 0.65);
   height: calc(var(--size) * 0.65);
   z-index: 2;
 }
-#Animation .backLeft{
+#Work .backLeft{
   left: calc(50% - var(--size) * 0.75);
 }
-#Animation .backRight{
+#Work .backRight{
   left: calc(50% + var(--size) * 0.1);
 }
-#Animation .animation.backLeft, #Animation .animation.backRight{
+#Work .work.backLeft, #Work .work.backRight{
   box-shadow: inset 0 0 30px #1b0f02;
   opacity: 0.5;
 }
-#Animation .back{
+#Work .back{
   top: 3%;
   width: calc(var(--size) * 0.5);
   height: calc(var(--size) * 0.5);
   left: calc(50% - var(--size) * 0.25);
   z-index: 1;
 }
-#Animation .animation.back{
+#Work .work.back{
   box-shadow: inset 0 0 30px black;
   opacity: 0.25;
 }
@@ -107,7 +107,7 @@ iframe{
 h3{
   margin-top: 0px;
 }
-.animLeftButtonContainer, .animRightButtonContainer{
+.workLeftButtonContainer, .workRightButtonContainer{
   position: absolute;
   width: 50px;
   height: 50px;
@@ -117,13 +117,13 @@ h3{
   /* background: #d8af7f; */
   cursor: pointer;
 }
-.animLeftButtonContainer{
+.workLeftButtonContainer{
   left: 5%;
 }
-.animRightButtonContainer{
+.workRightButtonContainer{
   right: 5%;
 }
-.animLeftButton, .animRightButton{
+.workLeftButton, .workRightButton{
   position: absolute;
   width: 30px;
   height: 30px;
@@ -133,22 +133,22 @@ h3{
   box-shadow: 3px -3px 1.5px 0.5px rgba(255, 255, 255, 0.75);
   animation: 1s alternate-reverse infinite ease-in-out;
 }
-.animLeftButtonContainer:hover .animLeftButton, .animRightButton:hover{
+.workLeftButtonContainer:hover .workLeftButton, .workRightButton:hover{
   box-shadow: 3px -3px 2px 1.5px rgba(255, 255, 255);
 }
-.animLeftButton{
+.workLeftButton{
   transform: rotateZ(-135deg);
   left: 18px;
-  animation-name: animLeftBounce;
+  animation-name: workLeftBounce;
 }
-@keyframes animLeftBounce{
+@keyframes workLeftBounce{
   0%, 50%, 100%  {left: 22px;} 25% {left: 18px;}
 }
-.animRightButton{
+.workRightButton{
   transform: rotateZ(45deg);
   right: 20px;
-  animation-name: animRightBounce;
+  animation-name: workRightBounce;
 }
-@keyframes animRightBounce{
+@keyframes workRightBounce{
   0%, 50%, 100%  {right: 22px;} 25% {right: 18px;}
 }

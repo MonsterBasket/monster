@@ -13,7 +13,7 @@ type Props = {
 export default function Tabs({buttonWidth, buttonOpacity, turnToCheat, setTurnToCheat, names, children}: Props) {
 
   buttonWidth *= 1.35;
-  let tabMorph:number = -Math.min(Math.max(3 - buttonOpacity -1, 0), 1);
+  let tabMorph:number = (buttonOpacity + 9) / 2; //why is buttonOpacity coming in as -9? Dunno, just go with it.
   const [tab, setTab] = useState<string[]>(["Front", "2", "1", "0"])
   const kids = React.Children.toArray(children);
 
@@ -58,7 +58,7 @@ export default function Tabs({buttonWidth, buttonOpacity, turnToCheat, setTurnTo
   // The transition doesn't currently work amazingly well on phones.  Looks fine before and after, but doesn't line up during.
   return (
     <div id="tabSection">
-      <div className="tabTopBack" style={{opacity:`${1 - buttonOpacity}`}}></div>
+      <div className="tabTopBack" style={{opacity:`${-10 - buttonOpacity}`}}></div>
       <div className="tabHolder">
         <div className={`tab tab${tab[0]}`} id="tab0" >
           <div className="tabTop tabTop0" onClick={() => turnTo(0)} style={{left: `${15 - (buttonWidth * 0.12)}px`, width:`${buttonWidth}px`, opacity:`${buttonOpacity < 1 ? 1 : 0}`, animationDelay:`${tabMorph}s`}}>{names[0]}</div>

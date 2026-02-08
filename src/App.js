@@ -1,3 +1,4 @@
+import { useBodyScrollPosition } from "@n8tb1t/use-scroll-position"
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import './App.css';
@@ -8,7 +9,7 @@ import WebDesign from './components/WebDesign.js';
 // import './portfolio/components/CSS/App.css';
 import PortSplash from './portfolio/components/Splash.tsx'
 import About from './portfolio/components/About.tsx';
-import Animation from './portfolio/components/Animation.tsx'
+import Work from './portfolio/components/Work.tsx'
 import Contact from './portfolio/components/Contact.tsx';
 import Hello from './portfolio/components/Hello.tsx';
 import Menu from './portfolio/components/Menu.tsx';
@@ -27,6 +28,7 @@ export const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 export default function App() {
   const [buttonWidth, setButtonWidth] = useState(window.innerWidth > 500 ? 100 : window.innerWidth / 5)
+  const [scrollPos, setScroll] = useState(0)
   const [buttonOpacity, setButtonOpacity] = useState(1)
   const [turnToCheat, setTurnToCheat] = useState(0)
 
@@ -62,6 +64,11 @@ export default function App() {
       })
   }
 
+  useBodyScrollPosition(({ prevPos, currPos }) => {
+    let tempPos = -currPos.y / (window.innerHeight * 4.5)
+    setScroll(Math.min(tempPos, 1))
+  })
+
   useEffect(() => {
     if (window.location.pathname.includes('/playOld')){
       if (isLoggedIn) navigate("/playOld/select-character")
@@ -76,15 +83,15 @@ export default function App() {
         <Route path="/portfolio" element={
           <PortSplash>
             <MonsterMenu />
-            <Hello />
+            <Hello scrollPos={scrollPos} />
             <Tabs buttonWidth={buttonWidth} buttonOpacity={buttonOpacity} turnToCheat={turnToCheat} setTurnToCheat={setTurnToCheat} names={["About", "Projects", "Work", "Contact"]}>
               <Contact turnToCheat={turnToCheat} />
               <Projects turnToCheat={turnToCheat} />
-              <Animation turnToCheat={turnToCheat} />
+              <Work turnToCheat={turnToCheat} />
               <About turnToCheat={turnToCheat} />
             </Tabs>
 
-            <Menu buttonWidth={buttonWidth} setButtonWidth={setButtonWidth} buttonOpacity={buttonOpacity} setButtonOpacity={setButtonOpacity} setTurnToCheat={setTurnToCheat}/>
+            <Menu scrollPos={scrollPos} buttonWidth={buttonWidth} setButtonWidth={setButtonWidth} buttonOpacity={buttonOpacity} setButtonOpacity={setButtonOpacity} setTurnToCheat={setTurnToCheat}/>
           </PortSplash>
         } />
         <Route path="/webDesign" element={<WebDesign />} />
