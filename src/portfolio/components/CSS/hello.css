@@ -93,8 +93,8 @@
   padding: 0;
   animation-delay: calc(var(--scroll) * -0.99s);
 }
-@keyframes bg1 { 35% {opacity: 1;} 40%, 100% {opacity: 0;}}
-@keyframes bg2 { 55% {opacity: 1;} 70%, 100% {opacity: 0;}}
+@keyframes bg1 { 20% {opacity: 1;} 45%, 100% {opacity: 0;}}
+@keyframes bg2 { 55% {opacity: 1;} 80%, 100% {opacity: 0;}}
 @keyframes bg3 { 0%, 99% {background-image: url("../../images/trees.jpg")} 100% {background-image: none;}}
 .panel1{
   background: url("../../images/sunbeam.jpg") 0 0 /1920px;
