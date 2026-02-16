@@ -171,12 +171,12 @@ export default function Contact({turnToCheat}: Props){
     <div className="text" style={textWidth}>
       <div className="t1" onMouseOver={e => move(1)}>
         <div style={t1Style}>
-          This website was made for two reasons:
+          Is this a typical website? No.<br/>
+          If I made your website, would it be like this? Probably not.
           <br/><br/>
-          1: As a portfolio to show off what I can do, and<br/>
-          2: To teach myself TypeScript.
+          But this website wasn't made to sell websites, it was made to show off my ability to create unique, interactive elements that—hopefully—you've never seen before.
           <br/><br/>
-          So if you poke around, you'll find some features that you've hopefully never seen before, as well as some links to examples of other work I've done.  If you continue reading, you'll also learn a little about me, and how I became a game developer and web developer.  (Proceed at your own risk!)
+          So have a look around, everything on this site was made from scratch!  Maybe you'll see some things you like, some incorporated into the site itself, others linked to some other work I've done.  Also, if you continue reading you'll learn a little about me too, and how I became a game developer and web developer.  (Proceed at your own risk! →)
         </div>
       </div>
       <div className="t2" onMouseOver={e => move(2)}>

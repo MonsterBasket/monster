@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import sunbeam from "../images/sunbeam.jpg"
 import penguin from "../images/penguin.jpg"
 import trees   from "../images/trees.jpg"
+import james   from "../images/me.png"
 import './CSS/App.css';
 import './CSS/hello.css';
 
@@ -53,21 +54,23 @@ function Hello({scrollPos: appScrollPos}:{scrollPos:number}){
         setRPL(window.innerWidth * -0.1 - (window.innerWidth * 0.2))
       }
   }
-
-  const frontRight = { backgroundPosition: `${rightPanelLeft}px ${bothPanelTop}px`, backgroundImage: scrollPos === 0 ? 'none' : `url(${sunbeam})` };
+  //right calc(100vw - 300px) top calc(100vh + 287px)
+  const portLeftCalc = `right calc(-70vw + 15px) top calc(100vh + ${bothPanelTop}px)`
+  const portRightCalc = `right calc(-10vw + 15px) top calc(100vh + ${bothPanelTop}px)`
+  const frontRight = { backgroundPosition: `${portRightCalc}, ${rightPanelLeft}px ${bothPanelTop}px`, backgroundImage: scrollPos === 0 ? 'none' : `url(${james}), url(${sunbeam})` };
   const bottomRight = { backgroundPosition: `${rightPanelLeft}px ${bothPanelTop}px` };
   const backRight = { backgroundPosition: `${rightPanelLeft}px ${bothPanelTop}px`, backgroundImage: scrollPos === 1 ? 'none' : `url(${trees})` };
-  const front = { backgroundPosition: `${leftPanelLeft}px ${bothPanelTop}px`, backgroundImage: scrollPos === 0 ? 'none' : `url(${sunbeam})`};
+  const front = { backgroundPosition: `${portLeftCalc}, ${leftPanelLeft}px ${bothPanelTop}px`, backgroundImage: scrollPos === 0 ? 'none' : `url(${james}), url(${sunbeam})`};
   const bottom = { backgroundPosition: `${leftPanelLeft}px ${bothPanelTop}px` };
   const back = { backgroundPosition: `${leftPanelLeft}px ${bothPanelTop}px`, backgroundImage: scrollPos === 1 ? 'none' : `url(${trees})` };
   const right = { opacity: scrollPos * 180 % 90 ? 1 : 0 }
   
   return <section id="Hello" style={{ backgroundImage: `url(${trees})`, "--scroll":`${scrollPos}`} as React.CSSProperties}>
     <div className="hellobg2" style={{ backgroundImage: `url(${penguin})` }}></div>
-    <div className="hellobg1" style={{ backgroundImage: `url(${sunbeam})` }} onLoad={updateScreen}></div>
+    <div className="hellobg1" style={{ backgroundImage: `url(${james}), url(${sunbeam})` }} onLoad={updateScreen}></div>
     <div className={'spinContainer'}>
       <div className="helloSpinLeft">
-        <div style={front} className='helloSpinPanel panel1' ref={leftPanel}> </div>
+        <div style={front} className='helloSpinPanel panel1' ref={leftPanel}><div></div></div>
         <div style={bottom} className='helloSpinPanel panel2'>I am&#8202;</div>
         <div style={back} className='helloSpinPanel panel3'>I'm a&#8202;</div>
         <div style={right} className='helloSpinPanelRight'> </div>
