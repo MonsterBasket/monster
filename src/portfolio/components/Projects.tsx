@@ -108,11 +108,11 @@ export default function Projects({turnToCheat}: Props){
   }
 
   const project1:ReactElement = <img className={`project tp project${position.current[0]} ${noScroll.current}`} src={monster}></img>
-  // const project2:ReactElement = <div className={`project tp project${position.current[1]} ${noScroll.current}`}><Typing active={position.current[1] == 2 ? true : false}/></div>
-  const project2:ReactElement = <img className={`project tp project${position.current[1]} ${noScroll.current}`} src={monster}></img>
+  const project2:ReactElement = <div className={`project tp project${position.current[1]} ${noScroll.current}`}><Typing active={position.current[1] == 2 ? true : false}/></div>
+  // const project2:ReactElement = <img className={`project tp project${position.current[1]} ${noScroll.current}`} src={monster}></img>
   const project3:ReactElement = <img className={`project tp project${position.current[2]} ${noScroll.current}`} src={battleship}></img>
 
-  const project1Link:ReactElement = <h2 className="tp">Monster Basket</h2>
+  const project1Link:ReactElement = <h2 className="tp">React RPG</h2>
   const project2Link:ReactElement = <h2 className="tp"><a href="https://monsterbasket.github.io/TypingGame/" target="_blank">Typing Game</a></h2>
   const project3Link:ReactElement = <h2 className="tp"><a href="https://github.com/MonsterBasket/battleship" target="_blank">Battleship</a></h2>
 
@@ -153,8 +153,8 @@ export default function Projects({turnToCheat}: Props){
             <div className={`projButton active${position.current[0]}`} onClick={() => change(1)}></div>
             <div className={`projButton active${position.current[2]}`} onClick={() => change(2)}></div>
           </div>
-          <div className="projUpButton" onClick={() => change(position.current[2] -1)}></div>
-          <div className="projDownButton" onClick={() => change(position.current[0] -1)}></div>
+          <div className="projUpButton" onClick={() => change(position.current[0] -1)}></div>
+          <div className="projDownButton" onClick={() => change(position.current[2] -1)}></div>
         </div>
   </section>
 }

@@ -9,8 +9,8 @@
 #signup h1, #selectCharacter h1, #createCharacter h1{
   font-size: 3em;
 }
-h2, h3{
-  font-family: 'Rubik Dirt';/**/
+#homeContainer h2, #homeContainer h3{
+  font-family: 'Rubik Dirt';
   font-weight: normal;
 }
 #characterSelector{

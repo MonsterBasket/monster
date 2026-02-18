@@ -138,7 +138,7 @@ a{
   height: 200px;
   width: 100%;
   top: -150px;
-  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(0deg, #000 0%, #000 25%, #0000 100%);
 }
 .tabTop{
   clip-path: polygon(0 100%, 6% 96%, 11% 83%, 12% 75%, 15% 21%, 17% 11%, 20% 3%, 25% 0, 75% 0, 80% 3%, 83% 11%, 85% 21%, 88% 75%, 89% 83%, 94% 96%, 100% 100%);

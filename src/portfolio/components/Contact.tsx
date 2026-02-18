@@ -19,6 +19,9 @@ export default function Contact({turnToCheat}: Props){
   const [t1Style, setT1Style] = useState<object>({background: "rgba(0,0,0,0"})
   const [t2Style, setT2Style] = useState<object>({background: "rgba(0,0,0,0.1"})
   const [t3Style, setT3Style] = useState<object>({background: "rgba(0,0,0,0.2"})
+  const [t1button, setT1button] = useState<string>("nonvisible");
+  const [t2button, setT2button] = useState<string>("contRightButton");
+  const [t3button, setT3button] = useState<string>("contRightButton");
 
   const xTouch = useRef<number>(0);
   const yTouch = useRef<number>(0);
@@ -93,6 +96,9 @@ export default function Contact({turnToCheat}: Props){
       setT1Style({background: "rgba(0,0,0,0"})
       setT2Style({background: "rgba(0,0,0,0.1"})
       setT3Style({background: "rgba(0,0,0,0.2"})
+      setT1button("nonvisible")
+      setT2button("contRightButton")
+      setT3button("contRightButton")
     }
     else if (col == 2) {
       page.current = 2
@@ -100,6 +106,9 @@ export default function Contact({turnToCheat}: Props){
       setT1Style({background: "rgba(0,0,0,0.1"})
       setT2Style({background: "rgba(0,0,0,0"})
       setT3Style({background: "rgba(0,0,0,0.1"})
+      setT1button("contLeftButton")
+      setT2button("nonvisible")
+      setT3button("contRightButton")
     }
     else if (col == 3) {
       page.current = 3
@@ -107,6 +116,9 @@ export default function Contact({turnToCheat}: Props){
       setT1Style({background: "rgba(0,0,0,0.2"})
       setT2Style({background: "rgba(0,0,0,0.1"})
       setT3Style({background: "rgba(0,0,0,0"})
+      setT1button("contLeftButton")
+      setT2button("contLeftButton")
+      setT3button("nonvisible")
     }
   }
 
@@ -169,8 +181,8 @@ export default function Contact({turnToCheat}: Props){
   
   return <section id="Contact">
     <div className="text" style={textWidth}>
-      <div className="t1" onMouseOver={e => move(1)}>
-        <div style={t1Style}>
+      <div className="texta t1" onMouseOver={e => move(1)}>
+        <div className="textb" style={t1Style}>
           Is this a typical website? No.<br/>
           If I made your website, would it be like this? Probably not.
           <br/><br/>
@@ -178,9 +190,10 @@ export default function Contact({turnToCheat}: Props){
           <br/><br/>
           So have a look around, everything on this site was made from scratch!  Maybe you'll see some things you like, some incorporated into the site itself, others linked to some other work I've done.  Also, if you continue reading you'll learn a little about me too, and how I became a game developer and web developer.  (Proceed at your own risk! →)
         </div>
+        <div className={t1button}></div>
       </div>
-      <div className="t2" onMouseOver={e => move(2)}>
-        <div style={t2Style}>
+      <div className="texta t2" onMouseOver={e => move(2)}>
+        <div className="textb" style={t2Style}>
           Compared to most people entering either the game dev or web dev industries, I'm a little longer in tooth, and there are numerous reasons why it's taken me this long to take this seriously.
           <br/><br/>
           Growing up in Tassie, I did a 3D animation subject in year 12 and had my name down for a scholarship with ABC.  When they cancelled the scholarship program, I enrolled instead in a Bachelor of Computer Science at University of Tasmania, but dropped out after a semester of not knowing why I was there.
@@ -189,9 +202,10 @@ export default function Contact({turnToCheat}: Props){
           <br/><br/>
           Several years of doing nothing with my life later, I moved to Melbourne and completed a Bachelor of Creative Arts (Animation) at JMC Academy.  Loved it, excelled in my class, did a few freelance gigs, but then ultimately let imposter syndrome beat me down.
         </div>
+        <div className={t2button}></div>
       </div>
-      <div className="t3" onMouseOver={e => move(3)}>
-        <div style={t3Style}>
+      <div className="texta t3" onMouseOver={e => move(3)}>
+        <div className="textb" style={t3Style}>
           After being made redundant from what I'd resigned myself to be my life-long career—because it paid well, not because I particularly enjoyed it—I did a software engineering bootcamp, and successfully transitioned into a software engineering role at Gentrack.  More than 20 years after dropping out of comp sci...
           <br/><br/>
           I was so sure of my decision, I'd done a lot of research and personality tests and software engineering really felt like the right choice, but after about a year I realised I wasn't enjoying my work at all.  This sent me into depression, and I started therapy for the first time in my life. Boy do I wish I'd started it back when I was a teenager.  It's now very clear to me that my multiple failures to persevere with things were due to the depression that has plagued me since High School.
@@ -200,6 +214,7 @@ export default function Contact({turnToCheat}: Props){
           <br/><br/>
           Now that I'm in the best state of mind I've been in for my entire life, I'm here looking for frontend dev work, doing freelance web design, and making my own game!
         </div>
+        <div className={t3button}></div>
       </div>
       <div className="textTop"></div>
     </div>
