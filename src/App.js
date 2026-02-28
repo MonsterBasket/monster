@@ -97,7 +97,7 @@ export default function App() {
         <Route path="/webDesign" element={<WebDesign />} />
         {isLoggedIn ? <>
           <Route path="/playOld/select-character" element={<SelectCharacter user={user} setPlayCharacter={setPlayCharacter} handleLogout={handleLogout} />} />
-          <Route path="/playOld/login" element={<GameController character={character} />} />
+          <Route path="/playOld/" element={<GameController character={character} />} />
           <Route path="/playOld/mapmaker" element={<MapMaker />} />
           {user.is_admin} ? <>
             <Route path="/playOld/admin" element={<Admin user={user} handleLogout={handleLogout} />} />
