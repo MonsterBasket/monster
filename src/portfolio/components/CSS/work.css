@@ -128,13 +128,11 @@ h3{
   width: 30px;
   height: 30px;
   top: 10px;
-  border-radius: 15px;
-  background: rgba(0, 0, 0, 0.2);
   box-shadow: 3px -3px 1.5px 0.5px rgba(255, 255, 255, 0.75);
   animation: 1s alternate-reverse infinite ease-in-out;
 }
 .workLeftButtonContainer:hover .workLeftButton, .workRightButton:hover{
-  box-shadow: 3px -3px 2px 1.5px rgba(255, 255, 255);
+  box-shadow: 3px -3px 2px 0.5px rgba(255, 255, 255, 1);
 }
 .workLeftButton{
   transform: rotateZ(-135deg);
@@ -142,7 +140,8 @@ h3{
   animation-name: workLeftBounce;
 }
 @keyframes workLeftBounce{
-  0%, 50%, 100%  {left: 22px;} 25% {left: 18px;}
+  0%, 50%, 100%  {Transform: rotatez(-135deg);} 
+  25% {transform: rotatez(-135deg) translate(25%, -25%);}
 }
 .workRightButton{
   transform: rotateZ(45deg);
@@ -150,5 +149,6 @@ h3{
   animation-name: workRightBounce;
 }
 @keyframes workRightBounce{
-  0%, 50%, 100%  {right: 22px;} 25% {right: 18px;}
+  0%, 50%, 100%  {Transform: rotatez(45deg);} 
+  25% {transform: rotatez(45deg) translate(25%, -25%);}
 }

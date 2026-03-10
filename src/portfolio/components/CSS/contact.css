@@ -42,6 +42,7 @@
 }
 .leaf, .blossom{
   animation: linear infinite, alternate-reverse infinite;
+  pointer-events: none;
 }
 .leaf{
   background-image: url("../../images/cherryLeaf.png")

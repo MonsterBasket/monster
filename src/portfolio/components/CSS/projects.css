@@ -8,6 +8,9 @@
   left: 0;
   transition: 0.5s;
 }
+a{
+  text-decoration: underline;
+}
 .projLeft, .projRight, .projTop, .projBottom{
   overflow: hidden;
 }
@@ -17,8 +20,8 @@
   pointer-events: none;
 }
 .projTopCover{
-  background: linear-gradient(90deg, #8e7d69 0%, #8e7d6900 20%),
-              linear-gradient(270deg, #8e7d69 0%, #8e7d6900 20%);
+  background: linear-gradient(90deg, #8e7d69 0%, #8e7d6900 10%),
+              linear-gradient(270deg, #8e7d69 0%, #8e7d6900 10%);
   pointer-events: none;
 }
 .noScroll{
@@ -54,12 +57,19 @@
   left: calc(50% - (var(--size) / 2));
   top: calc(50% - (var(--size) / 2));
 }
+.projBottom .projDesc{
+  width: 80%;
+  left: 10%
+}
 .projDesc{
   display:flex;
   align-items: center;
 }
-.project1, .project3, .desc1, .desc3{
+.project0, .project1, .project3, .desc0, .desc1, .desc3{
   opacity: 0;
+}
+.project0, .desc0{
+  display: none;
 }
 .projTop .project1{
   left: -100vw;
@@ -85,7 +95,7 @@
 .projRight .desc3{
   top: -100vh;
 }
-.projTopRule, .projLeftRule, .projButtonBack, .projUpButton, .projDownButton{
+.projTopRule, .projLeftRule, .projButtonBack, .projUpButton, .projDownButton, .projUpButton div, .projDownButton div{
   position: absolute;
 }
 .projTopRule{
@@ -120,7 +130,7 @@
 .projButton{
   width: 20px;
   height: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: white;
   opacity: 0.5;
   cursor: pointer;
@@ -132,19 +142,27 @@
   opacity: 1;
 }
 .projUpButton, .projDownButton{
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.projUpButton div, .projDownButton div{
   width: 30px;
   height: 30px;
   box-shadow: 2px -2px 1px 0 rgba(255, 255, 255, 0.6);
   animation: 1s alternate-reverse infinite ease-in-out;
 }
-.projUpButton:hover, .projDownButton:hover{
+.projUpButton:hover div, .projDownButton:hover div{
   box-shadow: 3px -3px 2px 0.5px rgba(255, 255, 255, 1);
-  cursor: pointer;
 }
 .projLeftRule .projUpButton{
-  top: -10%;
-  left: -15px;
-  transform: rotateZ(-45deg);
+  top: -50px;
+  left: -20px;
+  }
+.projLeftRule .projUpButton div{
+  top: 10px;
+  left: 5px;
   animation-name: buttonBounce1;
 }
 @keyframes buttonBounce1{
@@ -152,9 +170,12 @@
   25% {transform: rotatez(-45deg) translate(25%, -25%);}
 }
 .projLeftRule .projDownButton{
-  bottom: -10%;
-  left: -15px;
-  transform: rotateZ(135deg);
+  bottom: -50px;
+  left: -20px;
+}
+.projLeftRule .projDownButton div{
+  bottom: 10px;
+  left: 5px;
   animation-name: buttonBounce2;
 }
 @keyframes buttonBounce2{
@@ -162,20 +183,28 @@
   25% {transform: rotatez(135deg) translate(25%, -25%);}
 }
 .projUpButton{
-  top: -15px;
-  left: -10%;
-  transform: rotateZ(-135deg);
+  top: -20px;
+  left: -50px;
+}
+.projUpButton div{
+  top: 5px;
+  left: 10px;
   animation-name: buttonBounce3;
 }
 @keyframes buttonBounce3{
-  0%, 50%, 100%  {left: -10%;} 25% {left: -12%;}
+  0%, 50%, 100%  {transform: rotatez(-135deg)} 
+  25% {transform: rotatez(-135deg) translate(25%, -25%)}
 }
 .projDownButton{
-  bottom: -15px;
-  right: -10%;
-  transform: rotateZ(45deg);
+  bottom: -20px;
+  right: -50px;
+}
+.projDownButton div{
+  bottom: 5px;
+  right: 10px;
   animation-name: buttonBounce4;
 }
 @keyframes buttonBounce4{
-  0%, 50%, 100%  {right: -10%;} 25% {right: -12%;}
+  0%, 50%, 100%  {transform: rotatez(45deg)} 
+  25% {transform: rotatez(45deg) translate(25%, -25%)}
 }
