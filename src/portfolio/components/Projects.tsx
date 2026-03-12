@@ -122,15 +122,15 @@ export default function Projects({turnToCheat}: Props){
   const project1:ReactElement = <img className={`project tp project${position.current[0]} ${noScroll.current}`} alt={alt1} src={monster}></img>
   const project2:ReactElement = <div className={`project tp project${position.current[1]} ${noScroll.current}`}><Typing active={position.current[1] == 2 ? true : false}/></div>
   // const project2:ReactElement = <img className={`project tp project${position.current[1]} ${noScroll.current}`} src={monster}></img>
-  const project3:ReactElement = <img className={`project tp project${position.current[2]} ${noScroll.current}`} src={battleship}></img>
-  const project4:ReactElement = <img className={`project tp project${position.current[3]} ${noScroll.current}`} src={mask}></img>
+  const project3:ReactElement = <img className={`project tp project${position.current[2]} ${noScroll.current}`} alt={alt3} src={battleship}></img>
+  const project4:ReactElement = <img className={`project tp project${position.current[3]} ${noScroll.current}`} alt={alt4} src={mask}></img>
 
-  const project1Link:ReactElement = <h2 className="tp">React RPG</h2>
+  const project1Link:ReactElement = <h2 className="tp"><span style={{cursor: "not-allowed"}}>React RPG</span></h2>
   const project2Link:ReactElement = <h2 className="tp"><a href="https://monsterbasket.github.io/TypingGame/" target="_blank">Typing Game</a></h2>
   const project3Link:ReactElement = <h2 className="tp"><a href="https://github.com/MonsterBasket/battleship" target="_blank">Battleship</a></h2>
   const project4Link:ReactElement = <h2 className="tp"><a href="https://bslinger.itch.io/tim-tam" target="_blank">M.A.S.K</a></h2>
 
-  const project1Desc:ReactElement = <span className="tp">This was my "pièce de résistance" of my bootcamp.  A lot to be proud of despite being a bit janky and buggy.  On top of that the server is constantly out of RAM so it's pretty broken right now.  I've taken it off-line for now and I'll take a look when this folio site is finished.</span>
+  const project1Desc:ReactElement = <span className="tp">This was my "pièce de résistance" of my bootcamp.  A lot to be proud of despite being a bit janky and buggy, but writing everything myself from scratch was a blast.  This includes enemy logic, collision detection, character movement, item drops, and a map maker tool for building levels.<br/><br/>It's off-line for now because some policy changes broke my server, but I'll get it up and running again soon.</span>
   const project2Desc:ReactElement = <span className="tp">A JavaScript typing game. Choose a theme and type the words that appear on the screen before they reach the end. Words and background image come from separate APIs and are generated based on the theme you choose.<br/><br/>Try typing the moving words right here in the browser, or click the title for the full game.</span>
   const project3Desc:ReactElement = <span className="tp">Battleship made in Ruby, you can't play it because it's almost impossible to host a pure Ruby app, but feel free to look at the code in the link provided.</span>
   const project4Desc:ReactElement = <span className="tp">My Afternoon Snack (Kleptomaniac) - This was my first ever Game Jam project, for the recent Global Game Jam with a theme of "mask"!  Despite not having done any 3D work for quite a while, I joined a team as a 3D modeller.  I had to learn Blender on the fly, but managed to create the environments and hair/hats for characters.</span>
