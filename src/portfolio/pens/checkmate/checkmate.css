@@ -1,0 +1,45 @@
+.CMcursor, .CMa, .CMb, .CMc, .CMd, .CMs{
+  position: absolute;
+  cursor: none;
+}
+.CMcursor{
+  background: red;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  left: calc(var(--x) - 20px);
+  top: calc(var(--y) - 20px);
+}
+.CMa, .CMb, .CMc, .CMd{
+  width: 100%;
+  height: 100%;
+}
+.CMa{
+  background: black;
+  clip-path: polygon(0% 0%, 0% 55%, var(--x) var(--y), 55% 0%);
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 40px 20px;
+}
+.CMa .CMs{
+  position: absolute;
+  font-size: 0.3em;
+  top: calc(50% - 40px - 4em);
+}
+.CMb{
+  background: repeating-conic-gradient(black 0.01% 25%, white 0% 50%) 
+    40% 0% / 250px 250px;
+  clip-path: polygon(100% 0%, 100% 50%, var(--x) var(--y), 50% 0%)
+}
+.CMc{
+  background: repeating-conic-gradient(black 0.01% 25%, white 0% 50%) 
+    50% / 50px 50px;
+  clip-path: polygon(0% 100%, 0% 50%, var(--x) var(--y), 50% 100%)
+}
+.CMd{
+  background: repeating-conic-gradient(black 0.01% 25%, white 0% 50%) 
+    50% / 20px 20px;
+  clip-path: polygon(100% 100%, 100% 45%, var(--x) var(--y), 45% 100%)
+}

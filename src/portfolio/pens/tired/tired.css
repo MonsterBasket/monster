@@ -1,0 +1,81 @@
+.TIbody{
+  padding: 0;
+  background: black;
+  overflow: hidden;
+  cursor: none;
+}
+.TIa, .TIb{
+  position: absolute;
+  height: 40px;
+  transform-origin: left;
+  translate: 0 -20px;
+  padding-left: 20px;
+  font-family: sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.TIa{
+  color: darkgrey;
+  background: white;
+}
+.TIb{
+  color: black;
+  background: darkgrey;
+  border-radius: 20px 0 0 20px;
+}
+.TIa:after, .TIb:after{
+  font-size: 1.3em;
+  position: absolute;
+  height: 100%;
+  font-weight: 900;
+  content: "HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005HOVER EXP\2007🞀🞀🞀\2007🞀🞀🞀\2007🞀🞀🞀\2001\2001\2001\2001\2005";
+  left: 0px;
+}
+.TIa:after{
+  background: repeating-linear-gradient(145deg, transparent 0 180px, darkgrey 180px 183px, white 183px 186px, darkgrey 186px 189px, white 189px 192px, darkgrey 192px 195px, white 195px 198px, darkgrey 198px 201px, white 201px 204px, darkgrey 204px 207px, transparent 207px 209px);
+  animation: hovera 10s infinite linear;
+}
+.TIb:after{
+  background: repeating-linear-gradient(145deg, transparent 0 180px, black 180px 183px, darkgrey 183px 186px, black 186px 189px, darkgrey 189px 192px, black 192px 195px, darkgrey 195px 198px, black 198px 201px, darkgrey 201px 204px, black 204px 207px, transparent 207px 209px);
+  animation: hoverb 10s infinite linear;
+}
+.TIa:before, .TIb:before{
+  position: absolute;
+  font-size: 0.5em;
+  content: "BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 BY THE TIRED SUZ SIRUNYAN\2001●\2001 ";
+  font-weight: 700;
+  top: 28px;
+}
+.TIa:before{
+  animation: suza 10s infinite linear;
+}
+.TIb:before{
+  animation: suzb 10s infinite linear;
+}
+@keyframes hovera{
+  from {left: 0px;}
+  to {left: -363.5px;}
+}
+@keyframes hoverb{
+  from {left: -363.5px;}
+  to {left: 0px;}
+}
+@keyframes suza{
+  from{left: -276px;}
+  to{left: 0px;}
+}
+@keyframes suzb{
+  from{left: 0px;}
+  to{left: -276px;}
+}
+.TIpointer{
+  position: absolute;
+  background: #E7C683;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  left: calc(var(--x) - 10px);
+  top: calc(var(--y) - 10px);
+  pointer-events: none;
+  z-index: 1000;
+}

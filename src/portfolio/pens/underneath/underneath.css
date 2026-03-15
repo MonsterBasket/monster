@@ -1,0 +1,109 @@
+.UNbody{
+  margin: 0;
+  overflow: hidden;
+  cursor: none;
+}
+.UNbg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+.UNdrawing{
+  position:absolute;
+  mix-blend-mode: hard-light;
+}
+.UNm, .UNa, .UNd, .UNt1, .UNt2, .UNdot, .UNdash, .UNcursor, .UNcross{
+  position: absolute;
+  font-family: Sans-serif;
+  font-weight: 700;
+  pointer-events: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+.UNt1, .UNt2{
+  color: white;
+  font-size: 12vw;
+}
+.UNt1{
+  top: 3vw;
+  left: 4vw;
+}
+.UNt2{
+  top: 13vw;
+  right: 4vw;
+}
+.UNm, .UNa, .UNd{
+  font-size: 40vw;
+  line-height: 40vw;
+  margin-bottom: -0.1em;
+  bottom: 4.5vh;
+  transform-origin: 50% 84.5%;
+  transform: scaleY(4);
+  animation: bounce 0.5s alternate-reverse infinite;
+}
+.UNm{
+  color: #FE631A;
+  left: 7%;
+}
+.UNa{
+  color: #FF68A8;
+  left: 38%;
+  animation-delay: 0.15s;
+}
+.UNd{
+  color: #009801;
+  right: 7%;
+  animation-delay: 0.30s;
+}
+@keyframes bounce{
+  from { transform: scaleY(0.5)}
+  to { transform: scaleY(2)}
+}
+@media only screen and (min-width: 1000px) {
+    @keyframes bounce{
+    from { transform: scaleY(0.2)}
+    to { transform: scaleY(1.5)}
+  }
+}
+@media only screen and (min-width: 1200px) {
+    @keyframes bounce{
+    from { transform: scaleY(0.2)}
+    to { transform: scaleY(1.2)}
+  }
+}
+.UNdot, .UNdash{
+  background: #9FFF71;
+  rotate: -17deg;
+}
+.UNdot{
+  width: 6vw;
+  height: 7vw;
+  border-radius: 5.5vw;
+  right: 31vw;
+  top: 8vw;
+}
+.UNdash{
+  width: 20vw;
+  height: 7vw;
+  right: 11vw;
+  top: 4vw;
+  clip-path: polygon(0% 15%, 100% 0%, 100% 100%, 0% 85%);
+}
+.UNcross{
+  width: 10vw;
+  height: 12vw;
+  background: white;
+  top: 24vw;
+  left: 30vw;
+  rotate: 30deg;
+  clip-path: polygon(0% 33%, 40% 30%, 40% 0%, 65% 0%, 65% 30%, 100% 33%, 96% 52%, 65% 50%, 65% 95%, 40% 95%, 40% 50%, 0% 52%)
+}
+.UNcursor{
+  background: #9FFF71;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  pointer-events: none;
+}

@@ -1,0 +1,103 @@
+.SLbody{
+  overflow: hidden;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  cursor: none;
+}
+.SLbody a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+  cursor: none;
+  border: none;
+}
+.SLcursor{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url('http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png');
+  z-index: 3;
+  pointer-events: none;
+}
+.SLbody ul{
+  position: absolute;
+  right: 5%;
+  width: 30%;
+  color: #222;
+  z-index: 1;
+}
+.SLbody li{
+  list-style: none;
+  border-bottom: solid 1px #222;
+  display: grid;
+  grid-template-columns: 1fr 3fr auto 0fr;
+  grid-template-rows: auto;
+  grid-template-areas: "a b b c";
+  transition: all 0.5s;
+  height: 2em;
+  line-height: 2em;
+  overflow: hidden;
+}
+.SLbody li:hover{
+  grid-template-columns: 0fr 0fr auto 1fr;
+  transition: all 0.5s;
+}
+.SLbody a:first-child li:first-child{
+  border-top: solid 1px #222;
+}
+.SLbody li div:first-child{
+  grid-area: a;
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.SLbody li:hover div:first-child{
+  transform: scaleX(0);
+  transition: all 0.5s;
+}
+.SLbody li div:nth-child(2){
+  overflow: visible;
+  grid-area: b;
+  flex-grow: 3;
+  text-align: right;
+  white-space: nowrap;
+}
+.SLbody li:hover div:nth-child(2){
+  overflow: visible;
+  transition: all 0.5s;
+}
+.SLbody li div:nth-child(3){
+  grid-area: c;
+  text-align: right;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+.SLbody li:hover div:nth-child(3){
+  transform: scaleX(1.5);
+  transition: all 0.5s;
+}
+.SLbody li div{
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.SLspotlight{
+  background: conic-gradient(#fff 0deg 2deg, #050505 7deg 353deg, #fff 358deg 360deg);
+  mix-blend-mode: hard-light;
+  width: 400vw;
+  height: 400vh;
+  position: absolute;
+  left: -175vw;
+  top: -150vh;
+  z-index: 0;
+  color: white;
+}
+.SLspotlight div{
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  color: white;
+  font-size: 1.6em;
+  transform-origin: top left;
+  transform: rotate(-90deg) translate(-3em, -0.55em);
+}

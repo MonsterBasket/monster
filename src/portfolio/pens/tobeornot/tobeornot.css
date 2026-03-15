@@ -1,0 +1,72 @@
+.TBbody{
+  --bg: #5A0001;
+  --text: #C53B1C;
+  --ht: #CDCABB;
+  cursor: none;
+  background: var(--bg);
+  padding: 0;
+  overflow: hidden;
+}
+.TBcont{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+  font-family: sans-serif;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+.TBa, .TBb{
+  width: 4em;
+  text-align: center;
+  content: var(--z);
+}
+.TBa:hover, .TBb:hover{
+  color: var(--ht)
+}
+.TBskull{
+  width: 320px;
+  height: 240px;
+  filter: saturate(2);
+  opacity: 0.7;
+  image-rendering: pixelated;
+  background-size: 3200px 2400px;
+  background-image: url(https://lh3.googleusercontent.com/d/1EwzKFD4N_hjDJvL34_hr1ngkOgCfjyn1);
+  animation: a 1s steps(10) infinite, b 10s steps(10) infinite;
+  animation-play-state: paused;
+  animation-delay: var(--z);
+  mix-blend-mode: lighten;
+}
+.TBskull div{
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  mix-blend-mode:hard-light;
+  opacity: 1;
+  image-rendering: auto;
+  pointer-events: none;
+  background-size: 5px 5px;
+  background-image:
+    linear-gradient(to right, black 1px, transparent 1px),
+    linear-gradient(to bottom, black 2px, transparent 1px);
+}
+@keyframes a{
+  from {backround-position-x: 0px}
+  to {background-position-x: -3200px}
+}
+@keyframes b{
+  from {background-position-y: 0px}
+  to {background-position-y: -2400px}
+}
+.TBcursor{
+  position: absolute;
+  background: var(--ht);
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  left: calc(var(--x) - 7.5px);
+  top: calc(var(--y) - 7.5px);
+  pointer-events: none;
+}
