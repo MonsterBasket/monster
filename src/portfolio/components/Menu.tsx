@@ -22,7 +22,7 @@ export default function Menu({scrollPos, buttonWidth, setButtonWidth, buttonOpac
   const [aboutLeft, setAboutLeft] = useState<number>((window.innerWidth / 2 - (buttonWidth * 2 + 17.5)) + 10)
   const [projectsLeft, setProjectsLeft] = useState<number>((window.innerWidth / 2 - (buttonWidth + 12.5)) + 10)
   const [workLeft, setWorkLeft] = useState<number>((window.innerWidth / 2 - 7.5) + 10)
-  const [contactLeft, setContactLeft] = useState<number>((window.innerWidth / 2 + (buttonWidth -2.5)) + 10)
+  const [pensLeft, setPensLeft] = useState<number>((window.innerWidth / 2 + (buttonWidth -2.5)) + 10)
 
   useEffect(() => {
     window.addEventListener('resize', setAllLeft);
@@ -37,7 +37,7 @@ export default function Menu({scrollPos, buttonWidth, setButtonWidth, buttonOpac
     setAboutLeft((window.innerWidth / 2 - (buttonWidth * 2 + 17.5)) + 10)
     setProjectsLeft((window.innerWidth / 2 - (buttonWidth + 12.5)) + 10)
     setWorkLeft((window.innerWidth / 2 - 7.5) + 10)
-    setContactLeft((window.innerWidth / 2 + (buttonWidth -2.5)) + 10)
+    setPensLeft((window.innerWidth / 2 + (buttonWidth -2.5)) + 10)
     }
 
   function turnToCheat(page:number){
@@ -90,14 +90,14 @@ export default function Menu({scrollPos, buttonWidth, setButtonWidth, buttonOpac
         setAboutLeft((leftAdjust - (buttonWidth * 2 + 17.5)) + 5)
         setProjectsLeft((leftAdjust - (buttonWidth + 12.5)) + 5)
         setWorkLeft((leftAdjust - 7.5) + 5)
-        setContactLeft((leftAdjust + (buttonWidth -2.5)) + 5)
+        setPensLeft((leftAdjust + (buttonWidth -2.5)) + 5)
         setButtonOpacity(1)
       }
       else{
         // setAboutLeft((farLeft - (buttonWidth * 2 + 17.5)) + 5)
         // setProjectsLeft((farLeft - (buttonWidth + 12.5)) + 5)
         // setWorkLeft((farLeft - 7.5) + 5)
-        // setContactLeft((farLeft + (buttonWidth -2.5)) + 5)
+        // setPensLeft((farLeft + (buttonWidth -2.5)) + 5)
         const limit:number = 1.5 * window.innerHeight + window.innerHeight / 5;
         setButtonOpacity((currPos.y + limit) / (window.innerHeight / 5))
       }
@@ -109,13 +109,10 @@ export default function Menu({scrollPos, buttonWidth, setButtonWidth, buttonOpac
   const aboutStyle = { perspectiveOrigin: "200% center", perspective: `${menuScale * 100 + 300}px`, left: `${aboutLeft}px`, width: `${buttonWidth}px` };
   const projectsStyle = { perspectiveOrigin: "100% center", perspective: `${menuScale * 100 + 300}px`, left: `${projectsLeft}px`, width: `${buttonWidth}px` };
   const workStyle = { perspectiveOrigin: "0% center", perspective: `${menuScale * 100 + 300}px`, left: `${workLeft}px`, width: `${buttonWidth}px` };
-  const contactStyle = { perspectiveOrigin: "-100% center", perspective: `${menuScale * 100 + 300}px`, left: `${contactLeft}px`, width: `${buttonWidth}px` };
+  const pensStyle = { perspectiveOrigin: "-100% center", perspective: `${menuScale * 100 + 300}px`, left: `${pensLeft}px`, width: `${buttonWidth}px` };
   const front = { transform: `rotateX(${buttonRotate * 180}deg) translateZ(15px)`, filter: `brightness(${2 * buttonRotate + 1})` };
   const bottom = { transform: `rotateX(${buttonRotate * 180 - 90}deg) translateZ(15px)`, filter: `brightness(${2 * buttonRotate})` };
   const back = { transform: `rotateX(${buttonRotate * 180 - 180}deg) translateZ(15px)`, filter: `brightness(${2 * buttonRotate - 1})` };
-
-  // The buttons were originally "Hello, About, Projects, Contact", they're now "About, Projects, Animation, Contact"
-  // Too many variables and css classes to rename for something that may change again in the future.
 
   const mainMenuStyle:React.CSSProperties = {
     top:`${menuTop}px`,
@@ -142,10 +139,10 @@ export default function Menu({scrollPos, buttonWidth, setButtonWidth, buttonOpac
         <div style={bottom} className='menuButtonPanel'>Work</div>
         <div style={back} className='menuButtonPanel'>Work</div>
       </a>
-      <a href="#Contact" onClick={() => turnToCheat(3)} style={contactStyle} className="menuButton contactButton">
-        <div style={front} className='menuButtonPanel'>Contact</div>
-        <div style={bottom} className='menuButtonPanel'>Contact</div>
-        <div style={back} className='menuButtonPanel'>Contact</div>
+      <a href="#Pens" onClick={() => turnToCheat(3)} style={pensStyle} className="menuButton pensButton">
+        <div style={front} className='menuButtonPanel'>Pens</div>
+        <div style={bottom} className='menuButtonPanel'>Pens</div>
+        <div style={back} className='menuButtonPanel'>Pens</div>
       </a>
     </div>
   </div>

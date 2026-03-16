@@ -1,6 +1,6 @@
 import './CSS/work.css'
 import disclaimerImg from '../images/disclaimer.png';
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { IframeHTMLAttributes, ReactElement, useEffect, useRef, useState } from 'react';
 
 type Props = {turnToCheat: number;}
 
@@ -71,9 +71,10 @@ export default function Work({turnToCheat}: Props){
     descPos.current = [descPos.current[num(0)], descPos.current[num(1)], descPos.current[num(2)], descPos.current[num(3)], descPos.current[num(4)], descPos.current[num(5)]]
     rerender([])
   }
+
   const alleyUrl:string = "https://player.vimeo.com/video/5008288?h=22815a5165"
   const cookiesUrl:string = "https://www.youtube.com/embed/XRhsOcLPqiQ?si=wbU0P8G8_0sTDUb6"  
-  const matteUrl:string = "https://youtube.com/embed/6Q-97PUTFZo?si=V3gneftIKLd2Nfk0"
+  const matteUrl:string = "https://youtube.com/embed/6Q-97PUTFZo?si=V3gneftIKLd2Nfk0&enablejsapi=1"
   const showreelUrl:string = "https://player.vimeo.com/video/35045360?h=02bc212f2a"
   const gearsUrl:string = "https://www.youtube.com/embed/T0VNYxlmUbQ?si=jcFYfyD0epqUukZX"
   const hairUrl:string = "https://www.youtube.com/embed/D81XrEyneAA?si=jFrUNLEuW4z46LJd"
@@ -108,10 +109,10 @@ export default function Work({turnToCheat}: Props){
       <div onClick={()=> move(2)} className="backLeft ontop"></div>
       <div onClick={()=> move(-2)} className="backRight ontop"></div>
       <div onClick={()=> move(-3)} className="back ontop"></div>
-      <div className="workLeftButtonContainer" onClick={() => move(1)}>
+      <div className="workLeftButtonContainer" onClick={() => move(-1)}>
         <div className="workLeftButton"></div>
       </div>
-      <div className="workRightButtonContainer" onClick={() => move(-1)}>
+      <div className="workRightButtonContainer" onClick={() => move(1)}>
         <div className="workRightButton"></div>
       </div>
     </article>

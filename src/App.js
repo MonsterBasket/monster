@@ -8,9 +8,9 @@ import WebDesign from './components/WebDesign.js';
 
 // import './portfolio/components/CSS/App.css';
 import PortSplash from './portfolio/components/Splash.tsx'
-import About from './portfolio/components/About.tsx';
+import Pens from './portfolio/components/Pens.tsx';
 import Work from './portfolio/components/Work.tsx'
-import Contact from './portfolio/components/Contact.tsx';
+import About from './portfolio/components/About.tsx';
 import Hello from './portfolio/components/Hello.tsx';
 import Menu from './portfolio/components/Menu.tsx';
 import Projects from './portfolio/components/Projects.tsx';
@@ -84,11 +84,11 @@ export default function App() {
           <PortSplash>
             <MonsterMenu />
             <Hello scrollPos={scrollPos} />
-            <Tabs buttonWidth={buttonWidth} buttonOpacity={buttonOpacity} turnToCheat={turnToCheat} setTurnToCheat={setTurnToCheat} names={["About", "Projects", "Work", "Contact"]}>
-              <Contact turnToCheat={turnToCheat} />
+            <Tabs buttonWidth={buttonWidth} buttonOpacity={buttonOpacity} turnToCheat={turnToCheat} setTurnToCheat={setTurnToCheat} names={["About", "Projects", "Work", "Pens"]}>
+              <About turnToCheat={turnToCheat} />
               <Projects turnToCheat={turnToCheat} />
               <Work turnToCheat={turnToCheat} />
-              <About turnToCheat={turnToCheat} />
+              <Pens turnToCheat={turnToCheat} />
             </Tabs>
 
             <Menu scrollPos={scrollPos} buttonWidth={buttonWidth} setButtonWidth={setButtonWidth} buttonOpacity={buttonOpacity} setButtonOpacity={setButtonOpacity} setTurnToCheat={setTurnToCheat}/>

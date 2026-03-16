@@ -67,7 +67,7 @@ article{
   height: 100%;
   font-size: min(2vw, 2vh);
 }
-#About, .tabTop3{
+#Pens, .tabTop3{
   background-color: #5f6f3a;
 }
 #Projects, .tabTop1{
@@ -76,14 +76,14 @@ article{
 #Work, .tabTop2{
   background-color: #d8af7f;
 }
-#Contact, .tabTop0{
+#About, .tabTop0{
   background-color: #f5e1b9;
 }
-#Contact, #About{
+#About, #Pens{
   overflow: hidden;
 }
 /* Just note that the below button names have the above labels for the user */
-.contactButton .menuButtonPanel{
+.pensButton .menuButtonPanel{
   background-color: #5f6f3a;
 }
 .projectsButton .menuButtonPanel{
@@ -139,6 +139,7 @@ a{
   width: 100%;
   top: -150px;
   background: linear-gradient(0deg, #000 0%, #000 25%, #0000 100%);
+  pointer-events: none;
 }
 .tabTop{
   clip-path: polygon(0 100%, 6% 96%, 11% 83%, 12% 75%, 15% 21%, 17% 11%, 20% 3%, 25% 0, 75% 0, 80% 3%, 83% 11%, 85% 21%, 88% 75%, 89% 83%, 94% 96%, 100% 100%);
