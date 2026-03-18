@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './tired.css'
 
-export default function Tired(mX, mY){
+export default function Tired({mX, mY}){
   let x = 0;
   let y = 0;
   let xs = 0;
@@ -13,7 +13,12 @@ export default function Tired(mX, mY){
   let front = false;
   let angle = 0;
   let z = 0;
-  document.addEventListener("click", e => stop(e))
+
+  useEffect(() => {
+    document.addEventListener("click", e => stop(e))
+    return document.removeEventListener("click", e => stop(e))
+  },[])
+
   useEffect(() => {
     if (finished) {
       finished = false;
@@ -53,6 +58,7 @@ export default function Tired(mX, mY){
     document.documentElement.style.setProperty('--TIx', mX + 'px');
     document.documentElement.style.setProperty('--TIy', mY + 'px');
   }, [mX,mY])
+
   function stop(e){
     if (first){
       x = mX;
@@ -65,6 +71,7 @@ export default function Tired(mX, mY){
     lastRibbon = ribbon;
     ribbon = '';
   }
+
   return <div className="pen TIbody">
     <div id="TIcont"></div>
     <div class="TIpointer"></div>

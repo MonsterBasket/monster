@@ -6,7 +6,7 @@ type Props = {
 }
 
 function Splash({children}:Props){
-
+  const [done, setDone] = useState<boolean>(false)
   const [containerStyle, setContainerStyle] = useState({ overflow: "hidden" })
   const [coverStyle, setCoverStyle] = useState<React.CSSProperties>({opacity: "1", pointerEvents: "auto"})
 
@@ -15,7 +15,10 @@ function Splash({children}:Props){
     const onPageLoad = () => {
       setContainerStyle({ overflow: "visible" })
       setCoverStyle({ opacity: "0", pointerEvents: "none" })
-      setTimeout(() => setCoverStyle({ display: "none" }), 1000)
+      setTimeout(() => {
+        setCoverStyle({ display: "none" })
+        setDone(true);
+      }, 1000)
     };
 
     // Check if the page has already loaded
@@ -30,7 +33,7 @@ function Splash({children}:Props){
 
   return <div className="splashContainer" style={containerStyle}>
       {children}
-      <div className="splash" style={coverStyle}><Cubes /></div>
+      {!done && <div className="splash" style={coverStyle}><Cubes /></div>}
     </div>
 }
 

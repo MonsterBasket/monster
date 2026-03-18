@@ -13,9 +13,9 @@
 .backGround{
   position: absolute;
   bottom: 0%;
-  width: 120%;
-  left: -10%;
-  height: 60%;
+  width: 102%;
+  left: -1%;
+  height: 100%;
   background-size: cover;
   background-position: 50% 50%;
   border-radius: 40% 40% 0 0;
@@ -193,24 +193,10 @@
 [type=radio]:checked + .card .cardImage{
   background-size: 130% 110%;
 }
-/* .a1 .cardImage{background-image: url("https://picsum.photos/id/15/500");}
-.a2 .cardImage{background-image: url("https://picsum.photos/id/18/500")}
-.a3 .cardImage{background-image: url("https://picsum.photos/id/25/500")}
-.a4 .cardImage{background-image: url("https://picsum.photos/id/70/500")}
-.a5 .cardImage{background-image: url("https://picsum.photos/id/110/500")}
-.a6 .cardImage{background-image: url("https://picsum.photos/id/93/500")}
-.a7 .cardImage{background-image: url("https://picsum.photos/id/95/500")} */
-.a1 .cardImage{background-image: url("../../images/big1.jpg")}
-.a2 .cardImage{background-image: url("../../images/big2.jpg")}
-.a3 .cardImage{background-image: url("../../images/big3.jpg")}
-.a4 .cardImage{background-image: url("../../images/big4.jpg")}
-.a5 .cardImage{background-image: url("../../images/big5.jpg")}
-.a6 .cardImage{background-image: url("../../images/big6.jpg")}
-.a7 .cardImage{background-image: url("../../images/big7.jpg")}
-.b1 {background-image: url("../../images/big1.jpg")}
-.b2 {background-image: url("../../images/big2.jpg")}
-.b3 {background-image: url("../../images/big3.jpg")}
-.b4 {background-image: url("../../images/big4.jpg")}
-.b5 {background-image: url("../../images/big5.jpg")}
-.b6 {background-image: url("../../images/big6.jpg")}
-.b7 {background-image: url("../../images/big7.jpg")}
+.a1 .cardImage{background-image: url("../../pens/checkmate/checkmate.png")}
+.a2 .cardImage{background-image: url("../../pens/commonSense/commonsense.png")}
+.a3 .cardImage{background-image: url("../../pens/concentric/concentric.png")}
+.a4 .cardImage{background-image: url("../../pens/spotlight/spotlight.png")}
+.a5 .cardImage{background-image: url("../../pens/tired/tired.png")}
+.a6 .cardImage{background-image: url("../../pens/tobeornot/tobeornot.png")}
+.a7 .cardImage{background-image: url("../../pens/underneath/underneath.png")}

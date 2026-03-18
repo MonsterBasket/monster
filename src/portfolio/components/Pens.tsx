@@ -1,5 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import "./CSS/pens.css"
+import Pen1 from "../pens/checkmate/checkmate"
+import Pen2 from "../pens/commonSense/commonSense"
+import Pen3 from "../pens/concentric/concentric"
+import Pen4 from "../pens/spotlight/spotlight"
+import Pen5 from "../pens/tired/tired"
+import Pen6 from "../pens/tobeornot/tobeornot"
+import Pen7 from "../pens/underneath/underneath"
 
 type Props = {turnToCheat: number;}
 
@@ -12,8 +19,10 @@ export default function Pens({turnToCheat}: Props){
   let order:string[] = ["a1", "a2", "a3", "a4", "a5", "a6", "a7"];
   let speed:number = 1;
   let direction:number = 1;
-  let mousePosX = useRef<number>(0);
-  let mousePosY = useRef<number>(0);
+  let mX = useRef<number>(0);
+  let mY = useRef<number>(0);
+  const [zX, setzX] = useState<number>(0)
+  const [zY, setzY] = useState<number>(0)
   let lastMousePos:number = 0;
   let clickedMousePos:number = 0;
   let clickTarget:number = 0;
@@ -33,7 +42,7 @@ export default function Pens({turnToCheat}: Props){
   const trans = useRef<number>(1);
   const seventh:number = 100 / 7;
   let squeventh:number = seventh;
-  const bg = useRef<string>("")
+  const bg = useRef<ReactElement|null>(null)
   const bgOp = useRef<number>(0)
   let bgtimer:ReturnType<typeof setTimeout>;
   let mouseMove = useRef<boolean>(false);
@@ -103,7 +112,7 @@ export default function Pens({turnToCheat}: Props){
       tapping.current = true;
       lastMousePos = e.touches[0].clientX
     }
-    mousePosX.current = ("clientX" in e) ? e.clientX : e.touches[0].clientX;
+    mX.current = ("clientX" in e) ? e.clientX : e.touches[0].clientX;
     clickedMousePos = ("clientX" in e) ? e.clientX : e.touches[0].clientX;
     clickTarget = getTarget(e)
     if (clickTarget != checked.current) {
@@ -115,7 +124,7 @@ export default function Pens({turnToCheat}: Props){
     if (tapping.current && e.type == "mouseup") return
     const thisCheck:number = getTarget(e)
     if (thisCheck == checked.current) uncheck()
-    else if (thisCheck == tempChecked && Math.abs(mousePosX.current - clickedMousePos) < 15){
+    else if (thisCheck == tempChecked && Math.abs(mX.current - clickedMousePos) < 15){
       toCheck = e.target.previousElementSibling
       if (toCheck) {
         toCheck.checked = true
@@ -123,18 +132,20 @@ export default function Pens({turnToCheat}: Props){
         cancelAnimationFrame(lerpReset.current[thisCheck - 1])
         window.requestAnimationFrame(t => lerpUp(t, t, thisCheck, thisCheck))
         clearTimeout(bgtimer)
-        bg.current = "b" + checked.current
+        // bg.current = pens[checked.current - 1]
         bgOp.current = 1
       }
     }
-    if (Math.abs(mousePosX.current - clickedMousePos) > 30) uncheck()
+    if (Math.abs(mX.current - clickedMousePos) > 30) uncheck()
     clickTarget = 0;
-    mousePosX.current = ("clientX" in e) ? e.clientX : e.changedTouches[0].clientX;
+    mX.current = ("clientX" in e) ? e.clientX : e.changedTouches[0].clientX;
   }
 
   function mouseCoords(e:any){
-    mousePosX.current = ("clientX" in e) ? e.clientX : e.touches[0].clientX;
-    mousePosY.current = ("clientY" in e) ? e.clientY : e.touches[0].clientY;
+    mX.current = ("clientX" in e) ? e.clientX : e.touches[0].clientX;
+    mY.current = ("clientY" in e) ? e.clientY : e.touches[0].clientY;
+    setzX(e.clientX)
+    setzY(e.clientY)
     if (!e.sourceCapabilities.firesTouchEvents){
       hoverTarget = getTarget(e);
       mouseMove.current = true;
@@ -152,7 +163,7 @@ export default function Pens({turnToCheat}: Props){
     if (toCheck) {
       toCheck.checked = false
       toCheck = null
-      bgtimer = setTimeout(() => bg.current = "", 1000)
+      bgtimer = setTimeout(() => bg.current = null, 1000)
       bgOp.current = 0
     }
     const temp = checked.current
@@ -175,9 +186,9 @@ export default function Pens({turnToCheat}: Props){
       const w = rect.width / 2
       const h = rect.height / 2
       if (trans.current > 0) trans.current *= 0.95
-      const angle = {transform: `rotateX(${(mousePosY.current - rect.y - h) / h * -10}deg) rotateY(${(mousePosX.current - rect.x - w) / w * 10}deg)`, transition: `all 1s, transform ${trans.current}s`}
-      posXAdj.current[card - 1] = (mousePosX.current - rect.x - w) / w * 5
-      posYAdj.current[card - 1] = (mousePosY.current - rect.y - h) / h * 5
+      const angle = {transform: `rotateX(${(mY.current - rect.y - h) / h * -10}deg) rotateY(${(mX.current - rect.x - w) / w * 10}deg)`, transition: `all 1s, transform ${trans.current}s`}
+      posXAdj.current[card - 1] = (mX.current - rect.x - w) / w * 5
+      posYAdj.current[card - 1] = (mY.current - rect.y - h) / h * 5
       if (card == 1) setA1Angle(angle)
       else if (card == 2) setA2Angle(angle)
       else if (card == 3) setA3Angle(angle)
@@ -247,7 +258,7 @@ export default function Pens({turnToCheat}: Props){
   function slide(timeStamp:number){
     if(timeStamp - lastTime > 16) {
       lastTime = timeStamp;
-      if (clickTarget) speed = (mousePosX.current - lastMousePos) / 2
+      if (clickTarget) speed = (mX.current - lastMousePos) / 2
       else if (checked.current){
         const cc:string = "a" + checked.current
         if (order[0] == cc || order[1] == cc || order[2] == cc) speed = 5
@@ -286,7 +297,7 @@ export default function Pens({turnToCheat}: Props){
       setA7Pos({backgroundPosition: `${seventh * (7 - parseInt(order[0].substring(1))) + squeventh + (posXAdj.current[6] * posLerp.current[6] * magLerp.current[6])}% ${50 + (posYAdj.current[6] * posLerp.current[6] * magLerp.current[6])}%`})
     }
     if (active.current) window.requestAnimationFrame(slide);
-    lastMousePos = mousePosX.current;
+    lastMousePos = mX.current;
   }
 
 
@@ -307,7 +318,15 @@ export default function Pens({turnToCheat}: Props){
 
 
   return <section id="Pens">
-    <div className={`backGround ${bg.current}`} style={{opacity: bgOp.current}}></div>
+    <div className={`backGround`} style={{opacity: bgOp.current}}>
+      {checked.current === 1 && <Pen1 mX={zX} mY={zY}/>}
+      {checked.current === 2 && <Pen2 mX={zX} mY={zY}/>}
+      {checked.current === 3 && <Pen3 mX={zX} mY={zY}/>}
+      {checked.current === 4 && <Pen4 mX={zX} mY={zY}/>}
+      {checked.current === 5 && <Pen5 mX={zX} mY={zY}/>}
+      {checked.current === 6 && <Pen6 mX={zX} mY={zY}/>}
+      {checked.current === 7 && <Pen7 mX={zX} mY={zY}/>}
+    </div>
     <div id="cont" onDragStart={e => e.preventDefault} onDrop={e => e.preventDefault} style={contStyle}>
       <div className="item a1">
         <input id="a1" type="radio" name="cards" />

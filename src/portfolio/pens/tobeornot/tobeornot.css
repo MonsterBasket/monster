@@ -6,10 +6,13 @@
   background: var(--bg);
   padding: 0;
   overflow: hidden;
+  height: 100%;
 }
 .TBcont{
+  position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 50%;
+  top: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +36,7 @@
   opacity: 0.7;
   image-rendering: pixelated;
   background-size: 3200px 2400px;
-  background-image: url(https://lh3.googleusercontent.com/d/1EwzKFD4N_hjDJvL34_hr1ngkOgCfjyn1);
+  background-image: url("./skull.png");
   animation: a 1s steps(10) infinite, b 10s steps(10) infinite;
   animation-play-state: paused;
   animation-delay: var(--z);
@@ -66,7 +69,5 @@
   width: 15px;
   height: 15px;
   border-radius: 7.5px;
-  left: calc(var(--x) - 7.5px);
-  top: calc(var(--y) - 7.5px);
   pointer-events: none;
 }

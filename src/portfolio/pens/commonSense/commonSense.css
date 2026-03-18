@@ -1,17 +1,20 @@
-.CSCont {
+.CSbody{
   --blue: #b7cfd2;
   --dark: #13272c;
   --light: #e5e3d2;
   --yellow: #fbf811;
   --h: 0;
-  height: 40vw;
-  background: var(--dark);
-}
-.CSbody{
   cursor: none;
   font-family: sans-serif;
   font-weight: bold;
   margin: 0;
+  height: 100%;
+  background: var(--dark);
+}
+.CSCont {
+  height: 50%;
+  bottom: 0;
+  background: var(--dark);
 }
 .CSbody div{
   position: absolute;
@@ -27,13 +30,12 @@
   transition: all 0.5s;
 }
 .CScommon, .CSsense{
-  font-size: 21vw;
+  font-size: min(24vh, 18vw);
   height: 48%;
+  display: flex;
   transform: scaleY(var(--c));
   span{
-    position: absolute;
     left: 0px;
-    height: 100%;
     width: 100%;
     pointer-events: none;
     transform: scaleY(1.15);
@@ -42,6 +44,7 @@
 .CScommon{
   top: 0%;
   transform-origin: top;
+  align-items: end;
   span{
     top: -12%;
   }
@@ -49,6 +52,7 @@
 .CSsense{
   bottom: 0%;
   transform-origin: bottom;
+  align-items: start;
   span{
     bottom: 15%;
   }
@@ -56,20 +60,29 @@
 .CSisnot{
   background: var(--light);
   color: var(--dark);
-  font-size: 9vw;
+  font-size: min(9vw, 12vh);
   line-height: 8vw;
   transform: scaleY(var(--h));
   transform-origin: center;
-  top: 16vw;
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CSisnotCont{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  pointer-events: none;
 }
 .CSmenu{
   display: flex;
   justify-content: space-around;
   top: 48%;
-  font-size: 1.5vw;
-  line-height: 2vw;
+  font-size: min(1.5vw, 2vh);
+  line-height: 0.9vw;
 }
-.CScursor{
+.CSbody .CScursor{
   position: absolute;
   background: var(--yellow);
   width: 15px;
@@ -78,4 +91,11 @@
   left: calc(var(--x) - 7.5px);
   top: calc(var(--y) - 7.5px);
   pointer-events: none;
+}
+.CSsuz{
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  50% { filter: brightness(130%) saturate(4.5);
+    text-shadow: 0 0 10px var(--blue);}
 }

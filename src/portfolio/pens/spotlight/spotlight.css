@@ -22,14 +22,18 @@
 }
 .SLbody ul{
   position: absolute;
-  right: 5%;
+  left: 0;
+  bottom: 0;
   width: 30%;
   color: #222;
   z-index: 1;
+  background-color: none;
 }
 .SLbody li{
   list-style: none;
+  border: none;
   border-bottom: solid 1px #222;
+  background: none;
   display: grid;
   grid-template-columns: 1fr 3fr auto 0fr;
   grid-template-rows: auto;
@@ -86,8 +90,8 @@
   width: 400vw;
   height: 400vh;
   position: absolute;
-  left: -175vw;
-  top: -150vh;
+  left: -135vw;
+  top: -130vh;
   z-index: 0;
   color: white;
 }

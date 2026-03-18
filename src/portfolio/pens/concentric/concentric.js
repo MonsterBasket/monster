@@ -1,20 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './concentric.css'
 
-export default function Concentric(mX, mY){
-  useEffect(() => {
-    document.documentElement.style.setProperty('--x', mX / document.body.clientWidth * 360 + 'deg');
-    document.documentElement.style.setProperty('--y', mY / document.body.clientHeight + 0.5 + 'turn');
-  }, [mX, mY])
+export default function Concentric({mX, mY}){
+  const body = useRef()
+  const boxRect = useRef()
 
-  return <div className="pen CCbody">
-    <div class="CCa">
-      <div class="CCb"><div><div><div><div><div><div><div><div>
+  useEffect(() => {
+    boxRect.current = body.current.getBoundingClientRect()
+  },[])
+
+  useEffect(()=>{
+    if (body.current){
+      body.current.style.setProperty('--x', (mX - boxRect.current.left) / document.body.clientWidth * 360 + 'deg')
+      body.current.style.setProperty('--y', (mY - boxRect.current.top)  / document.body.clientHeight + 0.5 + 'turn')
+    }
+  },[mX,mY])
+
+  return <div ref={body} className="pen CCbody">
+    <div className="CCa">
+      <div className="CCb"><div><div><div><div><div><div><div><div>
         </div></div></div></div></div></div></div></div></div>
     </div>
-    <div class="CCcont">
-      <div class="CCa">
-        <div class="CCb"><div><div><div><div><div><div><div><div>
+    <div className="CCcont">
+      <div className="CCa">
+        <div className="CCb"><div><div><div><div><div><div><div><div>
           </div></div></div></div></div></div></div></div></div>
       </div>
     </div>

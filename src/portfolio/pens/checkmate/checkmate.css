@@ -1,4 +1,4 @@
-.CMcursor, .CMa, .CMb, .CMc, .CMd, .CMs{
+.CMcursor, .CMa, .CMb, .CMc, .CMd, .CMs, .CMf{
   position: absolute;
   cursor: none;
 }
@@ -15,31 +15,36 @@
   height: 100%;
 }
 .CMa{
-  background: black;
-  clip-path: polygon(0% 0%, 0% 55%, var(--x) var(--y), 55% 0%);
-  color: white;
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 2em;
-  padding: 40px 20px;
+  background: repeating-conic-gradient(black 0.01% 25%, white 0% 50%) 
+    50% / 50px 50px;
+  clip-path: polygon(0% 0%, 0% 100%, var(--x) var(--y), 55% 0%);
 }
-.CMa .CMs{
-  position: absolute;
+.CMc .CMs{
   font-size: 0.3em;
-  top: calc(50% - 40px - 4em);
+  top: 77%;
+  left: 2%;
+  /* calc(50% - 40px - 4em); */
+}
+.CMf{
+  left: 2%;
+  bottom: 2%;
+  text-align: left;
 }
 .CMb{
   background: repeating-conic-gradient(black 0.01% 25%, white 0% 50%) 
     40% 0% / 250px 250px;
-  clip-path: polygon(100% 0%, 100% 50%, var(--x) var(--y), 50% 0%)
+  clip-path: polygon(100% 0%, 100% 75%, var(--x) var(--y), 50% 0%);
 }
 .CMc{
-  background: repeating-conic-gradient(black 0.01% 25%, white 0% 50%) 
-    50% / 50px 50px;
-  clip-path: polygon(0% 100%, 0% 50%, var(--x) var(--y), 50% 100%)
+  background: black;
+  clip-path: polygon(0% 100%, 0% 75%, var(--x) var(--y), 50% 100%);
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 2em;
 }
 .CMd{
   background: repeating-conic-gradient(black 0.01% 25%, white 0% 50%) 
     50% / 20px 20px;
-  clip-path: polygon(100% 100%, 100% 45%, var(--x) var(--y), 45% 100%)
+  clip-path: polygon(100% 100%, 100% 75%, var(--x) var(--y), 45% 100%);
 }
