@@ -54,7 +54,7 @@ export default function Spotlight({mX, mY}){
       <li><div>1983</div><div>JAMES BLASKETT</div><div>&rarr;</div></li>
       <li><div>2023</div><div>DAY 74/100</div><div>&rarr;</div></li>
     </ul>
-    <div ref={box} class="SLspotlight" style={boxStyle.current}><div>WORK</div></div>
+    <div ref={box} className="SLspotlight" style={boxStyle.current}><div>WORK</div></div>
     <div className="SLcursor" style={cursorStyle.current}></div>
   </div>
 }

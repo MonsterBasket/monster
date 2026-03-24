@@ -16,10 +16,10 @@ export default function Tobeornot({mX,mY}){
   }, [mX,mY])
 
   return <div ref={body} className="pen TBbody">
-    <div class="TBcont">
-      <div class="TBa">TO BE OR</div>
-      <div class="TBskull"><div></div></div>
-      <div class="TBb">NOT TO BE</div>
+    <div className="TBcont">
+      <div className="TBa">TO BE OR</div>
+      <div className="TBskull"><div></div></div>
+      <div className="TBb">NOT TO BE</div>
     </div>
     <div className="TBcursor" style={{left: mX - boxRect.current.left - 7.5 + "px", top: mY - boxRect.current.top - 7.5 +"px"}}></div>
   </div>

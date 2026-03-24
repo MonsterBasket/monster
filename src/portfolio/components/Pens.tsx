@@ -27,9 +27,10 @@ export default function Pens({turnToCheat}: Props){
   let clickedMousePos:number = 0;
   let clickTarget:number = 0;
   let hoverTarget:number = 0;
-  let prevHover:number = 0;
   let lastTime:number = 0;
   const checked = useRef<number>(0);
+  const shown = useRef<boolean[]>([false, false, false, false, false, false, false, false])
+  const shownOp = useRef<number[]>([0, 0, 0, 0, 0, 0, 0, 0])
   let tempChecked:number = 0;
   let toCheck:HTMLInputElement|null = null;
   let reset:ReturnType<typeof requestAnimationFrame>;
@@ -115,7 +116,7 @@ export default function Pens({turnToCheat}: Props){
     mX.current = ("clientX" in e) ? e.clientX : e.touches[0].clientX;
     clickedMousePos = ("clientX" in e) ? e.clientX : e.touches[0].clientX;
     clickTarget = getTarget(e)
-    if (clickTarget != checked.current) {
+    if (clickTarget != checked.current && clickTarget != 0 && clickTarget != 8) {
       uncheck()
     }
     if (clickTarget > 0 && clickTarget < 8) tempChecked = clickTarget
@@ -123,20 +124,20 @@ export default function Pens({turnToCheat}: Props){
   function handleMouseUp(e:any){
     if (tapping.current && e.type == "mouseup") return
     const thisCheck:number = getTarget(e)
-    if (thisCheck == checked.current) uncheck()
+    if (thisCheck == checked.current) uncheck();
     else if (thisCheck == tempChecked && Math.abs(mX.current - clickedMousePos) < 15){
       toCheck = e.target.previousElementSibling
       if (toCheck) {
+        console.log(toCheck, thisCheck, checked.current)
         toCheck.checked = true
         checked.current = thisCheck;
         cancelAnimationFrame(lerpReset.current[thisCheck - 1])
         window.requestAnimationFrame(t => lerpUp(t, t, thisCheck, thisCheck))
         clearTimeout(bgtimer)
-        // bg.current = pens[checked.current - 1]
         bgOp.current = 1
       }
     }
-    if (Math.abs(mX.current - clickedMousePos) > 30) uncheck()
+    if (Math.abs(mX.current - clickedMousePos) > 30 && thisCheck > 0 && thisCheck < 8) {uncheck(); console.log("2nd")}
     clickTarget = 0;
     mX.current = ("clientX" in e) ? e.clientX : e.changedTouches[0].clientX;
   }
@@ -155,7 +156,7 @@ export default function Pens({turnToCheat}: Props){
 
   function getTarget(e:any){
     if (e.target.classList.contains("item")) return 8;
-    else if (e.target.classList.contains("c")) return parseInt(e.target.parentElement.className.substring(6));
+    else if (e.target.classList.contains("PTc")) return parseInt(e.target.parentElement.className.substring(6));
     else return 0;
   }
   function uncheck(){
@@ -316,78 +317,90 @@ export default function Pens({turnToCheat}: Props){
   const desc6:string = "As a scientist, I want to go to Mars and back to asteroids and the Moon because I'm a scientist. But I can tell you, I'm not so naive a scientist to think that the nation might not have geopolitical reasons for going into space."
   const desc7:string = "Ni! Ni! Ni! Ni! Oh! Come and see the violence inherent in the system! Help, help, I'm being repressed! On second thoughts, let's not go there. It is a silly place. Bring her forward!"
 
+  useEffect(() =>{
+    for(let i=0; i < shown.current.length; i++){
+      if (i === checked.current) {
+        shown.current[i] = true;
+        setTimeout((i) => shownOp.current[i] = 1, 10, i)
+      }
+      else {
+        shownOp.current[i] = 0;
+        setTimeout((i) => {
+        shown.current[i] = i === checked.current ? true : false}
+        , 1000, i)
+      }
+    }
+  }, [checked.current])
 
   return <section id="Pens">
-    <div className={`backGround`} style={{opacity: bgOp.current}}>
-      {checked.current === 1 && <Pen1 mX={zX} mY={zY}/>}
-      {checked.current === 2 && <Pen2 mX={zX} mY={zY}/>}
-      {checked.current === 3 && <Pen3 mX={zX} mY={zY}/>}
-      {checked.current === 4 && <Pen4 mX={zX} mY={zY}/>}
-      {checked.current === 5 && <Pen5 mX={zX} mY={zY}/>}
-      {checked.current === 6 && <Pen6 mX={zX} mY={zY}/>}
-      {checked.current === 7 && <Pen7 mX={zX} mY={zY}/>}
-    </div>
+    {shown.current[1] && <div className={`backGround PTbgOp${shownOp.current[1]}`}><Pen1 mX={zX} mY={zY}/></div>}
+    {shown.current[2] && <div className={`backGround PTbgOp${shownOp.current[2]}`}><Pen2 mX={zX} mY={zY}/></div>}
+    {shown.current[3] && <div className={`backGround PTbgOp${shownOp.current[3]}`}><Pen3 mX={zX} mY={zY}/></div>}
+    {shown.current[4] && <div className={`backGround PTbgOp${shownOp.current[4]}`}><Pen4 mX={zX} mY={zY}/></div>}
+    {shown.current[5] && <div className={`backGround PTbgOp${shownOp.current[5]}`}><Pen5 mX={zX} mY={zY}/></div>}
+    {shown.current[6] && <div className={`backGround PTbgOp${shownOp.current[6]}`}><Pen6 mX={zX} mY={zY}/></div>}
+    {shown.current[7] && <div className={`backGround PTbgOp${shownOp.current[7]}`}><Pen7 mX={zX} mY={zY}/></div>}
     <div id="cont" onDragStart={e => e.preventDefault} onDrop={e => e.preventDefault} style={contStyle}>
       <div className="item a1">
         <input id="a1" type="radio" name="cards" />
-        <div className="c card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 1)} onMouseLeave={e => resetAngle(1)} style={a1Angle}>
-          <div className="c cardImage" style={a1Pos}></div>
-          <div className="c cardDesc">
-            <div className="c h3"><h3>{header1}</h3><p>{desc1}</p></div>
+        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 1)} onMouseLeave={e => resetAngle(1)} style={a1Angle}>
+          <div className="PTc cardImage" style={a1Pos}></div>
+          <div className="PTc cardDesc">
+            <div className="PTc h3"><h3>{header1}</h3><p>{desc1}</p></div>
           </div>
         </div>
       </div>
       <div className="item a2">
         <input id="a2" type="radio" name="cards" />
-        <div className="c card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 2)} onMouseLeave={e => resetAngle(2)} style={a2Angle}>
-          <div className="c cardImage" style={a2Pos}></div>
-          <div className="c cardDesc">
-            <div className="c h3"><h3>{header2}</h3><p>{desc2}</p></div>
+        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 2)} onMouseLeave={e => resetAngle(2)} style={a2Angle}>
+          <div className="PTc cardImage" style={a2Pos}></div>
+          <div className="PTc cardDesc">
+            <div className="PTc h3"><h3>{header2}</h3><p>{desc2}</p></div>
           </div>
         </div>
       </div>
       <div className="item a3">
         <input id="a3" type="radio" name="cards" />
-        <div className="c card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 3)} onMouseLeave={e => resetAngle(3)} style={a3Angle}>
-          <div className="c cardImage" style={a3Pos}></div>
-          <div className="c cardDesc">
-            <div className="c h3"><h3>{header3}</h3><p>{desc3}</p></div>
+        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 3)} onMouseLeave={e => resetAngle(3)} style={a3Angle}>
+          <div className="PTc cardImage" style={a3Pos}></div>
+          <div className="PTc cardDesc">
+            <div className="PTc h3"><h3>{header3}</h3><p>{desc3}</p></div>
           </div>
         </div>
       </div>
       <div className="item a4">
         <input id="a4" type="radio" name="cards" />
-        <div className="c card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 4)} onMouseLeave={e => resetAngle(4)} style={a4Angle}>
-          <div className="c cardImage" style={a4Pos}></div>
-          <div className="c cardDesc">
-            <div className="c h3"><h3>{header4}</h3><p>{desc4}</p></div>
+        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 4)} onMouseLeave={e => resetAngle(4)} style={a4Angle}>
+          <div className="PTc cardImage" style={a4Pos}></div>
+          <div className="PTc cardDesc">
+            <div className="PTc h3"><h3>{header4}</h3><p>{desc4}</p></div>
           </div>
         </div>
       </div>
       <div className="item a5">
         <input id="a5" type="radio" name="cards" />
-        <div className="c card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 5)} onMouseLeave={e => resetAngle(5)} style={a5Angle}>
-          <div className="c cardImage" style={a5Pos}></div>
-          <div className="c cardDesc">
-            <div className="c h3"><h3>{header5}</h3><p>{desc5}</p></div>
+        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 5)} onMouseLeave={e => resetAngle(5)} style={a5Angle}>
+          <div className="PTc cardImage" style={a5Pos}></div>
+          <div className="PTc cardDesc">
+            <div className="PTc h3"><h3>{header5}</h3><p>{desc5}</p></div>
           </div>
         </div>
       </div>
       <div className="item a6">
         <input id="a6" type="radio" name="cards" />
-        <div className="c card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 6)} onMouseLeave={e => resetAngle(6)} style={a6Angle}>
-          <div className="c cardImage" style={a6Pos}></div>
-          <div className="c cardDesc">
-            <div className="c h3"><h3>{header6}</h3><p>{desc6}</p></div>
+        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 6)} onMouseLeave={e => resetAngle(6)} style={a6Angle}>
+          <div className="PTc cardImage" style={a6Pos}></div>
+          <div className="PTc cardDesc">
+            <div className="PTc h3"><h3>{header6}</h3><p>{desc6}</p></div>
           </div>
         </div>
       </div>
       <div className="item a7">
         <input id="a7" type="radio" name="cards" />
-        <div className="c card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 7)} onMouseLeave={e => resetAngle(7)} style={a7Angle}>
-          <div className="c cardImage" style={a7Pos}></div>
-          <div className="c cardDesc">
-            <div className="c h3"><h3>{header7}</h3><p>{desc7}</p></div>
+        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 7)} onMouseLeave={e => resetAngle(7)} style={a7Angle}>
+          <div className="PTc cardImage" style={a7Pos}></div>
+          <div className="PTc cardDesc">
+            <div className="PTc h3"><h3>{header7}</h3><p>{desc7}</p></div>
           </div>
         </div>
       </div>

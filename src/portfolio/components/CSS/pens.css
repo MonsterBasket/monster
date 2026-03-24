@@ -24,6 +24,14 @@
   padding: 1px 1px 0 1px;
   transition: 1s;
 }
+.PTbgOp0{
+  opacity: 0;
+  transition: 1s;
+}
+.PTbgOp1{
+  opacity: 1;
+  transition: 1s;
+}
 .b1, .b2, .b3, .b4, .b5, .b6, .b7{
   transition: 1s;
 }

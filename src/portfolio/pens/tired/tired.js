@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './tired.css'
 
 export default function Tired({mX, mY}){
+  const cont = useRef()
   let x = 0;
   let y = 0;
   let xs = 0;
@@ -15,8 +16,8 @@ export default function Tired({mX, mY}){
   let z = 0;
 
   useEffect(() => {
-    document.addEventListener("click", e => stop(e))
-    return document.removeEventListener("click", e => stop(e))
+    cont.current.addEventListener("click", e => stop(e))
+    return cont.current.removeEventListener("click", e => stop(e))
   },[])
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function Tired({mX, mY}){
       ribbon = document.createElement("div");
       ribbon.classList.add(front ? "TIa" : "TIb");
       ribbon.style.zIndex = z;
-      document.getElementById("cont").appendChild(ribbon);
+      cont.current.appendChild(ribbon);
     }
     if (ribbon) {
       angle = Math.atan2(mY - ys, mX - xs) * 180 / Math.PI;
@@ -73,7 +74,7 @@ export default function Tired({mX, mY}){
   }
 
   return <div className="pen TIbody">
-    <div id="TIcont"></div>
-    <div class="TIpointer"></div>
+    <div ref={cont} className="TIcont"></div>
+    <div className="TIpointer"></div>
   </div>
 }
