@@ -84,23 +84,37 @@ export default function Pens({turnToCheat}: Props){
       window.addEventListener('touchstart', handleMouseDown, false);        
       window.addEventListener('touchmove', mouseCoords, false);
       window.addEventListener('touchend', handleMouseUp, false);
+      window.addEventListener('scroll', uncheck, false);
     }
     else{
+      uncheck()
       active.current = false;
       window.removeEventListener('mousemove', mouseCoords, false);
-      window.removeEventListener('mousedown', handleMouseDown, false);
+      window.removeEventListener('mousedown', function(e:any) {
+        if (e.target.hasPointerCapture(e.pointerId)) {
+            e.target.releasePointerCapture(e.pointerId);
+        }
+        handleMouseDown(e)
+      }, false)
       window.removeEventListener('mouseup', handleMouseUp, false);
       window.removeEventListener('touchstart', handleMouseDown, false);        
       window.removeEventListener('touchmove', mouseCoords, false);
       window.removeEventListener('touchend', handleMouseUp, false);
+      window.removeEventListener('scroll', uncheck, false);
     }
     return () =>{
       window.removeEventListener('mousemove', mouseCoords, false);
-      window.removeEventListener('mousedown', handleMouseDown, false);
+      window.removeEventListener('mousedown', function(e:any) {
+        if (e.target.hasPointerCapture(e.pointerId)) {
+            e.target.releasePointerCapture(e.pointerId);
+        }
+        handleMouseDown(e)
+      }, false)
       window.removeEventListener('mouseup', handleMouseUp, false);
       window.removeEventListener('touchstart', handleMouseDown, false);        
       window.removeEventListener('touchmove', mouseCoords, false);
       window.removeEventListener('touchend', handleMouseUp, false);
+      window.removeEventListener('scroll', uncheck, false);
     }
   }, [turnToCheat])
 
@@ -128,7 +142,6 @@ export default function Pens({turnToCheat}: Props){
     else if (thisCheck == tempChecked && Math.abs(mX.current - clickedMousePos) < 15){
       toCheck = e.target.previousElementSibling
       if (toCheck) {
-        console.log(toCheck, thisCheck, checked.current)
         toCheck.checked = true
         checked.current = thisCheck;
         cancelAnimationFrame(lerpReset.current[thisCheck - 1])
@@ -137,7 +150,7 @@ export default function Pens({turnToCheat}: Props){
         bgOp.current = 1
       }
     }
-    if (Math.abs(mX.current - clickedMousePos) > 30 && thisCheck > 0 && thisCheck < 8) {uncheck(); console.log("2nd")}
+    if (Math.abs(mX.current - clickedMousePos) > 30 && thisCheck > 0 && thisCheck < 8) uncheck()
     clickTarget = 0;
     mX.current = ("clientX" in e) ? e.clientX : e.changedTouches[0].clientX;
   }
@@ -298,6 +311,7 @@ export default function Pens({turnToCheat}: Props){
       setA7Pos({backgroundPosition: `${seventh * (7 - parseInt(order[0].substring(1))) + squeventh + (posXAdj.current[6] * posLerp.current[6] * magLerp.current[6])}% ${50 + (posYAdj.current[6] * posLerp.current[6] * magLerp.current[6])}%`})
     }
     if (active.current) window.requestAnimationFrame(slide);
+    else uncheck();
     lastMousePos = mX.current;
   }
 
@@ -321,7 +335,7 @@ export default function Pens({turnToCheat}: Props){
     for(let i=0; i < shown.current.length; i++){
       if (i === checked.current) {
         shown.current[i] = true;
-        setTimeout((i) => shownOp.current[i] = 1, 10, i)
+        setTimeout((i) => shownOp.current[i] = 1, 0, i)
       }
       else {
         shownOp.current[i] = 0;
@@ -341,63 +355,63 @@ export default function Pens({turnToCheat}: Props){
     {shown.current[6] && <div className={`backGround PTbgOp${shownOp.current[6]}`}><Pen6 mX={zX} mY={zY}/></div>}
     {shown.current[7] && <div className={`backGround PTbgOp${shownOp.current[7]}`}><Pen7 mX={zX} mY={zY}/></div>}
     <div id="cont" onDragStart={e => e.preventDefault} onDrop={e => e.preventDefault} style={contStyle}>
-      <div className="item a1">
+      <div className={"item a1"}>
         <input id="a1" type="radio" name="cards" />
-        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 1)} onMouseLeave={e => resetAngle(1)} style={a1Angle}>
+        <div className={"PTc card"} onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 1)} onMouseLeave={e => resetAngle(1)} style={a1Angle}>
           <div className="PTc cardImage" style={a1Pos}></div>
           <div className="PTc cardDesc">
             <div className="PTc h3"><h3>{header1}</h3><p>{desc1}</p></div>
           </div>
         </div>
       </div>
-      <div className="item a2">
+      <div className={"item a2"}>
         <input id="a2" type="radio" name="cards" />
-        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 2)} onMouseLeave={e => resetAngle(2)} style={a2Angle}>
+        <div className={"PTc card"} onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 2)} onMouseLeave={e => resetAngle(2)} style={a2Angle}>
           <div className="PTc cardImage" style={a2Pos}></div>
           <div className="PTc cardDesc">
             <div className="PTc h3"><h3>{header2}</h3><p>{desc2}</p></div>
           </div>
         </div>
       </div>
-      <div className="item a3">
+      <div className={"item a3"}>
         <input id="a3" type="radio" name="cards" />
-        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 3)} onMouseLeave={e => resetAngle(3)} style={a3Angle}>
+        <div className={"PTc card"} onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 3)} onMouseLeave={e => resetAngle(3)} style={a3Angle}>
           <div className="PTc cardImage" style={a3Pos}></div>
           <div className="PTc cardDesc">
             <div className="PTc h3"><h3>{header3}</h3><p>{desc3}</p></div>
           </div>
         </div>
       </div>
-      <div className="item a4">
+      <div className={"item a4"}>
         <input id="a4" type="radio" name="cards" />
-        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 4)} onMouseLeave={e => resetAngle(4)} style={a4Angle}>
+        <div className={"PTc card"} onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 4)} onMouseLeave={e => resetAngle(4)} style={a4Angle}>
           <div className="PTc cardImage" style={a4Pos}></div>
           <div className="PTc cardDesc">
             <div className="PTc h3"><h3>{header4}</h3><p>{desc4}</p></div>
           </div>
         </div>
       </div>
-      <div className="item a5">
+      <div className={"item a5"}>
         <input id="a5" type="radio" name="cards" />
-        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 5)} onMouseLeave={e => resetAngle(5)} style={a5Angle}>
+        <div className={"PTc card"} onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 5)} onMouseLeave={e => resetAngle(5)} style={a5Angle}>
           <div className="PTc cardImage" style={a5Pos}></div>
           <div className="PTc cardDesc">
             <div className="PTc h3"><h3>{header5}</h3><p>{desc5}</p></div>
           </div>
         </div>
       </div>
-      <div className="item a6">
+      <div className={"item a6"}>
         <input id="a6" type="radio" name="cards" />
-        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 6)} onMouseLeave={e => resetAngle(6)} style={a6Angle}>
+        <div className={"PTc card"} onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 6)} onMouseLeave={e => resetAngle(6)} style={a6Angle}>
           <div className="PTc cardImage" style={a6Pos}></div>
           <div className="PTc cardDesc">
             <div className="PTc h3"><h3>{header6}</h3><p>{desc6}</p></div>
           </div>
         </div>
       </div>
-      <div className="item a7">
+      <div className={"item a7"}>
         <input id="a7" type="radio" name="cards" />
-        <div className="PTc card" onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 7)} onMouseLeave={e => resetAngle(7)} style={a7Angle}>
+        <div className={"PTc card"} onClick={e => e.preventDefault} onMouseEnter={e => startAngle(e, 7)} onMouseLeave={e => resetAngle(7)} style={a7Angle}>
           <div className="PTc cardImage" style={a7Pos}></div>
           <div className="PTc cardDesc">
             <div className="PTc h3"><h3>{header7}</h3><p>{desc7}</p></div>
@@ -405,5 +419,6 @@ export default function Pens({turnToCheat}: Props){
         </div>
       </div>
     </div>
+    <div className="suz"></div>
   </section>
 }

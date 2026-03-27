@@ -207,7 +207,7 @@ export default function Typing({active}: Props2){
     }
   }
 
-  return <div className="typebg">
+  return <div>
     {Object.keys(keys).map(k => <div key={k} className={"words move" + (keys[k].right ? "" : " paused")} style={{top:`${keys[k].top}%`}}>
       <Word key = {keys[k].key} right = {keys[k].right} left = {keys[k].left} active = {active}/>
     </div>)}

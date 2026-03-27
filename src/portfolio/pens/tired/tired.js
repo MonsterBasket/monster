@@ -2,79 +2,90 @@ import { useEffect, useRef } from 'react';
 import './tired.css'
 
 export default function Tired({mX, mY}){
-  const cont = useRef()
-  let x = 0;
-  let y = 0;
-  let xs = 0;
-  let ys = 0;
-  let first = true;
-  let finished = false;
-  let lastRibbon;
-  let ribbon;
-  let front = false;
-  let angle = 0;
-  let z = 0;
+  const body = useRef()
+  const bodyRect = useRef({x: 0, y: 0})
+  const cursor = useRef({x: 0, y: 0})
+  const cursorStyle = useRef({})
+  let tx = useRef(0);
+  let ty = useRef(0);
+  let xs = useRef(0);
+  let ys = useRef(0);
+  let first = useRef(true);
+  let finished = useRef(false);
+  let lastRibbon = useRef();
+  let ribbon = useRef();
+  let front = useRef(false);
+  let angle = useRef(0);
+  let z = useRef(0);
 
   useEffect(() => {
-    cont.current.addEventListener("click", e => stop(e))
-    return cont.current.removeEventListener("click", e => stop(e))
-  },[])
+    cursor.current = ({
+      x: mX - bodyRect.current.x,
+      y: mY - bodyRect.current.y
+    })
+    cursorStyle.current = {transform: `translate(${cursor.current.x - 10}px, ${cursor.current.y - 10}px)`}
 
-  useEffect(() => {
-    if (finished) {
-      finished = false;
-      if (!front && lastRibbon) lastRibbon.style.borderRadius = "20px"
-      front = !front;
-      z += front ? 2 : -1;
-      ribbon = document.createElement("div");
-      ribbon.classList.add(front ? "TIa" : "TIb");
-      ribbon.style.zIndex = z;
-      cont.current.appendChild(ribbon);
+    if (finished.current) {
+      finished.current = false;
+      if (!front.current && lastRibbon.current) lastRibbon.current.style.borderRadius = "20px"
+      front.current = !front.current;
+      z.current += front.current ? 2 : -1;
+      ribbon.current = document.createElement("div");
+      ribbon.current.classList.add(front.current ? "TIa" : "TIb");
+      ribbon.current.style.zIndex = z.current;
+      body.current.appendChild(ribbon.current);
     }
-    if (ribbon) {
-      angle = Math.atan2(mY - ys, mX - xs) * 180 / Math.PI;
-      const pa = mX - xs;
-      const pb = mY - ys;
+    if (ribbon.current) {
+      angle.current = Math.atan2(cursor.current.y - ys.current, cursor.current.x - xs.current) * 180 / Math.PI;
+      const pa = cursor.current.x - xs.current;
+      const pb = cursor.current.y - ys.current;
       const distance = Math.sqrt( pa*pa + pb*pb );
-      ribbon.style.width = distance + "px";
-      x = Math.round(Math.cos(angle * Math.PI / 180) * (distance - 40) + xs);
-      y = Math.round(Math.sin(angle * Math.PI / 180) * (distance - 40) + ys);
-      if (angle > -90 && angle < 90){
-        const nx = Math.round(Math.cos(angle * Math.PI / 180) * (20 - distance) + x);
-        const ny = Math.round(Math.sin(angle * Math.PI / 180) * (20 - distance) + y);
-        ribbon.style.left = nx + "px";
-        ribbon.style.top = ny + "px";
-        ribbon.style.rotate = angle + "deg";
-        if (!front) ribbon.style.borderRadius = "20px 0 0 20px"
+      ribbon.current.style.width = distance + "px";
+      tx.current = Math.round(Math.cos(angle.current * Math.PI / 180) * (distance - 40) + xs.current);
+      ty.current = Math.round(Math.sin(angle.current * Math.PI / 180) * (distance - 40) + ys.current);
+      if (angle.current > -90 && angle.current < 90){
+        const nx = Math.round(Math.cos(angle.current * Math.PI / 180) * (20 - distance) + tx.current);
+        const ny = Math.round(Math.sin(angle.current * Math.PI / 180) * (20 - distance) + ty.current);
+        ribbon.current.style.left = nx + "px";
+        ribbon.current.style.top = ny + "px";
+        ribbon.current.style.rotate = angle.current + "deg";
+        if (!front.current) ribbon.current.style.borderRadius = "20px 0 0 20px"
       }
       else{
-        const nx = Math.round(Math.cos(angle * Math.PI / 180) * (40) + x);
-        const ny = Math.round(Math.sin(angle * Math.PI / 180) * (40) + y);
-        ribbon.style.rotate = angle - 180 + "deg";
-        ribbon.style.left = nx + "px";
-        ribbon.style.top = ny + "px";
-        if (!front) ribbon.style.borderRadius = "0 20px 20px 0"
+        const nx = Math.round(Math.cos(angle.current * Math.PI / 180) * (40) + tx.current);
+        const ny = Math.round(Math.sin(angle.current * Math.PI / 180) * (40) + ty.current);
+        ribbon.current.style.rotate = angle.current - 180 + "deg";
+        ribbon.current.style.left = nx + "px";
+        ribbon.current.style.top = ny + "px";
+        if (!front.current) ribbon.current.style.borderRadius = "0 20px 20px 0"
       }
     }
-    document.documentElement.style.setProperty('--TIx', mX + 'px');
-    document.documentElement.style.setProperty('--TIy', mY + 'px');
-  }, [mX,mY])
+  },[mX, mY])
 
-  function stop(e){
-    if (first){
-      x = mX;
-      y = mY;
-      first = false;
+  useEffect(() => {
+  const rect = body.current.getBoundingClientRect()
+  bodyRect.current = {x: rect.x, y: rect.y}
+
+  body.current.addEventListener("click", stop, false)
+  return body.current.removeEventListener("onclick", stop, false)
+  }, [])
+
+  function stop(){
+    console.log("hello")
+    if (first.current){
+      tx.current = cursor.current.x;
+      ty.current = cursor.current.y;
+      first.current = false;
     }
-    finished = true;
-    xs = Math.round(Math.cos(angle * Math.PI / 180) * 20 + x);
-    ys = Math.round(Math.sin(angle * Math.PI / 180) * 20 + y);
-    lastRibbon = ribbon;
-    ribbon = '';
+    finished.current = true;
+    xs.current = Math.round(Math.cos(angle.current * Math.PI / 180) * 20 + tx.current);
+    ys.current = Math.round(Math.sin(angle.current * Math.PI / 180) * 20 + ty.current);
+    lastRibbon.current = ribbon.current;
+    ribbon.current = '';
   }
 
-  return <div className="pen TIbody">
-    <div ref={cont} className="TIcont"></div>
-    <div className="TIpointer"></div>
+  return <div ref={body} className="pen TIbody">
+    <div className="TIcont"></div>
+    <div className="TIpointer" style={cursorStyle.current}></div>
   </div>
 }

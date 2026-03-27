@@ -79,7 +79,7 @@ article{
 #About, .tabTop0{
   background-color: #f5e1b9;
 }
-#About, #Pens{
+#About{
   overflow: hidden;
 }
 /* Just note that the below button names have the above labels for the user */

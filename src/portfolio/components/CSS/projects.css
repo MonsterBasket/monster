@@ -8,6 +8,12 @@
   left: 0;
   transition: 0.5s;
 }
+.type{
+  width: 100%;
+  height: 100%;
+  background-image: url("../../images/big3.jpg");
+  background-size: cover;
+}
 a{
   text-decoration: underline;
 }

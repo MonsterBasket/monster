@@ -6,18 +6,20 @@ export default function Underneath({mX,mY}){
   const canvas = useRef()
   const body = useRef()
   const cursorStyle = useRef({})
+  const bodyRect = useRef({x: 0, y: 0})
 
   useEffect(()=>{
     if (body.current){
-      const bodyRect = body.current.getBoundingClientRect()
-      const x = mX - bodyRect.left - 15
-      const y = mY - bodyRect.top - 15
+      const x = mX - bodyRect.current.x - 15
+      const y = mY - bodyRect.current.y - 15
       cursorStyle.current = {transform: `translate(${x}px, ${y}px)`}
     }
   },[mX,mY])
 
   useEffect(() => {
     if (canvas.current){
+      const rect = body.current.getBoundingClientRect()
+      bodyRect.current = {x: rect.x, y: rect.y}
       const requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
       function PrimitiveBrush(context) {
@@ -36,18 +38,18 @@ export default function Underneath({mX,mY}){
         this.ctx.canvas.width  = window.innerWidth;
         this.ctx.canvas.height = window.innerHeight;
         this.ctx.fillStyle = 'white';
-        this.ctx.fillRect(0, 0, canvas.width, canvas.height);
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         this.ctx.font = "900 10vw Arial";
         this.ctx.fillStyle = "black";
         this.ctx.strokeStyle = "grey";
-        this.ctx.fillText("Underneath It All",10, canvas.height * 0.93);
+        this.ctx.fillText("Underneath It All",10, this.ctx.canvas.height * 0.93);
 
         this.ctx.lineCap = this.ctx.lineJoin = 'round';
       }
 
       PrimitiveBrush.prototype.start = function (event) {
-          const x = event.clientX;
-          const y = event.clientY;
+          const x = event.clientX - bodyRect.current.x;
+          const y = event.clientY - bodyRect.current.y;
           this.workingStrokes = [{
               x: x,
               y: y,
@@ -64,8 +66,8 @@ export default function Underneath({mX,mY}){
           if (!this.isTouching) {
               return;
           }
-          const x = event.clientX;
-          const y = event.clientY;
+          const x = event.clientX - bodyRect.current.x;
+          const y = event.clientY - bodyRect.current.y;
           this.workingStrokes.push({
             x: x,
             y: y,
@@ -85,9 +87,9 @@ export default function Underneath({mX,mY}){
               return;
           }
           this.ctx.fillStyle = "white";
-          this.ctx.fillRect(0, 0, canvas.width, canvas.height);
+          this.ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
           this.ctx.fillStyle = "black";
-          this.ctx.fillText("Underneath It All",10, canvas.height * 0.93);
+          this.ctx.fillText("Underneath It All",10, window.innerHeight * 0.93);
           this.ctx.strokeStyle = "grey"
 
           for (let j = 0; j < this.strokes.length; j++) {

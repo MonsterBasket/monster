@@ -120,8 +120,7 @@ export default function Projects({turnToCheat}: Props){
   const alt4:string = "A human, an alien, and a dwarf standing around a table on a spaceship."
 
   const project1:ReactElement = <img className={`project tp project${position.current[0]} ${noScroll.current}`} alt={alt1} src={monster}></img>
-  const project2:ReactElement = <div className={`project tp project${position.current[1]} ${noScroll.current}`}>{position.current[1] === 2 && <Typing active={true}/>}</div>
-  // const project2:ReactElement = <img className={`project tp project${position.current[1]} ${noScroll.current}`} src={monster}></img>
+  const project2:ReactElement = <div className={`type project tp project${position.current[1]} ${noScroll.current}`}>{position.current[1] === 2 && <Typing active={true}/>}</div>
   const project3:ReactElement = <img className={`project tp project${position.current[2]} ${noScroll.current}`} alt={alt3} src={battleship}></img>
   const project4:ReactElement = <img className={`project tp project${position.current[3]} ${noScroll.current}`} alt={alt4} src={mask}></img>
 
