@@ -46,7 +46,7 @@ export default function Contact() {
     img2.src = blueSky;
     img3.src = insta;
     img4.src = gmail;
-    console.log(ctx.canvas.width * 0.3, ctx.canvas.width * 0.7, ctx.canvas.height * 0.3, ctx.canvas.height * 0.6)
+    // console.log(ctx.canvas.width * 0.3, ctx.canvas.width * 0.7, ctx.canvas.height * 0.3, ctx.canvas.height * 0.6)
     img1Pos.current.y = checkPos(img1Pos.current)
     img2Pos.current.y = checkPos(img2Pos.current, img1Pos.current)
     img3Pos.current.y = checkPos(img3Pos.current, img1Pos.current)
@@ -58,7 +58,6 @@ export default function Contact() {
 
     function checkPos(pos1, pos2 = [-100, -100]){
       let p1 = pos1.y;
-      console.log(pos1)
       if (pos1.x > ctx.canvas.width * 0.3 && pos1.x < ctx.canvas.width * 0.7 && pos1.y > ctx.canvas.height * 0.3 && pos1.y < ctx.canvas.height * 0.6)
         {console.log("howdy")
         pos1.y = ctx.canvas.height * 0.6;}
@@ -78,11 +77,11 @@ export default function Contact() {
     // Matter.Composite.add(world, mouseConstraint);
 
     function getCoords(e) {
-      const top = canvasRef.current.getBoundingClientRect().top
-      if (top > window.innerHeight) return
-      if (e.clientY < top) return
+      // const top = canvasRef.current.getBoundingClientRect().top
+      // if (top > window.innerHeight) return
+      // if (e.clientY < top) return
       mouseX = e.clientX;
-      mouseY = e.clientY - top;
+      mouseY = e.clientY;// - top;
     }
 
     const balls = [];

@@ -31,14 +31,16 @@ export default function MonsterMenu(){
 
   function scrollTo(id){
     // if (path.pathname === "/" || path.pathname === "")
-      nav(`/#${id}`)
-      setTimeout(() => document.querySelector(`#${id}`).scrollIntoView(), 50)
+      nav(`/#home`)
+      const home = document.querySelector('#home')
+      if(home) home.scrollIntoView();
+      // setTimeout(() => document.querySelector(`#home`).scrollIntoView(), 50)
   }
 
   return <>
     <button ref={detRef} id="monsterMenu" onClick={e => toggle(e)}>&equiv;
       <ul className={menuClose}>
-        <Link to ="/#bg"          ><li className="monsterMenuButton" onClick={e=> scrollTo("bg")}>Home</li></Link>
+        <Link to ="/"          ><li className="monsterMenuButton" onClick={e=> scrollTo("bg")}>Home</li></Link>
         {/* <Link to ="/#gallery"     ><li className="monsterMenuButton" onClick={e=> scrollTo("gallery")}>Gallery</li></Link> */}
         <Link to ="/portfolio"    ><li className="monsterMenuButton">James's Portfolio</li></Link>
         {/* <Link to ="/webDesign"    ><li className="monsterMenuButton">Web Design</li></Link> */}

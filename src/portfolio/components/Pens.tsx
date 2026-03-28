@@ -316,20 +316,20 @@ export default function Pens({turnToCheat}: Props){
   }
 
 
-  const header1:string = "Headline About Image"
-  const header2:string = "Longer Headline About Image for Two Lines"
-  const header3:string = "Different Headline"
-  const header4:string = "Is this even a headline?"
-  const header5:string = "What Is This Headline Anyway?"
-  const header6:string = "Need to Know More?"
-  const header7:string = "Are You Sure You Want to Click on This?"
-  const desc1:string = "What's Spanish for 'I know you speak English?' There's so many poorly chosen words in that sentence. But I bought a yearbook ad from you, doesn't that mean anything anymore?"
-  const desc2:string = "When I held that gun in my hand, I felt a surge of power… like God must feel when he's holding a gun. And now, in the spirit of the season: start shopping. And for every dollar of Krusty merchandise you buy, I will be nice to a sick kid. For legal purposes, sick kids may include hookers with a cold."
-  const desc3:string = "Aww, gee, you got me there, Rick. It's a figure of speech, Morty! They're bureaucrats! I don't respect them. Just keep shooting, Morty! You have no idea what prison is like here!"
-  const desc4:string = "I was part of something special. Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Jaguar shark! So tell me - does it really exist?"
-  const desc5:string = "I'm sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in. Doomsday device? Ah, now the ball's in Farnsworth's court! Bender, quit destroying the universe! Goodbye, friends. I never thought I'd die like this. But I always really hoped."
-  const desc6:string = "As a scientist, I want to go to Mars and back to asteroids and the Moon because I'm a scientist. But I can tell you, I'm not so naive a scientist to think that the nation might not have geopolitical reasons for going into space."
-  const desc7:string = "Ni! Ni! Ni! Ni! Oh! Come and see the violence inherent in the system! Help, help, I'm being repressed! On second thoughts, let's not go there. It is a silly place. Bring her forward!"
+  const header1:string = "Checkmate"
+  const header2:string = "Common Sense"
+  const header3:string = "Concentric"
+  const header4:string = "Spotlight"
+  const header5:string = "Tired"
+  const header6:string = "To Be or Not To Be"
+  const header7:string = "Mad"
+  const desc1:string = "Experimenting with a hover interacton that dynamically reveals multiple background artworks."
+  const desc2:string = "Experimenting with a hover interaction that aims to add a layer of depth to the homepage message, revealing a hidden meaning as you explore."
+  const desc3:string = "Experimenting with continuous motion - the background artwork responds to your cursor movement, creating a dynamic canvas."
+  const desc4:string = "An experiment where the flashlight follows your mouse guiding your attention through the list. I think it's more fun when digital experiences are inspired by real-life actions. 🔦"
+  const desc5:string = "Experimenting with hover interaction that creates a unique marquee animation every time your cursor moves. The overlapping lines build up to form a unique design every time."
+  const desc6:string = "This hover interaction brings Hamlet's famous question to life. The skull turns to follow your mouse as you ponder: To be or not to be?"
+  const desc7:string = "This hover interaction reveals an animated background that slowly fades away. It's all about adding a touch of surprise and delight to the user experience. ✨"
 
   useEffect(() =>{
     for(let i=0; i < shown.current.length; i++){
