@@ -1,6 +1,7 @@
 html{
   scroll-behavior: smooth;
   overscroll-behavior-x: none;
+  user-select: none;
 }
 body{
   overflow-x: hidden;

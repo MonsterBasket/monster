@@ -8,6 +8,8 @@ export default function Spotlight({mX, mY}){
   const cursorStyle = useRef({})
   const [centre, setCentre] = useState({x:0, y:0})
   const [offset, setOffset] = useState({x:0, y:0})
+  const link = useRef()
+  const highlight = useRef(0)
 
   useEffect(()=>{
     if (box.current){
@@ -21,6 +23,14 @@ export default function Spotlight({mX, mY}){
         x: bodyRect.left,
         y: bodyRect.top
       })
+    }
+    const linkNode = link.current;
+    linkNode.addEventListener("mouseover", _ => highlight.current = 1, false)
+    linkNode.addEventListener("mouseout", _ => highlight.current = 0, false)
+    return () => {
+      linkNode.removeEventListener("mouseover", _ => highlight.current = 1, false)
+      linkNode.removeEventListener("mouseout", _ => highlight.current = 0, false)
+
     }
   },[])
 
@@ -37,9 +47,11 @@ export default function Spotlight({mX, mY}){
     }
   }, [mX, mY])
 
+
+
   return <div ref={body} className="pen SLbody">
     <ul>
-      <a href="https://www.telpian.com/" target="_blank" rel="noreferrer"><li><div>1997</div><div>SUZ SIRUNYAN</div><div>&rarr;</div></li></a>
+      <a ref={link} href="https://www.linkedin.com/in/suzanne-sirunyan/" target="_blank" rel="noreferrer"><li><div>1997</div><div>SUZ SIRUNYAN</div><div>&rarr;</div></li></a>
       <li><div>2025</div><div>OPERATION STARLIGHT</div><div>&rarr;</div></li>
       <li><div>2025</div><div>JURASSIC PARK REVEAL</div><div>&rarr;</div></li>
       <li><div>2023</div><div>PROJECT PHOENIX</div><div>&rarr;</div></li>
@@ -55,6 +67,6 @@ export default function Spotlight({mX, mY}){
       <li><div>2023</div><div>DAY 74/100</div><div>&rarr;</div></li>
     </ul>
     <div ref={box} className="SLspotlight" style={boxStyle.current}><div>WORK</div></div>
-    <div className="SLcursor" style={cursorStyle.current}></div>
+    <div className={`SLcursor SLcursor${highlight.current}`} style={cursorStyle.current}></div>
   </div>
 }

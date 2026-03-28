@@ -26,6 +26,8 @@ export default function About({turnToCheat}: Props){
   const xTouch = useRef<number>(0);
   const yTouch = useRef<number>(0);
 
+  const [flowers, setFlowers] = useState<string>("off")
+
   useEffect(() => {
     if (turnToCheat == 0){
       active.current = true;
@@ -178,6 +180,14 @@ export default function About({turnToCheat}: Props){
     if (active.current) setTimeout(() => requestAnimationFrame((now) => animate(now)), 16)
   }
 
+  function toggle(){
+    if (flowers === "on"){
+      setFlowers("off")
+    }
+    else {
+      setFlowers("on")
+    }
+  }
   
   return <section id="About">
     <div className="text" style={textWidth}>
@@ -218,8 +228,9 @@ export default function About({turnToCheat}: Props){
       </div>
       <div className="textTop"></div>
     </div>
-    <div className="treeEffects">
+    <div className={`treeEffects TF${flowers}`}>
       {renderLeaves}
     </div>
+    <div className={`toggleFlowers TF${flowers}`}><span onClick={toggle}>{`Flowers ${flowers}`}</span></div>
   </section>
 }

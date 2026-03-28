@@ -13,7 +13,7 @@
 }
 .CSCont {
   height: 50%;
-  bottom: 0;
+  bottom: 20px;
   background: var(--dark);
 }
 .CSbody div{
@@ -61,13 +61,14 @@
   background: var(--light);
   color: var(--dark);
   font-size: min(9vw, 12vh);
-  line-height: 8vw;
+  line-height: 100%;
   transform: scaleY(var(--h));
   transform-origin: center;
   pointer-events: all;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 .CSisnotCont{
   display: flex;
@@ -78,9 +79,10 @@
 .CSmenu{
   display: flex;
   justify-content: space-around;
-  top: 48%;
+  top: 49%;
   font-size: min(1.5vw, 2vh);
   line-height: 0.9vw;
+  z-index: 1;
 }
 .CSbody .CScursor{
   position: absolute;
@@ -91,6 +93,7 @@
   left: calc(var(--x) - 7.5px);
   top: calc(var(--y) - 7.5px);
   pointer-events: none;
+  z-index: 2;
 }
 .CSsuz{
   animation: pulse 2s infinite;

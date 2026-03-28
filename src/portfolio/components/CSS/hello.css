@@ -22,9 +22,6 @@
   transform: rotateX(calc(var(--scroll) * 180deg - 180deg)) translateZ(6vw);
   filter: brightness(calc(2 * var(--scroll) - 1))
 }
-.helloSpinPanel{
-  
-}
 .helloSpinPanelRight{
   transform: rotateY(90deg) rotateZ(calc(var(--scroll) * -180deg))
 }
@@ -93,11 +90,14 @@
   padding: 0;
   animation-delay: calc(var(--scroll) * -0.99s);
 }
+#Hello, .hellobg1, .hellobg2{
+  background-size: cover;
+}
 @keyframes bg1 { 20% {opacity: 1;} 45%, 100% {opacity: 0;}}
 @keyframes bg2 { 55% {opacity: 1;} 80%, 100% {opacity: 0;}}
 @keyframes bg3 { 0%, 99% {background-image: url("../../images/trees.jpg")} 100% {background-image: none;}}
 .panel1{
-  background: url("../../images/sunbeam.jpg") 0 0 /1920px;
+  background: url("../../images/sunbeam.jpg") 0 0 /calc(100vw - 15px);
 }
 .panel3{
   background: url("../../images/trees.jpg") 0 0 /1920px;
@@ -118,4 +118,12 @@
                -1px -1px 0 #232916,
                -1px 1px 0 #232916,
                1px -1px 0 #232916;
+}
+.panel1, .panel2, .panel3{
+  background-size: var(--width-minus-scrollbar);
+}
+@media (max-aspect-ratio: 3/2) {
+  .panel1, .panel2, .panel3{
+    background-size: auto 100vh;
+  }
 }

@@ -52,6 +52,7 @@ function Hello({scrollPos: appScrollPos}:{scrollPos:number}){
         setBPT(window.innerHeight * -0.5 + (window.innerWidth * 0.06))
         setRPL(window.innerWidth * -0.1 - (window.innerWidth * 0.2))
       }
+    document.documentElement.style.setProperty('--width-minus-scrollbar', document.documentElement.clientWidth + "px");
   }
 
   const frontRight = { backgroundPosition: `${rightPanelLeft}px ${bothPanelTop}px`, backgroundImage: scrollPos === 0 ? 'none' : `url(${sunbeam})` };

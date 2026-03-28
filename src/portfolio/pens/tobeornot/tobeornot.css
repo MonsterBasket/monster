@@ -25,6 +25,7 @@
   width: 4em;
   text-align: center;
   content: var(--z);
+  transition: 0.5s;
 }
 .TBa:hover, .TBb:hover{
   color: var(--ht)

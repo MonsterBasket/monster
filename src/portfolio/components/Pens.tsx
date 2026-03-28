@@ -419,6 +419,6 @@ export default function Pens({turnToCheat}: Props){
         </div>
       </div>
     </div>
-    <div className="suz"></div>
+    <div className="PTsuz"><a href="https://www.linkedin.com/in/suzanne-sirunyan/" target="_blank" rel="noreferrer">Original Designs by Suz Sirunyan</a></div>
   </section>
 }

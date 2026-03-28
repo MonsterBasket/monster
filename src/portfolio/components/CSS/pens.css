@@ -68,7 +68,7 @@
   pointer-events: none;
 }
 #cont:has([type=radio]:checked) .item:has([type=radio]) .card{
-  top: -150px;
+  top: -50%;
 }
 .item{
   position: relative;
@@ -233,3 +233,24 @@
 .a5 .cardImage{background-image: url("../../pens/tired/tired.png")}
 .a6 .cardImage{background-image: url("../../pens/tobeornot/tobeornot.png")}
 .a7 .cardImage{background-image: url("../../pens/underneath/underneath.png")}
+.PTsuz{
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  z-index: 20;
+  pointer-events: none;
+}
+.PTsuz a{
+  padding: 0px 5px 2px 5px;
+  border-radius: 10px;
+  background: #5f6f3a;
+  text-decoration: none;
+  pointer-events: all;
+  box-shadow: 1px 2px 4px 2px #0006;
+  transition: 0.5s;
+}
+.PTsuz a:hover{
+  color: white;
+  background: #394225;
+  box-shadow: 0 0 10px 0 #fff;
+}

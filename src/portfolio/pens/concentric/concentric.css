@@ -10,16 +10,16 @@
 
 .CCcont{
   position: absolute;
-  top: -50%;
+  top: -50px;
   left: 0;
-/* The below calculation makes NO FUCKING sense to me, but uhhh, it works? */
-  transform-origin: 50vw calc(100vh + max(calc((100vw - 100vh) / 1.33 - 1vh), 0vh));
+  transform-origin: 50vw 50vh;
   transform: rotateZ(180deg);
   mix-blend-mode: exclusion;
 }
 .CCa{
   position: relative;
-  top: min(calc(102% - 150vw), -50vh);
+  /* top: min(calc(102% - 150vw), -50vh); */
+  top: calc(var(--h) / -2 + 100vh);
   right: max(130vw, 130vh);
   width: var(--h);
   height: var(--h);
