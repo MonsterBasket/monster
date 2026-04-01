@@ -34,7 +34,7 @@
   left: 4vw;
 }
 .UNt2{
-  top: 40%;
+  top: calc(25% + 12vw);
   right: 4vw;
 }
 .UNm, .UNa, .UNd{

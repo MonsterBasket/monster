@@ -107,17 +107,17 @@
 .panel2{
   background: url("../../images/penguin.jpg") 0 0 /1920px;
   color:#000;
-  text-shadow: 1px 1px 0px #888,
-               -1px -1px 0px #888,
-               -1px 1px 0px #888,
-               1px -1px 0px #888;
+  text-shadow: 1px 1px 5px #bbb,
+               -1px -1px 5px #bbb,
+               -1px 1px 5px #bbb,
+               1px -1px 5px #bbb;
 }
 .panel1, .panel3{
   color:#99865f;
-  text-shadow: 1px 1px 0 #232916,
-               -1px -1px 0 #232916,
-               -1px 1px 0 #232916,
-               1px -1px 0 #232916;
+  text-shadow: 1px 1px 5px #232916,
+               -1px -1px 5px #232916,
+               -1px 1px 5px #232916,
+               1px -1px 5px #232916;
 }
 .panel1, .panel2, .panel3{
   background-size: var(--width-minus-scrollbar);
