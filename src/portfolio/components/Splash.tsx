@@ -27,14 +27,14 @@ function Splash({children}:Props){
     } else {
       window.addEventListener('load', onPageLoad, false);
       // Remove the event listener when component unmounts
-      return () => window.removeEventListener('load', onPageLoad);
+      return () => window.removeEventListener('load', onPageLoad, false);
     }
   }, []);
 
   return <div className="splashContainer" style={containerStyle}>
-      {children}
-      {!done && <div className="splash" style={coverStyle}><Cubes /></div>}
-    </div>
+    {children}
+    {!done && <div className="splash" style={coverStyle}><Cubes /></div>}
+  </div>
 }
 
 export default Splash;

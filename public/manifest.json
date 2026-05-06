@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Monster Basket",
+  "name": "Monster Basket - By James Blaskett",
+  "description": "Monster Basket is the first full game being developed by the studio of the same name, by solo developer James Montero-Blaskett (Montero > Monster, Blaskett > Basket.  Get it?)",
   "icons": [
     {
       "src": "favicon.ico",

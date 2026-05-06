@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import './App.css';
 import Monster from './components/Monster.js';
-import MonsterMenu from './components/Menu.js';
 import WebDesign from './components/WebDesign.js';
 
 // import './portfolio/components/CSS/App.css';
@@ -24,6 +23,7 @@ import Login from "./old_game/Pages/Login/Login.js"
 import Signup from "./old_game/Pages/Signup/Signup.js"
 import SelectCharacter from "./old_game/Pages/SelectCharacter/SelectCharacter.js"
 import GameController from "./old_game/Pages/Game/GameController.js"
+import FourOhFour from "./components/FourOhFour.js";
 export const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 export default function App() {
@@ -79,10 +79,11 @@ export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Monster />} />
+        <Route path="/" element={
+          <Monster />
+        } />
         <Route path="/portfolio" element={
           <PortSplash>
-            <MonsterMenu />
             <Hello scrollPos={scrollPos} />
             <Tabs buttonWidth={buttonWidth} buttonOpacity={buttonOpacity} turnToCheat={turnToCheat} setTurnToCheat={setTurnToCheat} names={["About", "Projects", "Work", "Pens"]}>
               <About turnToCheat={turnToCheat} />
@@ -97,7 +98,7 @@ export default function App() {
         <Route path="/webDesign" element={<WebDesign />} />
         {isLoggedIn ? <>
           <Route path="/playOld/select-character" element={<SelectCharacter user={user} setPlayCharacter={setPlayCharacter} handleLogout={handleLogout} />} />
-          <Route path="/playOld/" element={<GameController character={character} />} />
+          <Route path="/playOld" element={<GameController character={character} />} />
           <Route path="/playOld/mapmaker" element={<MapMaker />} />
           {user.is_admin} ? <>
             <Route path="/playOld/admin" element={<Admin user={user} handleLogout={handleLogout} />} />
@@ -106,7 +107,7 @@ export default function App() {
           <Route path="/playOld/login" element={<Login handleLogin={handleLogin} />} />
           <Route path="/playOld/signup" element={<Signup handleLogin={handleLogin} />} />
         </>}
-
+        <Route path="*" element={<FourOhFour />} />
       </Routes>
     </div>
   );

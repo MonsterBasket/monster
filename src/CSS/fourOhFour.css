@@ -1,0 +1,28 @@
+body { 
+  background: black;
+}
+#four04{
+  background: green;
+  position: absolute;
+  width: 800px;
+  top: 0px;
+  --left: calc(50vw - 400px);
+  left: var(--left);
+  height: 100vh;
+  overflow: hidden;
+}
+.homeLink, .portLink{
+  position: absolute;
+  width: 36rem;
+  height: 4rem;
+  border-radius: 1rem;
+  left: calc(400px - 18rem);
+  top: calc(300px - 3.8rem);
+  transition: 0.2s;
+}
+.portLink{
+  top: calc(400px - 3.8rem);
+}
+.homeLink:hover, .portLink:hover{
+  box-shadow: inset white 0 0 50px;
+}

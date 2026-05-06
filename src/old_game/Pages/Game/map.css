@@ -1,4 +1,4 @@
-:root{
+.gameHome{
   --imgUrl: url("../../images/environment-sprites.png");
   /* --colliderUrl: url("../../images/colliders.png"); */
 }

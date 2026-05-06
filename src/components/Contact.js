@@ -322,7 +322,7 @@ export default function Contact() {
   }, []);
 
   return <div id="contact">
-  <canvas ref={canvasRef} />
+    <canvas ref={canvasRef} />
     <a className="canLink" href="https://www.linkedin.com/company/monsterbasket/"    title="Follow us on LinkedIn"  alt="LinkedIn"  style={{left: `${img1Pos.current.x}px`, top: `${img1Pos.current.y}px`}}><div/></a>
     <a className="canLink" href="https://bsky.app/profile/monsterbasket.bsky.social" title="Follow us on BlueSky"   alt="BlueSky"   style={{left: `${img2Pos.current.x}px`, top: `${img2Pos.current.y}px`}}><div/></a>
     <a className="canLink" href="https://www.instagram.com/monsterbasketaus/"        title="Follow us on Instagram" alt="Instagram" style={{left: `${img3Pos.current.x}px`, top: `${img3Pos.current.y}px`}}><div/></a>
