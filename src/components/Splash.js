@@ -44,13 +44,14 @@ export default function Main(){
         this.ctx.lineCap = this.ctx.lineJoin = 'round';
       }
 
-      PrimitiveBrush.prototype.start = function (event) {
+      PrimitiveBrush.prototype.start = function (e) {
         if(!clicked.current) {
           clicked.current = true;
           setOpacity("")
         }
-        const x = event.clientX;
-        const y = event.clientY + window.scrollY;
+        // if ("clientX" in e) console.log(e)
+        const x = "clientX" in e ? e.clientX : e.touches[0].clientX;
+        const y = ("clientY" in e ? e.clientY : e.touches[0].clientY) + window.scrollY;
         this.workingStrokes = [{
             x: x,
             y: y,
@@ -64,12 +65,13 @@ export default function Main(){
           requestAnimationFrame(this._draw.bind(this));
       };
 
-      PrimitiveBrush.prototype.move = function (event) {
+      PrimitiveBrush.prototype.move = function (e) {
         if (!this.isTouching) {
           return;
         }
-        const x = event.clientX;
-        const y = event.clientY + window.scrollY;
+        console.log(e)
+        const x = "touches" in e && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
+        const y = ("touches" in e && e.touches.length > 0 ? e.touches[0].clientY : e.clientY) + window.scrollY;
         this.workingStrokes.push({
           x: x,
           y: y,
@@ -147,8 +149,11 @@ export default function Main(){
       const brush = new PrimitiveBrush(canvas.current.getContext('2d', {alpha: true}));
 
       canvas.current.addEventListener('mousedown', brush.start.bind(brush));
+      canvas.current.addEventListener('touchstart', brush.start.bind(brush))
       canvas.current.addEventListener('mousemove', brush.move.bind(brush));
+      canvas.current.addEventListener('touchmove', brush.move.bind(brush));
       canvas.current.addEventListener('mouseup', brush.end.bind(brush));
+      canvas.current.addEventListener('touchend', brush.end.bind(brush));
       document.addEventListener('mousemove', handleMouseMove)
       window.addEventListener('resize', updateScreen);
       document.documentElement.style.setProperty('--width-minus-scrollbar', document.documentElement.clientWidth + "px");
@@ -157,8 +162,11 @@ export default function Main(){
         window.removeEventListener('resize', updateScreen);
         document.removeEventListener('mousemove', handleMouseMove)
         canvas.current.removeEventListener('mousedown', brush.start.bind(brush));
+        canvas.current.removeEventListener('touchstart', brush.start.bind(brush))
         canvas.current.removeEventListener('mousemove', brush.move.bind(brush));
+        canvas.current.removeEventListener('touchmove', brush.move.bind(brush));
         canvas.current.removeEventListener('mouseup', brush.end.bind(brush));
+        canvas.current.removeEventListener('touchend', brush.end.bind(brush));
       };
     }
   }, []);

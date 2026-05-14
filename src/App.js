@@ -14,6 +14,7 @@ import Hello from './portfolio/components/Hello.tsx';
 import Menu from './portfolio/components/Menu.tsx';
 import Projects from './portfolio/components/Projects.tsx';
 import Tabs from './portfolio/components/Tabs.tsx';
+import MMenu from './components/Menu.js'
 
 import axios from 'axios';
 // import './old_game/App.css';
@@ -80,10 +81,13 @@ export default function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={
-          <Monster />
+          <PortSplash>
+            <Monster />
+          </PortSplash>
         } />
         <Route path="/portfolio" element={
           <PortSplash>
+            <MMenu />
             <Hello scrollPos={scrollPos} />
             <Tabs buttonWidth={buttonWidth} buttonOpacity={buttonOpacity} turnToCheat={turnToCheat} setTurnToCheat={setTurnToCheat} names={["About", "Projects", "Work", "Pens"]}>
               <About turnToCheat={turnToCheat} />

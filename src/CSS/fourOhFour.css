@@ -1,12 +1,17 @@
-body { 
+html:has(#four04) { 
   background: black;
+  -ms-overflow-style: none; /*IE and Edge*/
+  scrollbar-width: none; /*Firefox*/
+}
+.html::-webkit-scrollbar:has(#four04){/*chrome, safari and opera*/
+  display:none;
 }
 #four04{
-  background: green;
+  background: #5f6f3a;
   position: absolute;
-  width: 800px;
+  width: min(800px, 100vw);
   top: 0px;
-  --left: calc(50vw - 400px);
+  --left: calc(50vw - min(400px, 50vw));
   left: var(--left);
   height: 100vh;
   overflow: hidden;
@@ -16,7 +21,7 @@ body {
   width: 36rem;
   height: 4rem;
   border-radius: 1rem;
-  left: calc(400px - 18rem);
+  left: calc(min(400px, 50vw) - 18rem);
   top: calc(300px - 3.8rem);
   transition: 0.2s;
 }

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import Matter from "matter-js"
 import "../CSS/fourOhFour.css"
-import { editableInputTypes } from '@testing-library/user-event/dist/utils';
 
 export default function FourOhFour() {
   const canvas = useRef();
@@ -9,7 +8,8 @@ export default function FourOhFour() {
 
   useEffect(() => {
     const ctx = canvas.current.getContext("2d");
-    ctx.canvas.width = 800;
+    let sw = Math.min(800, window.innerWidth)
+    ctx.canvas.width = sw;
     ctx.canvas.height = window.innerHeight;
     const engine = Matter.Engine.create();
     const Composite = Matter.Composite;
@@ -23,6 +23,7 @@ export default function FourOhFour() {
         background: 'transparent'
       }
     })
+    const colours = {c5: "#8e7d69", c4: "#9b6f5e", c3: "#9e5746", c2: "#b34b31", c1: "#a32c23", c0: "#720e06"}
     Matter.Render.run(render)
     let runner = Matter.Runner.create()
     Matter.Runner.run(runner, engine)
@@ -41,37 +42,46 @@ export default function FourOhFour() {
     let mouseY = window.innerHeight * 0.1;
 
     const Bodies = Matter.Bodies;
+    let bouncer;
+    const balls = [];
+    const blocks = [];
+
+    function resize() {
+      sw = Math.min(800, window.innerWidth)
+      ctx.canvas.width = sw;
+      ctx.canvas.height = window.innerHeight;
+    }
 
     function getCoords(e) {
       const left = canvas.current.getBoundingClientRect().left
-      let x = e.clientX - left
+      let x = ("clientX" in e ? e.clientX : e.touches[0].clientX) - left;
       if (x < 50) x = 50;
-      else if (x > 750) x = 750
+      else if (x > sw - 50) x = sw - 50
       mouseX = x;
-      mouseY = e.clientY;
+      mouseY = "clientY" in e ? e.clientY : e.touches[0].clientY;
     }
 
-    const balls = [];
-    const blocks = [];
-    (function createBouncer(options) {
+    (function setup(options) {
+      //bouncer
       options.label = ["bouncer"];
-      options.chamfer = {radius: 10}
-      options.render.fillStyle = '#444'
+      options.chamfer = {radius: [15,15,5,5]}
+      options.render.fillStyle = '#d8af7f'
       options.restitution = 1.5
       options.friction = 0.5;
-      const bouncer = Bodies.rectangle(mouseX, ctx.canvas.height - 40, 100, 20, options);
+      bouncer = Bodies.rectangle(mouseX, ctx.canvas.height - 40, 100, 20, options);
       Matter.Body.setStatic(bouncer, true)
-      balls.push(bouncer);
       Composite.add(world, bouncer);
+      //blocks
       options.label = ["block"]
       let text = "ain't nothin' here!";
-      const w = 800 / text.length;
+      const w = sw / text.length;
       for (let i = 0; i < text.length; i++) {
-        if (text[i] == " ") continue
+        if (text[i] === " ") continue
         let temp = {...options}
-        const a = "block"
-        const b = text.substring(i, i+1)
-        const letter = Bodies.rectangle(w * i + w / 2, 175, w-1, 80, {...temp, label: [a, i, b, 5]})
+        temp.chamfer = {radius: 10}
+        temp.render.fillStyle = colours.c5
+        temp.label = ["block", i, text.substring(i, i+1), 5]
+        const letter = Bodies.rectangle(w * i + w / 2, 175, w-1, w * 2, {...temp})
         Matter.Body.setStatic(letter, true)
         blocks.push(letter)
         Composite.add(world, letter);
@@ -97,71 +107,80 @@ export default function FourOhFour() {
     }
 
     let lastUpdate = 0;
-    (function updatePos(now, lastUpdate) {
+    (function mainUpdate(now, lastUpdate) {
       lastUpdate = now;
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      Matter.Body.setPosition(balls[0], { x: mouseX, y: ctx.canvas.height - 40 }, false);
-      Matter.Body.setAngle(balls[0], 0)
-      if(engine.pairs.list.length > 0 && engine.pairs.list[0].bodyA.label[0] == "block"){
-        const block = engine.pairs.list[0].bodyA
-        block.label[3] -= 1
-        if (block.label[3] <= 0){
-          Matter.Body.setStatic(block, false)
-          block.collisionFilter.mask = 0;
-        } else {
-          let colour = parseInt(block.render.fillStyle.substring(1))
-          colour += 89
-          block.render.fillStyle = `#${colour}`
-        }
-      }
+      ctx.clearRect(0, 0, sw, ctx.canvas.height);
+      Matter.Body.setPosition(bouncer, { x: mouseX, y: ctx.canvas.height - 40 }, false);
+      Matter.Body.setAngle(bouncer, 0)
+      engine.pairs.list.forEach(l => {
+        if (l.bodyA.label[0] !== "block" && l.bodyB.label[0] !== "block") return
+        if (!l.bodyA.isStatic && !l.bodyB.isStatic) return
+        let b = (l.bodyA.label[0] === "block" && l.bodyA.isStatic) ? l.bodyA : l.bodyB;
+        if (b.label[0] === "bouncer") return
+        b.label[3] -= 1
+        if (b.label[3] >= 0) b.render.fillStyle = colours[`c${b.label[3]}`]
+        if (b.label[3] === 0)Matter.Body.setStatic(b, false)
+      })
       Matter.Pairs.clear(engine.pairs)
       Matter.Render.world(render);
-      ctx.font = "400 5rem Arial"
-      ctx.fillStyle = "white";
+      ctx.font = `400 ${sw * 0.1}px Arial`
+      ctx.fillStyle = "#f5e1b9";
       blocks.forEach(b => {
-        ctx.fillText(b.label[2], b.position.x, b.position.y + 30)
-        Matter.Body.applyForce(b, b.position, {x:0, y:0.001})
+        ctx.save()
+        ctx.translate(b.position.x, b.position.y)
+        ctx.rotate(b.angle)
+        ctx.textAlign = "center"
+        ctx.fillText(b.label[2], 0, sw * 0.035)
+        ctx.restore()
       })
-      ctx.font = "900 5rem Arial";
+      ctx.font = `900 ${sw * 0.1}px Arial`
       ctx.textAlign = "center";
       ctx.fillStyle = "#111";
-      ctx.fillText("Whoops!", ctx.canvas.width / 2, 100);
+      ctx.fillText("Whoops!", sw / 2, 100);
       ctx.fillStyle = "#111";
-      ctx.fillText("Go home?", ctx.canvas.width / 2, 300);
-      ctx.fillText("or Portfolio?", ctx.canvas.width / 2, 400);
+      ctx.fillText("Go home?", sw / 2, 300);
+      ctx.fillText("or Portfolio?", sw / 2, 400);
 
+      // These allow us to loop through all physics objects before removing any from arrays or world
       let killBalls = []
-      balls.forEach((b) => {
-        if (b.label[0] === "bouncer") { return
-        } else {
-          let vx = b.velocity.x;
-          let vy = b.velocity.y;
-          if (b.velocity.x > 0 && b.position.x > 800 - b.circleRadius) vx *= -1
-          if (b.velocity.x < 0 && b.position.x < b.circleRadius) vx *= -1
-          if (b.velocity.y > 0 && b.position.y > ctx.canvas.height + b.circleRadius)
-            killBalls.push(balls.indexOf(b))
-          if (b.velocity.y < 0 && b.position.y < b.circleRadius) vy *= -1
-          if (Math.abs(vy) < 0.1) vy += Math.sign(vy) * 0.1;
-          Matter.Body.setVelocity(b, {x: vx, y: vy})
-          Matter.Body.setSpeed(b, speed.current)
-        }
-        reDraw(b);
+      let killBlocks = []
+      balls.forEach(b => {
+        updatePos(b)
       });
-      killBalls.sort((a, b) => b - a)
-      killBalls.map(b => {
-        Composite.remove(world, balls[b])
-        balls.splice(b,1);
+      blocks.forEach(b => {
+        if (!b.isStatic) updatePos(b)
       })
-      // Matter.Pairs.clear(engine.pairs)
+      function updatePos(b){
+        let vx = b.velocity.x;
+        let vy = b.velocity.y;
+        if (b.velocity.x > 0 && b.bounds.max.x >= sw) vx *= -1
+        if (b.velocity.x < 0 && b.bounds.min.x <= 0) vx *= -1
+        if (b.velocity.y > 0 && b.bounds.min.y > ctx.canvas.height){
+          if (b.label[0] === "ball")
+            killBalls.push(balls.indexOf(b))
+          else killBlocks.push(blocks.indexOf(b))
+        }
+        if (b.velocity.y < 0 && b.bounds.min.y < 0) vy *= -1
+        if (Math.abs(vy) < 0.1) vy += Math.sign(vy) * 0.1;
+        Matter.Body.setVelocity(b, {x: vx, y: vy})
+        Matter.Body.setSpeed(b, speed.current)
+        if (b.label[0] === "ball") drawBalls(b);
+      }
 
-      // Matter.Engine.update(engine);
-      requestAnimationFrame((t) => updatePos(t, lastUpdate));
+      kill(killBalls, balls)
+      kill(killBlocks, blocks)
+      function kill(arr, arr2){
+        if (arr.length === 0) return
+        arr.sort((a, b) => b - a)
+        arr.forEach(b => {
+          Composite.remove(world, arr2[b])
+          arr2.splice(b,1);
+        })
+      }
+      requestAnimationFrame((t) => mainUpdate(t, lastUpdate));
     })(0, lastUpdate);
 
-    function reDraw(b) {
-      if (b.label[0] === "bouncer") {
-        return;
-      }
+    function drawBalls(b) {
       ctx.beginPath();
       const r = b.circleRadius;
       const x = b.position.x;
@@ -201,11 +220,13 @@ export default function FourOhFour() {
     window.addEventListener("touchmove", getCoords, false);
     window.addEventListener("touchstart", click, false);
     window.addEventListener("mousedown", click, false);
+    window.addEventListener("resize", resize, false);
     return () => {
       window.removeEventListener("mousemove", getCoords, false);
       window.removeEventListener("touchmove", getCoords, false);
       window.removeEventListener("touchstart", click, false);
       window.removeEventListener("mousedown", click, false);
+      window.removeEventListener("resize", resize, false);
     }
   }, []);
   
