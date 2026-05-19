@@ -1,0 +1,187 @@
+html:has(#WebDesign){
+  background-color: #708a33;
+}
+#WebDesign{
+  --light: url("../images/light logo.png");
+  --dark: url("../images/dark logo.png");
+  --wave: polygon( 0% -1%,10% -1%,12.52% 6.8%,19.36% 12.4%,29.44% 17.1%,41.68% 21.2%,55% 25%,68.32% 28.8%,80.56% 32.9%,90.64% 37.6%,97.48% 43.2%,100% 50%,100% 50%,97.48% 56.8%,90.64% 62.4%,80.56% 67.1%,68.32% 71.2%,55% 75%,41.68% 78.8%,29.44% 82.9%,19.36% 87.6%,12.52% 93.2%,10% 101%,0% 101% );
+  height: 400vh;
+
+  section{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90vw;
+    height: 100vh;
+    transition: top 0.25s, left 0.25s;
+    &.up {top: -100vh;}
+    &.mid{top: 0;}
+    &.low{top: 100vh;}
+    &.left{top: 0; left: -100vw;}
+    &.right{top:0; left: 100vw}
+  }
+  /*--------------- Title section -----------------*/
+  .waveCont{
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    width: 10vw;
+    height: 125vh;
+    position: fixed;
+    right: -15px;
+    top: 0;
+    background: #133f20;
+    .wave{
+      /* clip-path: var(--wave); */
+      width: 50%;
+      position: relative;
+      left: -2px;
+      box-sizing: content-box;
+      filter: drop-shadow(0.3vw 0.2vw 0.1vw #0008);
+      &:before {
+        position: absolute;
+        z-index: -1;
+        background: #708a33;
+        inset: 0;
+        clip-path: var(--wave);
+        content: '';
+      }
+    }
+  }
+  .title{
+    padding: 5vh 5% 0 5%;
+    top: 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .titleLeft{
+    max-height: 100%;
+    max-width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: none;
+  }
+  .logo, .logoCover{
+    max-width: 100%;
+    height: 125%;
+    aspect-ratio: 655/777;
+    margin: auto;
+    background-size: 80% auto;
+    background-position-x: 50%;
+    background-repeat: no-repeat;
+    background-image: var(--light);
+  }
+  .logoCover{
+    --x: -100%;
+    --y: -100%;
+    mask: radial-gradient(circle at var(--x) var(--y), black 3vw, transparent 6vw);
+    position: relative;
+    top: -2vw;
+    background-position-y: 2vw;
+    box-shadow: inset 0 0 0vw 0.8vw #708a33, inset 0 0 0vw 0.1vw #708a33, inset 0 0 1.5vw 2.5vw #708a33;
+    background-image: var(--dark);
+    background-color: #000b;
+    border-radius: 6vw;
+    background-clip: content-box;
+  }
+  .titleText{
+    position: relative;
+    margin: auto;
+    font-size: 6vw;
+    font-family: monster;
+    width: 100%;
+    height: 12vw;
+    top: -3vw;
+    text-shadow: 0.3vw 0.2vw 0.2vw #0005;
+    div{
+      height: 16vw;
+      position: absolute;
+      top: -7vw;
+      width: 100%;
+    }
+    p{
+      position: relative;
+      margin: -4vw;
+      top: 6vw;
+    }
+    span{
+      display: inline-block;
+      animation: wave 4s ease-in-out infinite;
+      animation-delay: calc(var(--d) / 7);
+    }
+    p:nth-child(2) span{
+      animation-name: wave2;
+    }
+  }
+  .tt2 {
+    --x: -100%;
+    --y: -100%;
+    mask: radial-gradient(circle at var(--x) var(--y), black 3vw, transparent 5vw);
+    color: #09C209;
+    text-shadow: 0 0 0.5vw #09C209, 0 0 1vw #09C209, 0 0 1vw #09C209;
+  }
+  .titleRight{
+    display: grid;
+    grid-template-rows: 1fr 0.5fr;
+    .cta{
+      margin: auto;
+    }
+  }
+  .rightHeading{
+    height: 14vw;
+    font-size: 6vw;
+    font-family: fredericka;
+    transform: rotate(-5deg);
+    color: #032b10;
+    text-shadow: 0.3vw 0.2vw 0.2vw #0005;
+    margin: auto;
+    p{
+      margin: 0;
+    }
+  }
+  .cta{
+    text-decoration: none;
+    font-family: rowdy;
+    background: #d8af7f;
+    padding: 2.6% 3% 3% 3%;
+    font-size: 3vw;
+    line-height: 1vw;
+    border-radius: 2vw;
+    box-shadow: inset 0.15vw 0.1vw 0.1vw #dbc9b5, inset 0.3vw 0.2vw 0.1vw #e0bc92,
+    inset -0.15vw -0.1vw 0.1vw #af7f48, inset -0.3vw -0.2vw 0.1vw #cc9d67,
+    0.3vw 0.2vw 0.5vw #0007;
+    color: #b68248d5;
+    text-shadow: 0.075vw 0.05vw #eeceaa;
+  }
+
+  /* ------------- why section -------------------- */
+  .why{
+    background-color: #4d6417;
+  }
+  /* ------------- whatYouGet section -------------------- */
+  .whatYouGet{
+    background-color: #7c8b57;
+  }
+  /* ------------- about section -------------------- */
+  .about{
+    height: 50vh;
+    background-color: #bece98;
+  }
+  .aboutPic{
+    background: url("../images/me.png");
+  }
+  /* ------------- contact section -------------------- */
+  .contact{
+    height: 50vh;
+    transform: translateY(50vh);
+    background-color: #92bd2d;
+  }
+
+}
+@keyframes wave {
+  0%, 20% {transform: translateY(0%); }
+  10% {transform: translateY(-30%); }
+}
+@keyframes wave2 {
+  0%, 20% {transform: translateY(0%);}
+  10% {transform: translateY(30%);}
+}

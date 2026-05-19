@@ -1,8 +1,8 @@
-import Splash from "./Splash";
-import Menu from "./Menu";
+import Splash from "./monsterSubs/Splash";
+import Menu from "./monsterSubs/Menu";
 import "../CSS/monster.css"
-import Gallery from "./Gallery";
-import Contact from "./Contact";
+import Gallery from "./monsterSubs/Gallery";
+import Contact from "./monsterSubs/Contact";
 import { useEffect, useRef } from "react";
 
 export default function Monster(){

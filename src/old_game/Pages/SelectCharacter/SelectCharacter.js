@@ -7,7 +7,7 @@ import rogue from "../../images/rogue.png"
 import mage from "../../images/mage.png"
 import axios from 'axios';
 import { serverUrl } from '../../../App';
-import Menu from '../../../components/Menu.js'
+import Menu from '../../../components/monsterSubs/Menu.js'
 
 
 function SelectCharacter({ user, setPlayCharacter, handleLogout }) {

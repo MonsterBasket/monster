@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import Matter from "matter-js"
-import "../CSS/fourOhFour.css"
+import "../../CSS/fourOhFour.css"
 
 export default function FourOhFour() {
   const canvas = useRef();

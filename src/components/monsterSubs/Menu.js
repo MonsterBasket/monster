@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import "../CSS/menu.css";
+import "../../CSS/menu.css";
 import { useEffect, useRef, useState } from "react";
 
 export default function MonsterMenu(){
@@ -40,10 +40,10 @@ export default function MonsterMenu(){
   return <>
     <button ref={detRef} id="monsterMenu" onClick={e => toggle(e)}>&equiv;
       <ul className={menuClose}>
-        <Link to ="/"          ><li className="monsterMenuButton" onClick={e=> scrollTo("bg")}>Home</li></Link>
+        <Link to ="/"          ><li className="monsterMenuButton" onClick={e=> scrollTo("bg")}>Web Design</li></Link>
         {/* <Link to ="/#gallery"     ><li className="monsterMenuButton" onClick={e=> scrollTo("gallery")}>Gallery</li></Link> */}
         <Link to ="/portfolio"    ><li className="monsterMenuButton">James's Portfolio</li></Link>
-        {/* <Link to ="/webDesign"    ><li className="monsterMenuButton">Web Design</li></Link> */}
+        <Link to ="/game"    ><li className="monsterMenuButton">Game</li></Link>
       </ul>
     </button>
   </>

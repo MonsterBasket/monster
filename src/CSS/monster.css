@@ -1,3 +1,19 @@
+@font-face {
+  font-family: monster;
+  src: url("./fonts/Providence Sans Regular.ttf");
+}
+@font-face {
+  font-family: monsterBold;
+  src: url("./fonts/Providence Sans Bold.otf");
+}
+@font-face {
+  font-family: fredericka;
+  src: url("./fonts/FrederickatheGreat-Regular.ttf")
+}
+@font-face {
+  font-family: rowdy;
+  src: url("./fonts/Rowdies-Light.ttf")
+}
 #home{ 
   background: black;
   height: 550vh;

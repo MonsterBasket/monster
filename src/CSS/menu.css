@@ -11,44 +11,46 @@
   cursor: pointer;
   line-height: 30px;
   font-size: 40px;
-}
-ul.open{
-  position: fixed;
-  margin-block-start: 20px;
-  right: 10px;
-  width: 150px;
-  height: auto;
-  visibility: visible;
-  transition: all 0.2s;
-}
-ul.closed{
-  position: fixed;
-  margin-block-start: -35px;
-  right: 0px;
-  width: 40px;
-  height: 40px;
-  overflow: clip;
-  visibility: hidden;
-  transition: all 0.2s;
-  scale: 0.5;
-}
-li{
-  position: relative;
-  list-style-type: none;
-  height: 35px;
-  text-align: left;
-  background: white;
-  border: solid 1px black;
-  line-height: 35px;
-  padding-left: 10px;
-  font-size: 15px;
-}
-a:first-child li{
-  border-radius: 10px 10px 0 0;
-}
-a:last-child li{
-  border-radius: 0 0  10px 10px;
-}
-a{
-  text-decoration: none;
+  
+  ul.open{
+    position: fixed;
+    margin-block-start: 20px;
+    right: 10px;
+    width: 150px;
+    height: auto;
+    visibility: visible;
+    transition: all 0.2s;
+  }
+  ul.closed{
+    position: fixed;
+    margin-block-start: -35px;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    overflow: clip;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s;
+    scale: 0.5;
+  }
+  li{
+    position: relative;
+    list-style-type: none;
+    height: 35px;
+    text-align: left;
+    background: white;
+    border: solid 1px black;
+    line-height: 35px;
+    padding-left: 10px;
+    font-size: 15px;
+  }
+  a:first-child li{
+    border-radius: 10px 10px 0 0;
+  }
+  a:last-child li{
+    border-radius: 0 0  10px 10px;
+  }
+  a{
+    text-decoration: none;
+  }
 }

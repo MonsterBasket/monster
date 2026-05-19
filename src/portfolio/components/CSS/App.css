@@ -1,3 +1,4 @@
+
 html{
   scroll-behavior: smooth;
   overscroll-behavior-x: none;
@@ -9,6 +10,9 @@ body{
 }
 .App{
   text-align: center;
+  &:has(#Hello){
+    width: 100vw;
+  }
 }
 .splashContainer{
   position: relative;

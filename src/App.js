@@ -14,7 +14,7 @@ import Hello from './portfolio/components/Hello.tsx';
 import Menu from './portfolio/components/Menu.tsx';
 import Projects from './portfolio/components/Projects.tsx';
 import Tabs from './portfolio/components/Tabs.tsx';
-import MMenu from './components/Menu.js'
+import MMenu from './components/monsterSubs/Menu.js'
 
 import axios from 'axios';
 // import './old_game/App.css';
@@ -24,7 +24,7 @@ import Login from "./old_game/Pages/Login/Login.js"
 import Signup from "./old_game/Pages/Signup/Signup.js"
 import SelectCharacter from "./old_game/Pages/SelectCharacter/SelectCharacter.js"
 import GameController from "./old_game/Pages/Game/GameController.js"
-import FourOhFour from "./components/FourOhFour.js";
+import FourOhFour from "./components/subs/FourOhFour.js";
 export const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 export default function App() {
@@ -82,6 +82,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={
           <PortSplash>
+            <WebDesign />
+          </PortSplash>
+        } />
+        <Route path="/game" element={
+          <PortSplash>
             <Monster />
           </PortSplash>
         } />
@@ -99,15 +104,14 @@ export default function App() {
             <Menu scrollPos={scrollPos} buttonWidth={buttonWidth} setButtonWidth={setButtonWidth} buttonOpacity={buttonOpacity} setButtonOpacity={setButtonOpacity} setTurnToCheat={setTurnToCheat}/>
           </PortSplash>
         } />
-        <Route path="/webDesign" element={<WebDesign />} />
         {isLoggedIn ? <>
           <Route path="/playOld/select-character" element={<SelectCharacter user={user} setPlayCharacter={setPlayCharacter} handleLogout={handleLogout} />} />
           <Route path="/playOld" element={<GameController character={character} />} />
           <Route path="/playOld/mapmaker" element={<MapMaker />} />
-          {user.is_admin} ? <>
-            <Route path="/playOld/admin" element={<Admin user={user} handleLogout={handleLogout} />} />
-          </> : {""}
+          {user.is_admin} ? <Route path="/playOld/admin" element={<Admin user={user} handleLogout={handleLogout} />} />
+            : {""}
         </> : <>
+          <Route path="/playOld" element={<Login handleLogin={handleLogin} />} />
           <Route path="/playOld/login" element={<Login handleLogin={handleLogin} />} />
           <Route path="/playOld/signup" element={<Signup handleLogin={handleLogin} />} />
         </>}

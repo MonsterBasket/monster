@@ -3,7 +3,7 @@ import login from "../../utils/login/login"
 import './home.css';
 import { Link } from "react-router-dom";
 import Title from '../../components/Pages/Title.tsx'
-import Menu from '../../../components/Menu.js'
+import Menu from '../../../components/monsterSubs/Menu.js'
 
 function Login({ handleLogin, handleLogout }) {
   const [form, setForm] = useState({

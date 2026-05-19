@@ -5,7 +5,7 @@ import Title from '../../components/Pages/Title.tsx'
 import '../Login/home.css';
 import { serverUrl } from "../../../App";
 import { Link } from "react-router-dom";
-import Menu from '../../../components/Menu.js'
+import Menu from '../../../components/monsterSubs/Menu.js'
 
 function Signup({ handleLogin }) {
 

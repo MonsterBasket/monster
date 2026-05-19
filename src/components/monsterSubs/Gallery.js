@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import "../CSS/gallery.css"
+import "../../CSS/gallery.css"
 import { useBodyScrollPosition } from "@n8tb1t/use-scroll-position"
 
 export default function Gallery(){
