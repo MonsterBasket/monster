@@ -230,14 +230,7 @@ export default function Contact() {
         ? ctx.arc(x, y, r * 5, 0, 2 * Math.PI)
         : ctx.arc(x, y, r, 0, 2 * Math.PI);
       let gradient;
-      let global = ctx.createRadialGradient(
-        x,
-        y,
-        r,
-        x + r / 2,
-        y - r / 2,
-        r / 10
-      );
+      let global = ctx.createRadialGradient(x, y, r, x + r / 2, y - r / 2, r / 10);
       global.addColorStop(0.97, "#fff0");
       global.addColorStop(1, "#fffa");
       if (b.label[0] === "white") {
@@ -249,14 +242,7 @@ export default function Contact() {
         ctx.fill();
         return;
       }
-      let shine = ctx.createRadialGradient(
-        x,
-        y,
-        r,
-        x + xd * 1.5,
-        y + yd * 1.5,
-        r / 10
-      );
+      let shine = ctx.createRadialGradient(x, y, r, x + xd * 1.5, y + yd * 1.5, r / 10);
       shine.addColorStop(0.97, "transparent");
       shine.addColorStop(1, "white");
       if (b.label[0] === "red") {
@@ -275,14 +261,7 @@ export default function Contact() {
       }
 
       if (b.collisionFilter.category === 1) {
-        gradient = ctx.createRadialGradient(
-          x,
-          y,
-          r,
-          x + xd * 4,
-          y + yd * 4,
-          r / 2
-        );
+        gradient = ctx.createRadialGradient(x, y, r, x + xd * 4, y + yd * 4, r / 2);
         gradient.addColorStop(0, dark);
         gradient.addColorStop(0.3, color);
         gradient.addColorStop(1, light);
@@ -294,14 +273,7 @@ export default function Contact() {
         ctx.fillStyle = shine;
         ctx.fill();
       } else {
-        gradient = ctx.createRadialGradient(
-          x,
-          y,
-          r,
-          x - xd * 1.5,
-          y - yd * 1.5,
-          r
-        );
+        gradient = ctx.createRadialGradient(x, y, r, x - xd * 1.5, y - yd * 1.5, r);
         gradient.addColorStop(0, light);
         gradient.addColorStop(0.4, color);
         gradient.addColorStop(1, dark);

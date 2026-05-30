@@ -1,17 +1,23 @@
 html:has(#WebDesign){
-  background-color: #708a33;
+  --bg: #708a33;
+  --dg: #133f20;
+  background-color: var(--dg);
 }
 #WebDesign{
   --light: url("../images/light logo.png");
   --dark: url("../images/dark logo.png");
-  --wave: polygon( 0% -1%,10% -1%,12.52% 6.8%,19.36% 12.4%,29.44% 17.1%,41.68% 21.2%,55% 25%,68.32% 28.8%,80.56% 32.9%,90.64% 37.6%,97.48% 43.2%,100% 50%,100% 50%,97.48% 56.8%,90.64% 62.4%,80.56% 67.1%,68.32% 71.2%,55% 75%,41.68% 78.8%,29.44% 82.9%,19.36% 87.6%,12.52% 93.2%,10% 101%,0% 101% );
+  /* --wave: polygon( 0% -1%,10% -1%,12.52% 6.8%,19.36% 12.4%,29.44% 17.1%,41.68% 21.2%,55% 25%,68.32% 28.8%,80.56% 32.9%,90.64% 37.6%,97.48% 43.2%,100% 50%,100% 50%,97.48% 56.8%,90.64% 62.4%,80.56% 67.1%,68.32% 71.2%,55% 75%,41.68% 78.8%,29.44% 82.9%,19.36% 87.6%,12.52% 93.2%,10% 101%,0% 101% ); */
+  /* --wave: polygon( 100% -1%,75% -1%,75% -1.98%,73.6% 5.289%,69.8% 11.263%,64.2% 16.251%,57.4% 20.562%,50% 24.505%,42.6% 28.388%,35.8% 32.521%,30.2% 37.212%,26.4% 42.77%,25% 49.505%,25% 49.505%,26.4% 56.239%,30.2% 61.79%,35.8% 66.462%,42.6% 70.558%,50% 74.381%,57.4% 78.234%,64.2% 82.419%,69.8% 87.24%,73.6% 92.999%,75% 101%, 100% 101% ); */
+  /* --wave: shape('M 100 -2 L 75 -2 C 75 25 25 25 25 50 C 25 75 75 75 75 101 L 100 101 Z'); */
+  --wave: shape(evenodd from 100% -1%, line to 66.67% -1%, curve to 0% 50% with 66.67% 25% / 0% 25%, curve to 66.67% 101% with 0% 75% / 66.666667% 75%, line to 100% 101%, close);
   height: 400vh;
 
   section{
     position: fixed;
+    box-sizing: border-box;
     top: 0;
     left: 0;
-    width: 90vw;
+    width: 100vw;
     height: 100vh;
     transition: top 0.25s, left 0.25s;
     &.up {top: -100vh;}
@@ -20,31 +26,32 @@ html:has(#WebDesign){
     &.left{top: 0; left: -100vw;}
     &.right{top:0; left: 100vw}
   }
-  /*--------------- Title section -----------------*/
+  /* --------------------------------------------------------------------------------*/
+  /*--------------- Title section ---------------------------------------------------*/
+  /* --------------------------------------------------------------------------------*/
   .waveCont{
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    width: 10vw;
+    width: 100vw;
     height: 125vh;
     position: fixed;
-    right: -15px;
+    right: 0px;
     top: 0;
-    background: #133f20;
-    .wave{
-      /* clip-path: var(--wave); */
-      width: 50%;
+    filter: drop-shadow(0.3vw 0.2vw 0.4vw #0008);
+    /* filter: url("#goo"); */
+    div{
+  /* mask: 
+        radial-gradient(3.5vw at 4.8vw 50%,#000 99%,#0000 101%) 0 calc(50% - 6vw)/51% 12vw repeat-y,
+        radial-gradient(3.5vw at -1.8vw 50%,#0000 99%,#000 101%) 3vw 50%/calc(51% - 3vw) 12vw repeat-y,
+        radial-gradient(3.5vw at calc(100% - 4.8vw) 50%,#000 99%,#0000 101%) 100% calc(50% - 6vw)/51% 12vw repeat-y,
+        radial-gradient(3.5vw at calc(100% + 1.8vw) 50%,#0000 99%,#000 101%) calc(100% - 3vw) 50%/calc(51% - 3vw) 12vw repeat-y; */
+      mask: 
+        radial-gradient(3.5vw at calc(100% - 4.8vw) 50%,#000 99%,#0000 101%) 0 calc(50% - 6vw)/100% 12vw,
+        radial-gradient(3.5vw at calc(100% + 1.8vw) 50%,#0000 99%,#000 101%) calc(100% - 3vw) 50%/100% 12vw repeat-y;
+      background: var(--bg);
+      transform-origin: right;
+      width: 100%;
+      height: 100.5%;
       position: relative;
-      left: -2px;
       box-sizing: content-box;
-      filter: drop-shadow(0.3vw 0.2vw 0.1vw #0008);
-      &:before {
-        position: absolute;
-        z-index: -1;
-        background: #708a33;
-        inset: 0;
-        clip-path: var(--wave);
-        content: '';
-      }
     }
   }
   .title{
@@ -52,6 +59,15 @@ html:has(#WebDesign){
     top: 0;
     display: grid;
     grid-template-columns: 1fr 2fr;
+  }
+  .spotLight{
+    position: fixed;
+    width: 12vw;
+    height: 12vw;
+    transform: translate(var(--x), var(--y));
+    background: radial-gradient(circle at 6vw 6vw, #fff6 3vw, transparent 6vw);
+    left: 0;
+    top: 0;
   }
   .titleLeft{
     max-height: 100%;
@@ -77,10 +93,9 @@ html:has(#WebDesign){
     position: relative;
     top: -2vw;
     background-position-y: 2vw;
-    box-shadow: inset 0 0 0vw 0.8vw #708a33, inset 0 0 0vw 0.1vw #708a33, inset 0 0 1.5vw 2.5vw #708a33;
     background-image: var(--dark);
-    background-color: #000b;
     border-radius: 6vw;
+    filter: drop-shadow(0 0 0.1vw #000) drop-shadow(0.6vw 0.4vw 0.2vw #000);
     background-clip: content-box;
   }
   .titleText{
@@ -90,7 +105,7 @@ html:has(#WebDesign){
     font-family: monster;
     width: 100%;
     height: 12vw;
-    top: -3vw;
+    bottom: 3vw;
     text-shadow: 0.3vw 0.2vw 0.2vw #0005;
     div{
       height: 16vw;
@@ -122,44 +137,193 @@ html:has(#WebDesign){
   .titleRight{
     display: grid;
     grid-template-rows: 1fr 0.5fr;
-    .cta{
-      margin: auto;
-    }
   }
   .rightHeading{
     height: 14vw;
-    font-size: 6vw;
-    font-family: fredericka;
-    transform: rotate(-5deg);
-    color: #032b10;
+    font-size: 4.5vw;
+    font-family: wetPaint;
+    transform: rotate(0deg);
+    color: var(--dg);
     text-shadow: 0.3vw 0.2vw 0.2vw #0005;
     margin: auto;
+    transform: translateY(2vw);
     p{
       margin: 0;
     }
+    .rh2{
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-family: rubikBlack;
+      color: transparent;
+      text-shadow: 0 0 0.1vw var(--dg), 0 0 0.2vw black;
+      width: 100%;
+      height: 100%;
+    }
   }
   .cta{
-    text-decoration: none;
-    font-family: rowdy;
-    background: #d8af7f;
-    padding: 2.6% 3% 3% 3%;
-    font-size: 3vw;
-    line-height: 1vw;
+    background: #133f20;
     border-radius: 2vw;
-    box-shadow: inset 0.15vw 0.1vw 0.1vw #dbc9b5, inset 0.3vw 0.2vw 0.1vw #e0bc92,
-    inset -0.15vw -0.1vw 0.1vw #af7f48, inset -0.3vw -0.2vw 0.1vw #cc9d67,
-    0.3vw 0.2vw 0.5vw #0007;
-    color: #b68248d5;
-    text-shadow: 0.075vw 0.05vw #eeceaa;
+    top: -30%;
+    margin: auto;
+    padding: 2.4% 2.7% 1.5% 0.1%;
+    position: relative;
+    filter: url("#goo");
+    canvas{
+      width: 200%;
+      height: 400%;
+      position: absolute;
+      left: -50%;
+      top: -120%;
+    }
+    a{
+      font-family: flavour;
+      background: #133f20;
+      /* background: green; */
+      padding: 1.6% 7.6% 3% 6%;
+      font-size: 3vw;
+      line-height: 1vw;
+      border-radius: 2vw;
+      text-shadow: 0.075vw 0.05vw #80b17b;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+      color: #598a55;
+      text-decoration: none;
+      transition: color 0.5s;
+      box-shadow: 0 0 0 0.2vw var(--dg);
+      &:hover, &:focus{
+        color: #baeeb4;
+      }
+      &:focus{
+        outline: none;
+        border-left: dashed 2px var(--bg);
+        border-top: dashed 2px var(--bg);
+        border-right: dashed 2px var(--bg);
+      }
+    }
   }
-
-  /* ------------- why section -------------------- */
+  /* --------------------------------------------------------------------------------*/
+  /* ------------- why section ----------------------------------------------------- */
+  /* --------------------------------------------------------------------------------*/
   .why{
-    background-color: #4d6417;
+    .bubble{
+      position: absolute;
+      display: flex;
+      align-items: center;
+      border-radius: 50%;
+      left: 0;
+      top: 0;
+      width: 8vw;
+      height: 8vw;
+      transition: outline 0.5s;
+      outline: dashed 2px transparent;
+      outline-offset: -3px;
+      z-index: 1;
+      &.header1, &.header2{
+        flex-flow: column;
+      }
+      &.header1{
+        left: 1vw;
+        top: calc(4vh / 2.05);
+        width: 25vw;
+        height: 12.5vw
+      }
+      &.header2{
+        left: 55vw;
+        top: calc(2vh / 2.05);
+        width: 37vw;
+        height: 18.5vw;
+      }
+      &:before{
+        position: absolute;
+        background: radial-gradient(ellipse at 50% 50%, var(--bg) 0%, transparent 70%);
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        z-index: -1;
+        content: '';
+        transition: 0.5s;
+      }
+      &:has(:focus-visible){
+        outline: dashed 2px var(--bg);
+      }
+      &:has(summary:hover):before, &[open]:before{
+        opacity: 1;
+      }
+    }
+    summary{
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8px 0 8px;
+      list-style: none;
+      &:focus{
+        outline: none;
+      }
+    }
+    .detText{
+      position: fixed;
+      top: 104vh;
+      left: 27vw;
+      width: 28vw;
+      height: 21vh;
+      box-sizing: content-box;
+      padding: 2vw;
+      border-radius: 20px;
+      outline-offset: -2px;
+      visibility: visible;
+      transition: top 1s linear, content-visibility 1s ease allow-discrete;
+    }
+    details::details-content {
+      transition: 
+      all 1s ease,
+      content-visibility 1s ease allow-discrete;
+      color: var(--dg);
+      content-visibility: visible;
+      pointer-events: none;
+      opacity: 0; /* Hidden state */
+    }
+    &:has(details[open]) .detText{
+      top: 44vh;
+    }
+    details[open]::details-content {
+      color: black;
+      opacity: 1;
+      pointer-events: all;
+    }
+    .whyFilter{
+      position: absolute;
+      filter: url("#goo2");
+      left: -2.5%;
+      width: 105%;
+      height: 102.5%;
+      canvas{
+        width: 100%;
+        height: 100%;
+      }
+      .gooFall{
+        position: absolute;
+        width: 20%;
+        height: 210%;
+        right: -20px;
+        bottom: 0;
+      }
+    }
+    h2{
+      margin-top: 2vw;
+      margin-bottom: 0;
+    }
+    p{
+      padding: 0 45px 0 45px;
+    }
   }
   /* ------------- whatYouGet section -------------------- */
   .whatYouGet{
-    background-color: #7c8b57;
   }
   /* ------------- about section -------------------- */
   .about{
@@ -167,7 +331,12 @@ html:has(#WebDesign){
     background-color: #bece98;
   }
   .aboutPic{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    bottom: 0;
     background: url("../images/me.png");
+    background-size: cover;
   }
   /* ------------- contact section -------------------- */
   .contact{

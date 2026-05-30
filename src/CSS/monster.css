@@ -14,6 +14,18 @@
   font-family: rowdy;
   src: url("./fonts/Rowdies-Light.ttf")
 }
+@font-face {
+  font-family: flavour;
+  src: url("./fonts/Flavors-Regular.ttf")
+}
+@font-face {
+  font-family: wetPaint;
+  src: url("./fonts/RubikWetPaint-Regular.ttf")
+}
+@font-face {
+  font-family: rubikBlack;
+  src: url("./fonts/Rubik-Black.ttf")
+}
 #home{ 
   background: black;
   height: 550vh;

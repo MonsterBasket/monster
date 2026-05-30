@@ -3,7 +3,7 @@ export default function WhatSection(){
   return <>
     <div className="what1">
       <h2>What's in the box</h2>
-      <p>Anything you want, really.  All builds start with a detailed consultation of your wants and needs, then I'll go away for a bit and come back with some ideas and options.  While I prefer to take the design out of your hands for the most part, if you know exactly what you want and just need someone to make if for you, that's okay too.  And if you have brand logos, fonts, colours etc. that's really not a problem.</p>
+      <p>Anything you want, really.  All builds start with a detailed consultation of your wants and needs, then I'll go away for a bit and come back with some ideas and options.  While I prefer to take the design out of your hands for the most part, if you know exactly what you want and just need someone to make if for you, that's okay too.  And if you have brand logos, fonts, colours... that sort of thing, that's really not a problem.</p>
     </div>
     <div className="what2">
       <h2>How it's built</h2>

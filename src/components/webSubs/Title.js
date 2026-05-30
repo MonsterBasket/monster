@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-  export default function Title(){
+  export default function Title(mx, my){
     const a = "MONSTER"
     const b = "BASKET"
     const textBox = useRef();
@@ -22,13 +22,16 @@ import { useEffect, useRef } from "react"
     </>
 
     function resize(){
-      textRect.current = textBox.current.getBoundingClientRect()
+      if (textBox.current)
+        setTimeout(() => {textRect.current = textBox.current.getBoundingClientRect()}, 250)
     }
     useEffect(() => resize(),[])
   
     function getCoords(e){
-      textBox.current.style.setProperty('--x', e.clientX - textRect.current.left + 'px');
-      textBox.current.style.setProperty('--y', e.clientY - textRect.current.top + 'px');
+      if(textBox.current && textRect.current){
+        textBox.current.style.setProperty('--x', e.clientX - textRect.current.left + 'px');
+        textBox.current.style.setProperty('--y', e.clientY - textRect.current.top + 'px');
+      }
     }
   
     useEffect(() =>{
@@ -37,6 +40,7 @@ import { useEffect, useRef } from "react"
       window.addEventListener('resize', resize);
       return () => {
         window.removeEventListener("mousemove", getCoords, false)
+        window.removeEventListener('scroll', resize) 
         window.removeEventListener('resize', resize);
       }
     })

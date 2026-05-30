@@ -80,12 +80,12 @@ export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={
+        <Route path="/nick" element={
           <PortSplash>
             <WebDesign />
           </PortSplash>
         } />
-        <Route path="/game" element={
+        <Route path="/" element={
           <PortSplash>
             <Monster />
           </PortSplash>

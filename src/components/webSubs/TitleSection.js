@@ -7,13 +7,16 @@ export default function TitleSection(){
   const logoRect = useRef();
 
   function resize(){
-    setTimeout(()=> {logoRect.current = logo.current.getBoundingClientRect()}, 260);
+    if (logo.current)
+      setTimeout(()=> {logoRect.current = logo.current.getBoundingClientRect()}, 260);
   }
   useEffect(() => resize(),[])
 
   function getCoords(e){
-    logo.current.style.setProperty('--x', e.clientX - logoRect.current.left + 'px');
-    logo.current.style.setProperty('--y', e.clientY - logoRect.current.top + 'px');
+    if (logo.current && logoRect.current){
+      logo.current.style.setProperty('--x', e.clientX - logoRect.current.left + 'px');
+      logo.current.style.setProperty('--y', e.clientY - logoRect.current.top + 'px');
+    }
   }
 
   useEffect(() =>{
@@ -37,7 +40,11 @@ export default function TitleSection(){
     <div className="titleRight">
       <div className="rightHeading">
         <p>Wicked Websites</p>
-        <p>That Sell</p>
+        <p>That Get Sales</p>
+        <div className="rh2">
+          <p>Wicked Websites</p>
+          <p>That Get Sales</p>
+        </div>
       </div>
       <CTA text={"GET ONE!"} a={"https://calendly.com/monsterbasketaus/30min"}/>
     </div>
