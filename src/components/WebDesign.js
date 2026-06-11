@@ -44,9 +44,6 @@ export default function WebDesign(){
         </filter>
       </defs>
     </svg>
-    <div className="waveCont" style={{transform:`translateY(${scrollY.current / 3 % 20 - 20}%)`}}>
-      <div/>
-    </div>
     <Spotlight />
     {/* ------------------- Title Section -------------------- */}
     <section className={`title ${scrollPos.current[0]}`}>

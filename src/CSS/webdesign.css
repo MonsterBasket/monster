@@ -29,31 +29,6 @@ html:has(#WebDesign){
   /* --------------------------------------------------------------------------------*/
   /*--------------- Title section ---------------------------------------------------*/
   /* --------------------------------------------------------------------------------*/
-  .waveCont{
-    width: 100vw;
-    height: 125vh;
-    position: fixed;
-    right: 0px;
-    top: 0;
-    filter: drop-shadow(0.3vw 0.2vw 0.4vw #0008);
-    /* filter: url("#goo"); */
-    div{
-  /* mask: 
-        radial-gradient(3.5vw at 4.8vw 50%,#000 99%,#0000 101%) 0 calc(50% - 6vw)/51% 12vw repeat-y,
-        radial-gradient(3.5vw at -1.8vw 50%,#0000 99%,#000 101%) 3vw 50%/calc(51% - 3vw) 12vw repeat-y,
-        radial-gradient(3.5vw at calc(100% - 4.8vw) 50%,#000 99%,#0000 101%) 100% calc(50% - 6vw)/51% 12vw repeat-y,
-        radial-gradient(3.5vw at calc(100% + 1.8vw) 50%,#0000 99%,#000 101%) calc(100% - 3vw) 50%/calc(51% - 3vw) 12vw repeat-y; */
-      mask: 
-        radial-gradient(3.5vw at calc(100% - 4.8vw) 50%,#000 99%,#0000 101%) 0 calc(50% - 6vw)/100% 12vw,
-        radial-gradient(3.5vw at calc(100% + 1.8vw) 50%,#0000 99%,#000 101%) calc(100% - 3vw) 50%/100% 12vw repeat-y;
-      background: var(--bg);
-      transform-origin: right;
-      width: 100%;
-      height: 100.5%;
-      position: relative;
-      box-sizing: content-box;
-    }
-  }
   .title{
     padding: 5vh 5% 0 5%;
     top: 0;
