@@ -61,7 +61,7 @@ export default function WhySection({scroll}){
       const oR = r; // original radius (actually diameter)
       x = x*xp + r*xp/2 + 2.5*xp; // original x/y is top left, canvas draws circles from centre
       y = y*yp + r*xp/2;
-      r = r*xp / 2  // converts diameter to radius at % of screen width
+      r = Math.max(r*xp / 2, 0)  // converts diameter to radius at % of screen width
 
       if (s < 1) {
         ctx.save() 
@@ -227,8 +227,8 @@ export default function WhySection({scroll}){
 
   return <>
     <div className="whyFilter">
-      <canvas ref={canvas}></canvas>
       <Goofall scroll={scroll}/>
+      <canvas ref={canvas}></canvas>
     </div>
     <div className="bubble header1">
       <h2>Why do you need a website?</h2>

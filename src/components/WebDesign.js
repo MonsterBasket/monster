@@ -9,13 +9,13 @@ import Spotlight from "./webSubs/Spotlight.js"
 
 export default function WebDesign(){
   const scrollPos = useRef(["mid", "low", "right", "left", "right"])
-  const scrollY = useRef();
+  const scrollY = useRef(0);
 
   function scroll(e){
     const y = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
     scrollY.current = y;
-    if (y < 20)      scrollPos.current = ["mid", "low", "right", "left", "right"]
-    else if (y < 55) scrollPos.current = ["up", "mid", "right", "left", "right"]
+    if (y < 35)     scrollPos.current = ["mid", "low", "right", "left", "right"]
+    else if (y < 60) scrollPos.current = ["up", "mid", "right", "left", "right"]
     else if (y < 90) scrollPos.current = ["up", "left", "mid", "left", "right"]
     else             scrollPos.current = ["up", "left", "mid", "mid", "mid"]
   }

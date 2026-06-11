@@ -2,14 +2,32 @@ import { useEffect, useRef } from "react"
 
 export default function Goofall({scroll}){
   const canvas = useRef();
-  const bubbles = useRef([])
+  const bubbles = useRef([]);
   const delta = useRef();
   const aniTimer = useRef();
-  const scrollY = useRef(0);
+  const rate = useRef(0);
   const lastScroll = useRef(0);
-  const rate = useRef(1);
+  const scrolled = useRef(false);
+  const scrollTimer = useRef();
+  const scrollCount = useRef(0);
 
-  useEffect(() => {scrollY.current = scroll || 0}, [scroll])
+  useEffect(() => {
+    if (scroll > lastScroll.current) {
+      addScroll(scroll - lastScroll.current)
+    }
+    lastScroll.current = scroll;
+    clearTimeout(scrollTimer.current);
+    scrollTimer.current = setTimeout(() => {
+      scrollCount.current += 1
+
+    }, 100)
+  }, [scroll])
+  function addScroll(amount, time = 2000){
+    // console.log(amount)
+    rate.current += (amount / 20) * (time / 2000)
+    if (time > 100) setTimeout(() => addScroll(amount, time - 100), 100)
+    // else lastScroll.current = 0;
+  }
 
   useEffect(() =>{
     const ctx = canvas.current.getContext("2d");
@@ -25,7 +43,7 @@ export default function Goofall({scroll}){
       const oR = r; // original radius (actually diameter)
       x = x*xp + r*xp/2 + 2.5*xp; // original x/y is top left, canvas draws circles from centre
       y = y*yp + r*xp/2;
-      r = r*xp / 2  // converts diameter to radius at % of screen width
+      r = Math.max(r*xp / 2, 0);  // converts diameter to radius at % of screen width
 
       ctx.beginPath();
       ctx.arc(x, y, r, 0, 2 * Math.PI); // initial circle
@@ -58,17 +76,36 @@ export default function Goofall({scroll}){
     function main(now, last, bY){ // bY = box Y
       delta.current = now - last;
       last = now;
+      rate.current += delta.current * 0.001; // increases rate constantly
+      if (!scrolled.current){
+        if (scrollCount.current < 5) window.scrollTo({ top: 0, behavior: 'instant' });
+        else {
+          window.scrollTo({ top: document.documentElement.scrollHeight / 3, behavior: 'smooth' })
+          scrolled.current = true;
+        }
+      }
+      while (rate.current >= 1) {
+        const x = Math.random() * 10 + 45;
+        const y = -5;
+        const r = Math.random() * 5 + 1 + (rate.current * 7);
+        const xs = Math.random() - 0.5;
+        const ys = Math.random() * 0.1 - 1.5 + (rate.current * 2);
+        bubbles.current.push([x, y, r, xs, ys])
+        rate.current -= 0.015 * Math.min(delta.current, 16); // decreases rate constantly to balance at 1
+      }
+
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       // --------------------- all bubble calculations ---------------------
+      const toDelete = [];
       const b = bubbles.current
-      // for (let i = 0; i < b.length; i++) {
-      //   circle(b[i][1], b[i][3], b[i][4]) // draws all bubbles
-      //   b[i][1] += (0.001 * b[i][6] * delta.current)  // x movement
-      //   b[i][3] += (0.001 * b[i][7] * delta.current)  // y movement
-      // }
-      circle(20, 70, 20)
-      circle(24, 69, 12)
-      console.log(scrollY.current)
+      for (let i = 0; i < b.length; i++) {
+        circle(b[i][0], b[i][1], b[i][2]) // draws all bubbles
+        b[i][0] += (0.01 * b[i][3] * delta.current)  // x movement
+        b[i][1] += (0.02 * b[i][4] * delta.current)  // y movement
+        if (b[i][1] > 100) toDelete.push(i);
+      }
+      toDelete.sort((a, b) => b - a)
+      toDelete.forEach(b => bubbles.current.splice(b, 1));
       aniTimer.current = requestAnimationFrame(t => main(t, last, bY))
     }
     aniTimer.current = requestAnimationFrame(t => main(t, t - 16, 104));
