@@ -63,14 +63,14 @@
 }
 .galSpin:nth-child(4) .galPic{
   background-size: cover;
-  background-image: url("../images/Trim1.gif");
+  background-image: url("../images/Trim1.webp");
 }
 .galSpin:nth-child(5) .galPic{
   background-size: cover;
-  background-image: url("../images/Trim2.gif");
+  background-image: url("../images/Trim2.webp");
 }
 .galSpin:nth-child(6) .galPic{
-  background-image: url("../images/Bull.png");
+  background-image: url("../images/Bull.webp");
 }
 .galText{
   left: -140px;
@@ -126,7 +126,7 @@
   animation-delay: calc(var(--scroll) * 0.5s);
 }
 .gallery, .gallery div div{
-  background-image: url("../images/river.png");
+  background-image: url("../images/river.webp");
   aspect-ratio: auto;
   background-size: auto 100vh;
 }

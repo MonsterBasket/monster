@@ -52,10 +52,10 @@
   pointer-events: none;
 }
 .leaf{
-  background-image: url("../../images/cherryLeaf.png")
+  background-image: url("../../images/cherryLeaf.webp")
 }
 .blossom{
-  background-image: url("../../images/cherryBlossom.png")
+  background-image: url("../../images/cherryBlossom.webp")
 }
 @keyframes leafFall{ /* Applied to container */
   0%   {top: -40px; }

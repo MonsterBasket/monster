@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../../CSS/splash.css"
-import light from "../../images/light monster.png"
+import light from "../../images/light monster.webp"
 
 export default function Main(){
   // get reference to canvas and save canvas offsets

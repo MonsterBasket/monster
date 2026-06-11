@@ -77,7 +77,7 @@
   height: max(400vh, 2000px);
   top: 0;
   box-sizing: border-box;
-  background-image: url("../../images/sunbeam.jpg");
+  background-image: url("../../images/sunbeam.webp");
   background: fixed;
 }
 .hellobg1{ animation: bg1 linear 1s paused; }
@@ -95,17 +95,17 @@
 }
 @keyframes bg1 { 20% {opacity: 1;} 45%, 100% {opacity: 0;}}
 @keyframes bg2 { 55% {opacity: 1;} 80%, 100% {opacity: 0;}}
-@keyframes bg3 { 0%, 99% {background-image: url("../../images/trees.jpg")} 100% {background-image: none;}}
+@keyframes bg3 { 0%, 99% {background-image: url("../../images/trees.webp")} 100% {background-image: none;}}
 .panel1{
-  background: url("../../images/sunbeam.jpg") 0 0 /calc(100vw - 15px);
+  background: url("../../images/sunbeam.webp") 0 0 /calc(100vw - 15px);
 }
 .panel3{
-  background: url("../../images/trees.jpg") 0 0 /1920px;
+  background: url("../../images/trees.webp") 0 0 /1920px;
   /* animation: bg3 linear 1s paused; */
   animation-delay: calc(var(--scroll) * -0.999s);
 }
 .panel2{
-  background: url("../../images/penguin.jpg") 0 0 /1920px;
+  background: url("../../images/penguin.webp") 0 0 /1920px;
   color:#000;
   text-shadow: 1px 1px 5px #bbb,
                -1px -1px 5px #bbb,

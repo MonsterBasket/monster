@@ -13,11 +13,17 @@ iframe{
   position: absolute;
   border-radius: 30px;
   background-clip: padding-box;
+  cursor: pointer;
 }
 .work{
   background-color: #b38046;
   transition: 0.5s;
   overflow: hidden;
+  img{
+    height: 100%;
+    position: relative;
+    object-fit: cover;
+  }
 }
 #Work .work.front{
   box-shadow: inset 0 0 15px #462d12;

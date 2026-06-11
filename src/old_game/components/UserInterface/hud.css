@@ -1,8 +1,8 @@
 #hudContainer{
-  --itemsImg: url("../../images/icons/itemsImg.png");
-  --armourImg: url("../../images/icons/armourImg.png");
-  --skillsImg: url("../../images/icons/skillsImg.png");
-  --questsImg: url("../../images/icons/questsImg.png");
+  --itemsImg: url("../../images/icons/itemsImg.webp");
+  --armourImg: url("../../images/icons/armourImg.webp");
+  --skillsImg: url("../../images/icons/skillsImg.webp");
+  --questsImg: url("../../images/icons/questsImg.webp");
   width: 100%;
   height: 100%;
   background: none;

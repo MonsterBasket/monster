@@ -95,11 +95,11 @@
     cursor: pointer;
   }
   .itemSlot.withImg, .armourSlot.withImg{
-    background-image: url("../../images/items.png");
+    background-image: url("../../images/items.webp");
     background-size: 960px 1320px; /* Slot size is 60px, icon size is 48px, that's 1.25 scale.  Image size is 768*1056 */
   }
   .worldItem{
-    background-image: url("../../images/items.png");
+    background-image: url("../../images/items.webp");
     background-size: 576px 792px; /* same logic as above but going down to 80% size */
     width: 36px;
     height: 35px;

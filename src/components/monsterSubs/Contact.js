@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
-import linkedIn from "../../images/linkedin.png"
-import blueSky from "../../images/bluesky.png"
-import insta from "../../images/instagram.png"
-import gmail from "../../images/gmail.png"
+import linkedIn from "../../images/linkedin.webp"
+import blueSky from "../../images/bluesky.webp"
+import insta from "../../images/instagram.webp"
+import gmail from "../../images/gmail.webp"
 
 export default function Contact() {
   const [_,refresh] = useState([])

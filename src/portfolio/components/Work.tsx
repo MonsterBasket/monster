@@ -1,6 +1,11 @@
 import './CSS/work.css'
-import disclaimerImg from '../images/disclaimer.png';
-import { IframeHTMLAttributes, ReactElement, useEffect, useRef, useState } from 'react';
+import cookiesImg from "../images/cookies.webp"
+import gearsImg from "../images/gears.webp"
+import hairImg from "../images/hair.webp"
+import allyImg from "../images/kickthevendor.webp"
+import matteImg from "../images/matte.webp"
+import showreelImg from "../images/showreel.webp"
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
 type Props = {turnToCheat: number;}
 
@@ -71,6 +76,12 @@ export default function Work({turnToCheat}: Props){
     descPos.current = [descPos.current[num(0)], descPos.current[num(1)], descPos.current[num(2)], descPos.current[num(3)], descPos.current[num(4)], descPos.current[num(5)]]
     rerender([])
   }
+  const alleyAlt:string = ""
+  const cookiesAlt:string = ""
+  const matteAlt:string = ""
+  const showreelAlt:string = ""
+  const gearsAlt:string = ""
+  const hairAlt:string = ""
 
   const alleyUrl:string = "https://player.vimeo.com/video/5008288?h=22815a5165"
   const cookiesUrl:string = "https://www.youtube.com/embed/XRhsOcLPqiQ?si=wbU0P8G8_0sTDUb6"  
@@ -78,20 +89,18 @@ export default function Work({turnToCheat}: Props){
   const showreelUrl:string = "https://player.vimeo.com/video/35045360?h=02bc212f2a"
   const gearsUrl:string = "https://www.youtube.com/embed/T0VNYxlmUbQ?si=jcFYfyD0epqUukZX"
   const hairUrl:string = "https://www.youtube.com/embed/D81XrEyneAA?si=jFrUNLEuW4z46LJd"
-  const alley:ReactElement = <iframe src={alleyUrl} width="100%" height="100%" allow="autoplay; fullscreen; picture-in-picture" />
-  const alleyDesc:string = `Brief: A 6 second abstract video synced to a music clip promoting a school event "Kick the Vendor".  I modelled the alleyway to match the photo and used (too many?) dynamic particles with physics.`
-  const cookies:ReactElement = <iframe width="100%" height="100%" src={cookiesUrl} title="YouTube video player" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
-  const cookiesDesc:ReactElement = <span><h3>Cookies</h3>Flash animation that I had a lot of fun with. I lost the original render and the blurred animations (smoke, bird, trees) rendered as static in this one.</span>
-  const mattePainting:ReactElement = <iframe width="100%" height="100%" src={matteUrl} title="YouTube video player" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
-  const mattePaintingDesc:string = "Animated matte painting, cutting out trees is hard!"
-  const showreel:ReactElement = <iframe title="Showreel - James Blaskett 2011" src={showreelUrl} width="100%" height="100%" allow="autoplay; fullscreen; picture-in-picture"></iframe>
-  const showreelDesc:string = "A compilation showing many of my works from uni after I graduated in 2011"
-  const gears:ReactElement = <iframe width="100%" height="100%" src={gearsUrl} title="Dynamic Gears" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
-  const gearsDesc:string = "All the animation here is dynamic, the tall gear shown first is animated to spin, then everything else (including the swinging lights) is dynamic."
-  const hair:ReactElement = <iframe width="100%" height="100%" src={hairUrl} title="MoCap Hair" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
-  const hairDesc:string = "This was a group project that was supposed to be MoCap but ended up being mostly rotoscope.  The 3D modelling was done by the other members, the mocap/roto was me, not sure if that's a self compliment or insult though..."
-  const disclaimer:ReactElement = <img src={disclaimerImg} style={{width:"100%"}}></img>
-  const disclaimerDesc:ReactElement = <span>Please note, all the work in this section is close to 15 years old.  This website itself is my portfolio, this is just filler content from a previous life.<br/><br/>I originally made this carousel for the menu in my game Monster Basket which you can see on my projects page.</span>
+  const alley:ReactElement = <a href={alleyUrl} target="_blank" rel="noreferrer"><img alt={alleyAlt} src={allyImg} style={{left:"-20%"}}></img></a>
+  const cookies:ReactElement = <a href={cookiesUrl} target="_blank" rel="noreferrer"><img alt={cookiesAlt} src={cookiesImg} style={{left:"-75%"}}></img></a>
+  const mattePainting:ReactElement = <a href={matteUrl} target="_blank" rel="noreferrer"><img alt={matteAlt} src={matteImg} style={{left:"-40%"}}></img></a>
+  const showreel:ReactElement = <a href={showreelUrl} target="_blank" rel="noreferrer"><img alt={showreelAlt} src={showreelImg} style={{left:"-20%"}}></img></a>
+  const gears:ReactElement = <a href={gearsUrl} target="_blank" rel="noreferrer"><img alt={gearsAlt} src={gearsImg} style={{left:"-15%"}}></img></a>
+  const hair:ReactElement = <a href={hairUrl} target="_blank" rel="noreferrer"><img alt={hairAlt} src={hairImg} style={{left:"-40%"}}></img></a>
+  const alleyDesc:ReactElement = <span><a href={alleyUrl} target="_blank" rel="noreferrer"><h3>Kick the Vendor</h3></a>Brief: A 6 second abstract video synced to a music clip promoting a school event "Kick the Vendor".  I modelled the alleyway to match the photo and used (too many?) dynamic particles with physics.</span>
+  const cookiesDesc:ReactElement = <span><a href={cookiesUrl} target="_blank" rel="noreferrer"><h3>Cookies</h3></a>Flash animation that I had a lot of fun with. I lost the original render and the blurred animations (smoke, bird, trees) rendered as static in this one.</span>
+  const mattePaintingDesc:ReactElement = <span><a href={matteUrl} target="_blank" rel="noreferrer"><h3>Matte Painting</h3></a>Animated matte painting, cutting out trees is hard!</span>
+  const showreelDesc:ReactElement = <span><a href={showreelUrl} target="_blank" rel="noreferrer"><h3>3D Showreel (Modelling, Rigging and Animation)</h3></a>A compilation showing many of my works from uni after I graduated in 2011</span>
+  const gearsDesc:ReactElement = <span><a href={gearsUrl} target="_blank" rel="noreferrer"><h3>Dynamic Gears Simulation</h3></a>All the animation here is dynamic, the tall gear shown first is animated to spin, then everything else (including the swinging lights) is dynamic.</span>
+  const hairDesc:ReactElement = <span><a href={hairUrl} target="_blank" rel="noreferrer"><h3>MoCap Hair</h3></a>This was a group project that was supposed to be MoCap but ended up being mostly rotoscope.  The 3D modelling was done by the other members, the mocap/roto was me, not sure if that's a self compliment or insult though...</span>
   
   // This is all good, but 
   // but what!? Why did you start writing this note?? WHAT WERE YOU TRYING TO TELL ME!!?

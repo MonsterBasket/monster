@@ -1,8 +1,8 @@
 import { ReactElement, useEffect, useRef, useState } from "react";
 import "./CSS/projects.css"
-import monster from "../images/screengrab.png"
-import battleship from "../images/battleship.png"
-import mask from "../images/MASK.png"
+import monster from "../images/screengrab.webp"
+import battleship from "../images/battleship.webp"
+import mask from "../images/MASK.webp"
 import Typing from "./Typing.tsx";
 
 type Props = {turnToCheat: number;}

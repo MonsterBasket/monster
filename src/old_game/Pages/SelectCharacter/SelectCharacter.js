@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Title from '../../components/Pages/Title.tsx';
 import '../Login/home.css';
-import knight from "../../images/knight.png"
-import rogue from "../../images/rogue.png"
-import mage from "../../images/mage.png"
+import knight from "../../images/knight.webp"
+import rogue from "../../images/rogue.webp"
+import mage from "../../images/mage.webp"
 import axios from 'axios';
 import { serverUrl } from '../../../App';
 import Menu from '../../../components/monsterSubs/Menu.js'

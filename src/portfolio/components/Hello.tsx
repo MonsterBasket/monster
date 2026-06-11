@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
-import sunbeam from "../images/sunbeam.jpg"
-import penguin from "../images/penguin.jpg"
-import trees   from "../images/trees.jpg"
+import sunbeam from "../images/sunbeam.webp"
+import penguin from "../images/penguin.webp"
+import trees   from "../images/trees.webp"
 import './CSS/App.css';
 import './CSS/hello.css';
 

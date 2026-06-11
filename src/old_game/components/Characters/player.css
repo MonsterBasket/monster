@@ -1,10 +1,10 @@
-.player {       background-image: url("../../images/main-character.png"); }
-.Knight {       background-image: url("../../images/knight-sprite.png"); }
-.Rogue {        background-image: url("../../images/rogue-sprite.png"); }
-.Mage {         background-image: url("../../images/mage-sprite.png"); }
-.skeleton {     background-image: url("../../images/skeleton.png"); }
-.redSkeleton {  background-image: url("../../images/redSkeleton.png"); }
-.blueSkeleton { background-image: url("../../images/blueSkeleton.png"); }
+.player {       background-image: url("../../images/main-character.webp"); }
+.Knight {       background-image: url("../../images/knight-sprite.webp"); }
+.Rogue {        background-image: url("../../images/rogue-sprite.webp"); }
+.Mage {         background-image: url("../../images/mage-sprite.webp"); }
+.skeleton {     background-image: url("../../images/skeleton.webp"); }
+.redSkeleton {  background-image: url("../../images/redSkeleton.webp"); }
+.blueSkeleton { background-image: url("../../images/blueSkeleton.webp"); }
 
 .character{
   position: absolute;

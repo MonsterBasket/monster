@@ -1,6 +1,6 @@
 .world{
-  --imgUrl: url("../../images/environment-sprites.png");
-  /* --colliderUrl: url("../../images/colliders.png"); */
+  --imgUrl: url("../../images/environment-sprites.webp");
+  /* --colliderUrl: url("../../images/colliders.webp"); */
 }
 .world, .world2{
   position: absolute;
