@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Goofall from "./Goofall";
 
 export default function WhySection({scroll}){
   const canvas = useRef();
   const bubbles = useRef(new Array(12).fill(0).map(() => new Array(5).fill(0))); // 0-5 are left, 6-11 right, 12-32 bottom
-  const floaters= useRef([])
+  const floaters = useRef([])
+  const popped = useRef([])
   const active = useRef(null);
   const delta = useRef();
   const aniTimer = useRef();
@@ -13,13 +14,21 @@ export default function WhySection({scroll}){
   const T03 = useRef()
   const T04 = useRef()
   const T05 = useRef()
-  // I initially had the two headers in this list too, hence no T06
+  // I initially had the two headers in this list too, hence no T00 or T06
   const T07 = useRef()
   const T08 = useRef()
   const T09 = useRef()
   const T10 = useRef()
   const T11 = useRef()
   const mouse = useRef({x:0, y:0})
+  const [transition, setTransition] = useState("0.4s ease");
+  const paused = useRef(false)
+
+  useEffect(() =>{
+    setTransition("0.4s ease")
+    if (scroll > 60) paused.current = true;
+    if (scroll < 60) paused.current = false;
+  }, [scroll])
 
   useEffect(() =>{
     const ctx = canvas.current.getContext("2d");
@@ -51,7 +60,7 @@ export default function WhySection({scroll}){
       const x = ((i * 3.3) - Math.random()) - 2;
       const s = Math.random() * 2 + 6;
       const scale = Math.random() + 2 * Math.sign(Math.random() - 0.5)
-      bubbles.current.push([x, x, 100-s, 100-s, s, 2, scale]) // scale = pool identifier - x speed = rate of scale.
+      bubbles.current.push([x, x, 100-s, 100-s, s, 2, scale]) // scale = pool identifier, x speed = rate of scale.
     }
 
     // ---------------------------------------------------------------------------------------------------
@@ -70,7 +79,14 @@ export default function WhySection({scroll}){
       ctx.beginPath();
       ctx.arc(x, y, r, 0, 2 * Math.PI); // initial circle
       ctx.fill();
-      const gradient = ctx.createRadialGradient(x, y, r / 2, x, y, r) // base color with slight 3D shading
+      let gradient;
+      try{
+        gradient = ctx.createRadialGradient(x, y, r / 2, x, y, r) // base color with slight 3D shading
+      }
+      catch (error) {
+        console.log(error)
+        console.log(`x: ${x}, y: ${y}, r: ${r}, s: ${s}`)
+      }
       if (s === 3) { // floaters only
         gradient.addColorStop(0.6, "#708a33")
         gradient.addColorStop(1, "#5c7426")
@@ -108,7 +124,7 @@ export default function WhySection({scroll}){
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       // --------------------- calculates all floaters (must be first to go behind others) ---------------------
       const f = floaters.current
-      let pop = [];
+      let pop = null;
       for (let i = 0; i < f.length; i++) {
         circle(f[i][1], f[i][2], f[i][3], 3) // draw
         f[i][2] -= 0.01 * f[i][5] * delta.current;   // y constant movement
@@ -128,11 +144,35 @@ export default function WhySection({scroll}){
         const disty = yc - mouse.current.y
         const distS = distx**2 + disty**2
         if (distS < (r*xp * r*xp) || f[i][2] < 0){
-          pop.push(i);
+          pop = i;
         }
       }
-      if (pop.length > 0) f.splice(pop,1) // wait until for loop is done and then delete - if two need to be deleted on the exact same frame (unlikely) the lower index will get picked up again next frame.
-
+      // --------------------------- popped floaters -------------------------------
+      if (pop != null) {
+        // wait until for loop is done and then delete - if two need to be deleted on the exact same frame 
+        // (uncommon, but possible) the lower index will get picked up again next frame.
+        const w = f[pop][3] - 2
+        let x = f[pop][1] + (w / 2);
+        let y = f[pop][2] + (w / 2);
+        for (let i = 0; i < Math.random() * 5 + 3; i++) {
+          const xs = Math.random() * -1 + 0.5;
+          const ys = Math.random() * -1 - 1;
+          x += Math.random() * w - (w / 2)
+          y += Math.random() * w - (w / 2)
+          popped.current.push([x, y, 2, xs, ys])
+        }
+        f.splice(pop,1)
+      }
+      const p = popped.current;
+      let kill = null;
+      for (let i = 0; i < p.length; i++) {
+        circle(p[i][0], p[i][1], p[i][2], 3)
+        p[i][0] += 0.025 * p[i][3] * delta.current;
+        p[i][1] += 0.025 * p[i][4] * delta.current;
+        p[i][4] += 0.005 * delta.current;
+        if (p[i][1] > 100) kill = i
+      }
+      if (kill != null) p.splice(kill,1);
       // --------------------- all bubble calculations ---------------------
       const b = bubbles.current
       ctx.fillStyle = "#165529";
@@ -150,7 +190,7 @@ export default function WhySection({scroll}){
             b[i][7] = -Math.sign(b[i][7]) * Math.random() * 0.5; // change direction and pick new speed.
           }
         }
-        if (i > 11) { // All the bottom bubbles
+        if (i > 11) { // All the bottom (pool) bubbles
           b[i][4] += (0.001 * b[i][6] * delta.current)   //change size
           b[i][1] -= (0.001 * b[i][6]/2 * delta.current) //adjust x pos for size
           b[i][3] -= (0.001 * b[i][6]/2 * delta.current) //adjust y pos for size
@@ -166,7 +206,10 @@ export default function WhySection({scroll}){
               const my = Math.random() + 0.5         // y speed
               floaters.current.push([x, x, 90, 2, mx, my])
             }
-            else b[i][6] = -Math.sign(b[i][6]) * (Math.random() * 2 + 1); // change direction and pick new speed.
+            else {
+              if (b[i][4] < 6) b[i][4] = 6;
+              b[i][6] = -Math.sign(b[i][6]) * (Math.random() * 2 + 1); // change direction and pick new speed.
+            }
           }
         }
       }
@@ -181,15 +224,23 @@ export default function WhySection({scroll}){
         ctx.fillStyle = "#165529";
         ctx.fillRect(27.5*xp + 2.5*xp, bY*yp + 0.5*yp, 26.5*xp + 4*xp, 18*yp + 8.5*yp) // detail open text (main colour)
       }
-      aniTimer.current = requestAnimationFrame(t => main(t, last, bY))
+      aniTimer.current = requestAnimationFrame(t => nextFrame(t, last, bY))
+    }
+    function pausedLoop(now, last, bY){ // required to restart the main loop on unpause
+      delta.current = now - last;
+      last = now;
+      aniTimer.current = requestAnimationFrame(t => nextFrame(t, last, bY))
     }
     window.onload = () => {aniTimer.current = requestAnimationFrame(t => main(t, t - 16, 104));}
 
-    
+    function nextFrame(t, last, bY){
+      if (paused.current) pausedLoop(t, last, bY)
+      else                main(t, last, bY)
+    }
+
     function tabbed(){
-      if (document.visibilityState === "hidden") {
-        cancelAnimationFrame(aniTimer.current)
-      } else if (document.visibilityState === "visible") {
+      cancelAnimationFrame(aniTimer.current)
+      if (document.visibilityState === "visible") {
         aniTimer.current = requestAnimationFrame(t => main(t, t - delta.current, 104));
       }
     }  
@@ -227,31 +278,31 @@ export default function WhySection({scroll}){
 
   return <>
     <div className="whyFilter">
-      <Goofall scroll={scroll}/>
+      <Goofall scroll={scroll} paused={paused.current}/>
       <canvas ref={canvas}></canvas>
     </div>
     <div className="bubble header1">
       <h2>Why do you need a website?</h2>
       <p>Since you're reading this on my website that sells websites, you probably already know.  But if you don't, here are 5 reasons why having a website can be beneficial to your business.</p>
     </div>
-    <details name="why" className="bubble" ref={T01} onToggle={e => toggle(e, 1)}>
+    <details name="why" className="bubble" ref={T01} style={{"--top": transition}} onToggle={e => toggle(e, 1)} onClick={e => setTransition("1s linear")}>
       <summary>Builds trust and credibility</summary>
       <div className={`detText`}>A well built website makes your business also appear well built.  (I can't help you make sure your business actually is well built, but I can certainly make sure your website will be!)</div>
     </details>
-    <details name="why" className="bubble" ref={T02} onToggle={e => toggle(e, 2)}>
+    <details name="why" className="bubble" ref={T02} style={{"--top": transition}} onToggle={e => toggle(e, 2)} onClick={e => setTransition("1s linear")}>
       <summary>You can be open 24/7</summary>
       <div className={`detText`}>Do you really want to answer the phone at 9pm on a Saturday?  Providing detailed information on your site lets your customers get the information they need, whenever they need it.
       <br/><br/>Whether your customers are at work, on the train, or on the toilet, your site doesn't judge.</div>
     </details>
-    <details name="why" className="bubble" ref={T03} onToggle={e => toggle(e, 3)}>
+    <details name="why" className="bubble" ref={T03} style={{"--top": transition}} onToggle={e => toggle(e, 3)} onClick={e => setTransition("1s linear")}>
       <summary>Greater sales potential</summary>
       <div className={`detText`}>Additional to the above, I can hook up an online store or link to your calendar so that customers can buy your products or schedule an appointment at any time of day or night.</div>
     </details>
-    <details name="why" className="bubble" ref={T04} onToggle={e => toggle(e, 4)}>
+    <details name="why" className="bubble" ref={T04} style={{"--top": transition}} onToggle={e => toggle(e, 4)} onClick={e => setTransition("1s linear")}>
       <summary>Improved visibility and reach</summary>
       <div className={`detText`}>Whether your service is available only for your local area, home city, or entire world, good Search Engine Optimisation (SEO) will make it easier for your customers to find you.</div>
     </details>
-    <details name="why" className="bubble" ref={T05} onToggle={e => toggle(e, 5)}>
+    <details name="why" className="bubble" ref={T05} style={{"--top": transition}} onToggle={e => toggle(e, 5)} onClick={e => setTransition("1s linear")}>
       <summary>Data Collection</summary>
       <div className={`detText`}>I know, I know, I said a bad word.  But data is valuable, and it doesn't need to mean personal data.  Gathering information on where people are finding your site, what's getting clicked on the most, and where customers leave can tell you exactly what works, and what doesn't (or it can tell me, and I can tell you)!</div>
     </details>
@@ -261,25 +312,25 @@ export default function WhySection({scroll}){
       <br/><br/>
       Here are 5 reasons why you should pay me to make your website for you.</p>
     </div>
-    <details name="why" className="bubble" ref={T07} onToggle={e => toggle(e, 7)}>
+    <details name="why" className="bubble" ref={T07} style={{"--top": transition}} onToggle={e => toggle(e, 7)} onClick={e => setTransition("1s linear")}>
       <summary>Trust and credibility</summary>
       <div className={`detText`}>Hang on, I hear what you're saying; "Isn't that the same reason you said before?" and yeah, it is, but with a twist.  People spend more time online than ever before, to most people: your website IS your business.
         <br/><br/>Whether you're selling physical products, services, or just advice, pretend your website is a physical store.  What's your impression of a store with really neat shelves and attractive displays, vs a store that's a chaotic mess?  If your website is a chaotic mess, people will leave in SECONDS (literally 10-20 seconds), and never come back.</div>
     </details>
-    <details name="why" className="bubble" ref={T08} onToggle={e => toggle(e, 8)}>
+    <details name="why" className="bubble" ref={T08} style={{"--top": transition}} onToggle={e => toggle(e, 8)} onClick={e => setTransition("1s linear")}>
       <summary>Point of interest</summary>
       <div className={`detText`}>There's a well documented phenomenon called the picture superiority effect, which means that most people remember visuals waaaay better than text.  Marketers have known this for decades, and also know that if the visuals are pleasing, relevant to their interests, emotional, or shocking, they're even more powerful.  Whatever your vibe, be it professional, casual, trippy, or downright psychedelic, I gotchu.  (I can't do cool, I'm a dad)</div>
     </details>
-    <details name="why" className="bubble" ref={T09} onToggle={e => toggle(e, 9)}>
+    <details name="why" className="bubble" ref={T09} style={{"--top": transition}} onToggle={e => toggle(e, 9)} onClick={e => setTransition("1s linear")}>
       <summary>Movement</summary>
       <div className={`detText`}>Intentionally designed animations can draw your customers' eyes where you want them to.  For instance, did you even notice the pink elephant on this page, or was your eye drawn to the info?  Close this box and look again!
       <br/><br/>You probably didn't know this was even a thing, but I have an actual degree in animation. I know this shit.</div>
     </details>
-    <details name="why" className="bubble" ref={T10} onToggle={e => toggle(e, 10)}>
+    <details name="why" className="bubble" ref={T10} style={{"--top": transition}} onToggle={e => toggle(e, 10)} onClick={e => setTransition("1s linear")}>
       <summary>Memorable</summary>
       <div className={`detText`}>Did you know that even for cheap or impulse purchases, customers often visit the site 3 times before purchasing?  The more expensive your product (or service), the higher that number goes.  Most, if not all of your customers are also looking at your competitors, and price is not the only thing they're looking for (well, some are, but I can't help that).  When they've done their research and are ready to buy, which site do you want them to remember?</div>
     </details>
-    <details name="why" className="bubble" ref={T11} onToggle={e => toggle(e, 11)}>
+    <details name="why" className="bubble" ref={T11} style={{"--top": transition}} onToggle={e => toggle(e, 11)} onClick={e => setTransition("1s linear")}>
       <summary>Time is money</summary>
       <div className={`detText`}>I know you've already thought about this, but yes, you could probably make your site yourself, but how long would it take you?  You're running a business, you have better things to do with your time, and it will take you WAY longer than it will take me.  And trust me, AI will only get you so far (and you'll have no idea what it's stuffed up until it's too late)</div>
     </details>

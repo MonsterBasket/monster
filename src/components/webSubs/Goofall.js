@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export default function Goofall({scroll}){
+export default function Goofall({scroll, paused}){
   const canvas = useRef();
   const bubbles = useRef([]);
   const delta = useRef();
@@ -10,8 +10,12 @@ export default function Goofall({scroll}){
   const scrolled = useRef(false);
   const scrollTimer = useRef();
   const scrollCount = useRef(0);
+  const thisPaused = useRef(paused)
+
+  useEffect(() => {thisPaused.current = paused}, [paused])
 
   useEffect(() => {
+    if (scroll > 55) return;
     if (scroll > lastScroll.current) {
       addScroll(scroll - lastScroll.current)
     }
@@ -24,7 +28,8 @@ export default function Goofall({scroll}){
   }, [scroll])
   function addScroll(amount, time = 2000){
     // console.log(amount)
-    rate.current += (amount / 20) * (time / 2000)
+    if (scroll < 20) rate.current += (amount / 5) * (time / 2000)
+    else rate.current += (amount / 20) * (time / 2000)
     if (time > 100) setTimeout(() => addScroll(amount, time - 100), 100)
     // else lastScroll.current = 0;
   }
@@ -106,9 +111,19 @@ export default function Goofall({scroll}){
       }
       toDelete.sort((a, b) => b - a)
       toDelete.forEach(b => bubbles.current.splice(b, 1));
-      aniTimer.current = requestAnimationFrame(t => main(t, last, bY))
+      aniTimer.current = requestAnimationFrame(t => nextFrame(t, last, bY))
+    }
+    function pausedLoop(now, last, bY){ // required to restart the main loop on unpause
+      delta.current = now - last;
+      last = now;
+      aniTimer.current = requestAnimationFrame(t => nextFrame(t, last, bY))
     }
     aniTimer.current = requestAnimationFrame(t => main(t, t - 16, 104));
+
+    function nextFrame(t, last, bY){
+      if (thisPaused.current) pausedLoop(t, last, bY)
+      else                    main(t, last, bY)
+    }
 
     
     function tabbed(){
