@@ -1,16 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import CTA from "./CTA.js"
 import Title from "./Title.js"
+import LightSwitch from "./LightSwitch.js";
+import Spotlight from "./Spotlight.js";
 
 export default function TitleSection(){
   const logo = useRef();
   const logoRect = useRef();
+  const [lights, setLights] = useState(true);
 
   function resize(){
     if (logo.current)
       setTimeout(()=> {logoRect.current = logo.current.getBoundingClientRect()}, 260);
   }
   useEffect(() => resize(),[])
+
+  useEffect(() => {
+    if(lights)
+      document.documentElement.style.removeProperty('--bg')
+    else
+      document.documentElement.style.setProperty('--bg', "#000")
+  }, [lights])
 
   function getCoords(e){
     if (logo.current && logoRect.current){
@@ -31,22 +41,19 @@ export default function TitleSection(){
   })
 
   return <>
-    <div className="titleLeft">
-      <div className="logo">
-        <div ref={logo} className="logoCover"/>
+    <div>{lights ? "" : <Spotlight />}</div>
+    <div className="titleLeft" >
+      <div className={lights ? "logo" : "logo eyes"}>
+        <div ref={logo} className={lights ? "logo" : "logoCover"}/>
       </div>
-      <Title />
+      <Title lights={lights} />
+      <div className="floor"></div>
     </div>
     <div className="titleRight">
       <div className="rightHeading">
-        <p>Wicked Websites</p>
-        <p>That Get Sales</p>
-        <div className="rh2">
-          <p>Wicked Websites</p>
-          <p>That Get Sales</p>
-        </div>
+        <LightSwitch lights={lights} setLights={setLights}/>
       </div>
-      <CTA text={"GET ONE!"} a={"https://calendly.com/monsterbasketaus/30min"}/>
+      {/* <CTA text={"GET ONE!"} a={"https://calendly.com/monsterbasketaus/30min"}/> */}
     </div>
   </>
 }

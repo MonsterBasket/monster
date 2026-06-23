@@ -44,7 +44,6 @@ export default function WebDesign(){
         </filter>
       </defs>
     </svg>
-    <Spotlight />
     {/* ------------------- Title Section -------------------- */}
     <section className={`title ${scrollPos.current[0]}`}>
       <TitleSection />

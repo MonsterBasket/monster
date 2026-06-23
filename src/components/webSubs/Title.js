@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-  export default function Title(mx, my){
+  export default function Title({lights}){
     const a = "MONSTER"
     const b = "BASKET"
     const textBox = useRef();
@@ -46,10 +46,7 @@ import { useEffect, useRef } from "react"
     })
     
     return <div className="titleText">
-      <div className="tt1">
-        {text}
-      </div>
-      <div ref={textBox} className="tt2">
+      <div className={lights ? "tt1" : "tt2"}>
         {text}
       </div>
     </div>

@@ -84,8 +84,9 @@ export default function WhySection({scroll}){
         gradient = ctx.createRadialGradient(x, y, r / 2, x, y, r) // base color with slight 3D shading
       }
       catch (error) {
-        console.log(error)
-        console.log(`x: ${x}, y: ${y}, r: ${r}, s: ${s}`)
+        // console.log(error)
+        // console.log(`x: ${x}, y: ${y}, r: ${r}, s: ${s}`)
+        return;
       }
       if (s === 3) { // floaters only
         gradient.addColorStop(0.6, "#708a33")
@@ -278,7 +279,6 @@ export default function WhySection({scroll}){
 
   return <>
     <div className="whyFilter">
-      <Goofall scroll={scroll} paused={paused.current}/>
       <canvas ref={canvas}></canvas>
     </div>
     <div className="bubble header1">
